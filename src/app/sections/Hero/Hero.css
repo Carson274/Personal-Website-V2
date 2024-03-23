@@ -1,0 +1,43 @@
+.secrest, .carson {
+  font-size: 60px;
+  line-height: 1.2;
+  position: relative;
+}
+
+.secrest {
+  transform: translate(38px, 85px);
+}
+
+.carson {
+  transform: translate(-45px, 65px);
+}
+
+.text-div {
+  color: #403E3A;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-140px);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-40px);
+  }
+}
+
+.secrest-cover {
+  transform: translateY(20px);
+}
+
+.carson-cover {
+  transform: translateY(20px);
+}

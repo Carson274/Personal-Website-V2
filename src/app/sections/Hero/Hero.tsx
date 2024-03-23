@@ -1,13 +1,71 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+import './Hero.css';
 
 const Hero = () => {
+  useEffect(() => {
+    const logo = document.querySelector<HTMLImageElement>('.logo')!;
+    const secrest = document.querySelector<HTMLElement>('.secrest')!;
+    const carson = document.querySelector<HTMLElement>('.carson')!;
+
+    logo.style.animation = 'slideLeft 1.5s 0.0s cubic-bezier(0.215, 0.610, 0.355, 1) forwards';
+
+    // make it so that when the animation has ended, the logo will stay in place to the left 100%
+    logo.addEventListener('animationend', () => {
+      logo.style.left = '-140px';
+      logo.style.animation = '';
+    }, { once: true });
+
+    setTimeout(() => {
+      // make each letter in carson slide up one at a time
+      Array.from(carson.children).forEach((letter, index) => {
+        if (letter.tagName === 'SECTION') {
+          letter.style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
+        }
+      });
+      
+      setTimeout(() => {
+        // make each letter in secrest slide up one at a time
+        Array.from(secrest.children).forEach((letter, index) => {
+          if (letter.tagName === 'SECTION') {
+            letter.style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
+          }
+        });
+      }, 300);
+    }, 600);
+
+  }, []);
+
   return (
     <section className='flex justify-center items-center min-h-screen bg-light-cream w-full sticky'>
-      <div className='flex justify-center'>
-        HEY
+      <div className='logo-div flex items-center'>
+        <div className='logo z-10 relative w-44 h-44'>
+          <Image src="/images/Logo_Dark.svg" alt="Logo" layout='fill' objectFit='contain' />
+        </div>
+        <div className='text-div z-0 absolute flex flex-col items-center mb-0'>
+          <section className='secrest z-0 flex flex-row' >
+            <div className='secrest-cover z-10 flex absolute w-full h-full bg-light-cream'></div>
+            <section className='e'>e</section>
+            <section className='c'>c</section>
+            <section className='r'>r</section>
+            <section className='e'>e</section>
+            <section className='s'>s</section>
+            <section className='t'>t</section>
+          </section>
+          <section className='carson z-20 flex flex-row' >
+            <div className='carson-cover z-30 flex absolute w-full h-full bg-light-cream'></div>
+            <section className='a'>a</section>
+            <section className='r'>r</section>
+            <section className='s'>s</section>
+            <section className='o'>o</section>
+            <section className='n'>n</section>
+          </section>
+        </div>
       </div>
     </section>
   )
 }
 
-export default Hero
+export default Hero;
