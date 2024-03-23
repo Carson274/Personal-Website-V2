@@ -41,3 +41,12 @@
 .carson-cover {
   transform: translateY(20px);
 }
+
+@keyframes slideDown {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

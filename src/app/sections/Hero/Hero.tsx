@@ -36,6 +36,14 @@ const Hero = () => {
       }, 300);
     }, 600);
 
+
+
+
+    const scroll = document.querySelector<HTMLElement>('.scroll')!;
+
+    // make the scroll text slideDown infinitely
+    scroll.style.animation = 'slideDown 0.6s cubic-bezier(0.87, 0, 0.13, 1) infinite';
+
   }, []);
 
   return (
@@ -62,6 +70,12 @@ const Hero = () => {
             <section className='o'>o</section>
             <section className='n'>n</section>
           </section>
+        </div>
+      </div>
+      <div className='absolute bottom-12 right-0 flex flex-col items-center justify-center space-y-8'>
+        <span className='rotate-90 text-body-3'>scroll</span>
+        <div className='relative h-1 w-10 rotate-90 overflow-hidden'>
+          <span className='scroll absolute h-[0.08em] w-10 translate-x-10 bg-coffee'></span>
         </div>
       </div>
     </section>
