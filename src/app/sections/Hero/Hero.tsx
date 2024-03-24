@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import './Hero.css';
+import { useScroll, useTransform, motion } from "framer-motion"
 
 const Hero = () => {
   useEffect(() => {
@@ -36,19 +37,20 @@ const Hero = () => {
       }, 300);
     }, 600);
 
-
-
-
     const scroll = document.querySelector<HTMLElement>('.scroll')!;
 
     // make the scroll text slideDown infinitely
-    scroll.style.animation = 'slideDown 0.6s cubic-bezier(0.87, 0, 0.13, 1) infinite';
+    scroll.style.animation = 'slideDown 1.5s 1s cubic-bezier(0.87, 0, 0.13, 1) infinite';
 
   }, []);
 
+  const { scrollYProgress } = useScroll();
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
   return (
-    <section className='flex justify-center items-center min-h-screen bg-light-cream w-full sticky'>
-      <div className='logo-div flex items-center'>
+    <section className='hero top-0 flex justify-center items-center min-h-screen bg-light-cream w-full sticky'>
+      <motion.div style={{ opacity: opacity }}className='logo-div flex items-center'>
         <div className='logo z-10 relative w-44 h-44'>
           <Image src="/images/Logo_Dark.svg" alt="Logo" layout='fill' objectFit='contain' />
         </div>
@@ -70,8 +72,8 @@ const Hero = () => {
             <section className='o'>o</section>
             <section className='n'>n</section>
           </section>
-        </div>
-      </div>
+        </div>  
+      </motion.div>
       <div className='absolute bottom-12 right-0 flex flex-col items-center justify-center space-y-8'>
         <span className='rotate-90 text-body-3'>scroll</span>
         <div className='relative h-1 w-10 rotate-90 overflow-hidden'>
