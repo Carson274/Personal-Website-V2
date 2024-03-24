@@ -46,7 +46,8 @@ const About = () => {
     animate={controls}
     variants={containerVariants}
     >
-      <section className='about w-full h-1/5 mt-20 text-center'>
+      <section className='z-0 relative about w-full h-1/5 mt-20 text-center'>
+        <div className='absolute top-full left-0 w-full h-full z-20 bg-black'></div>
         <motion.div
           className='text-white flex flex-row items-center justify-center text-8xl font-bold'
           variants={containerVariants}
@@ -58,13 +59,13 @@ const About = () => {
           ))}
         </motion.div>
       </section>
-        <section className='flex flex-row w-full h-full'>
-          <section className='image flex w-1/2 h-full justify-center'>
-            <Image className='rounded-2xl' src='/images/Carson.jpg' alt='Profile' width={500} height={500} />
-          </section>
-          <section className='text flex w-1/2 h-full justify-center'>
-          </section>
+      <section className='z-10 flex flex-row w-full h-full'>
+        <section className='image flex w-1/2 h-full justify-center'>
+          <Image className='rounded-2xl' src='/images/Carson.jpg' alt='Profile' width={500} height={500} />
         </section>
+        <section className='text flex w-1/2 h-full justify-center'>
+        </section>
+      </section>
     </motion.section>
   )
 }
