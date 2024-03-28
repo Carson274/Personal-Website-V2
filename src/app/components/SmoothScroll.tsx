@@ -51,7 +51,7 @@ const SmoothScroll = ({ children }) => {
       {/* blank div that has a dynamic height based on the content's inherent height */}
       {/* this is neccessary to allow the scroll container to scroll... */}
       {/* ... using the browser's native scroll bar */}
-      <div style={{ height: pageHeight }} />
+      {/* <div style={{ height: pageHeight }} /> */}
     </>
   )
 }

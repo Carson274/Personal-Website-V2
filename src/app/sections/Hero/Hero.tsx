@@ -75,7 +75,7 @@ const Hero = () => {
         </div>  
       </motion.div>
       <div className='absolute bottom-12 right-0 flex flex-col items-center justify-center space-y-8'>
-        <span className='rotate-90 text-body-3'>scroll</span>
+        <span className='scroll-text rotate-90 text-body-3'>scroll</span>
         <div className='relative h-1 w-10 rotate-90 overflow-hidden'>
           <span className='scroll absolute h-[0.08em] w-10 translate-x-10 bg-coffee'></span>
         </div>
