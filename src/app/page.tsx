@@ -8,12 +8,10 @@ import Footer from "./sections/Footer/Footer";
 export default function Home() {
   return (
     <SmoothScroll>
-      <main className="flex flex-col items-center justify-between bg-light-cream">
-        <Hero />
-        <About />
-        <Projects />
-        <Footer />
-      </main>
+      <Hero />
+      <About />
+      <Projects />
+      <Footer />
     </SmoothScroll>
   );
 }
