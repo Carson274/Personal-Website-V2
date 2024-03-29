@@ -60,15 +60,29 @@ const About = () => {
     },
   };
 
+  const slideLeftVariants = {
+    hidden: { x: '100%' },
+    visible: {
+      x: 0,
+      transition: { duration: 0.3 }
+    },
+  };
+
+  // let width = screen.width;
+  // let scrollAmount = 200;
+  // if(width < 1024) {
+  //   scrollAmount = 200;
+  // }
+
   // useScroll hook to get the scrollYProgress, and move the image up and down based on the scroll
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
   return (
     <motion.section
       ref={ref}
       id="about"
-      className='flex flex-col bg-black w-full rounded-t-3xl z-20'
+      className='flex flex-col bg-black w-full rounded-t-3xl z-20 min-h-screen'
       initial="hidden"
       animate={controls}
       variants={containerVariants}
@@ -77,7 +91,7 @@ const About = () => {
       <section className='z-0 relative about w-full h-1/5 mt-20 text-center'>
         <div className='absolute top-full left-0 w-full h-full z-20 bg-black'></div>
         <motion.div
-          className='text-white flex flex-row items-center justify-center sm:text-6xl md:text-6xl lg:text-8xl font-bold mt-2'
+          className='text-white flex flex-row items-center justify-center text-xl sm:text-6xl md:text-6xl lg:text-8xl font-bold my-2'
           variants={containerVariants}
         >
           {"ABOUT ME".split("").map((letter, index) => (
@@ -87,13 +101,13 @@ const About = () => {
           ))}
         </motion.div>
       </section>
-      <section className='about-section z-10 flex flex-row w-full'>
-        <div className='image-div flex w-1/2 h-full justify-center'>
-          <motion.div style={{ y }} className='image mt-8'>
-            <Image className='rounded-2xl' src='/images/Carson.jpg' alt='Picture of Me' width={500} height={500} />
+      <section className='about-section z-10 flex flex-col my-20 m:my-20 md:flex-row w-full justify-center items-center'>
+        <div className='image-div flex w-1/2 h-full p-8 justify-center'>
+          <motion.div style={{ y }} className='image relative md:mt-8 w-full rounded-2xl'>
+            <Image className='rounded-2xl' src='/images/Carson.jpg' alt='Picture of Me' layout='fill' objectFit='contain' />
           </motion.div>
         </div>
-        <div className='text-div flex w-1/2 justify-center items-center'>
+        <div className='text-div flex w-3/4 md:w-1/2 h-1/2 md:h-full justify-center items-center'>
           <section className='overflow-hidden border-2 border-brown text relative rounded-2xl flex justify-center w-4/5 items-center'>
             <div className='text-normal text-lg rounded-2xl flex flex-col z-10 justify-start gap-10 p-10 w-full h-full items-center bg-light-cream text-black'>
               <p>
