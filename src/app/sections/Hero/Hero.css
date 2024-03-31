@@ -5,11 +5,11 @@
 }
 
 .secrest {
-  transform: translate(38px, 85px);
+  transform: translate(79px, 85px);
 }
 
 .carson {
-  transform: translate(-45px, 65px);
+  transform: translate(-4px, 65px);
 }
 
 .text-div {
@@ -21,7 +21,7 @@
     transform: translateX(0%);
   }
   to {
-    transform: translateX(-140px);
+    transform: translateX(-99px);
   }
 }
 

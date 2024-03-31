@@ -15,7 +15,7 @@ const Hero = () => {
 
     // make it so that when the animation has ended, the logo will stay in place to the left 100%
     logo.addEventListener('animationend', () => {
-      logo.style.left = '-140px';
+      logo.style.left = '-99px';
       logo.style.animation = '';
     }, { once: true });
 
