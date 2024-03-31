@@ -111,7 +111,7 @@ const About = () => {
           <section className='overflow-hidden border-2 border-brown text relative rounded-2xl flex justify-center w-4/5 items-center'>
             <div className='text-normal text-xs sm:text-sm md:text-md lg:text-lg rounded-2xl flex flex-col z-10 justify-start gap-10 p-10 w-full h-full items-center bg-light-cream text-black'>
               <p>
-                Hi! I'm a sophmore computer science student
+                Hi! I&apos;m a sophmore computer science student
                 with a focus on web development and AI.
               </p>
               <p>
