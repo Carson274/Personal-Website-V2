@@ -23,7 +23,7 @@ const Hero = () => {
       // make each letter in carson slide up one at a time
       Array.from(carson.children).forEach((letter, index) => {
         if (letter.tagName === 'SECTION') {
-          letter.style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
+          (letter as HTMLElement).style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
         }
       });
       
@@ -31,7 +31,7 @@ const Hero = () => {
         // make each letter in secrest slide up one at a time
         Array.from(secrest.children).forEach((letter, index) => {
           if (letter.tagName === 'SECTION') {
-            letter.style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
+            (letter as HTMLElement).style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
           }
         });
       }, 300);

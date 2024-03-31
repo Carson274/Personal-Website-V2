@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState, useCallback, useLayoutEffect } from "react"
+import React, { useRef, useState, useCallback, useLayoutEffect, ReactNode } from "react"
 import ResizeObserver from "resize-observer-polyfill"
 import {
   useViewportScroll,
@@ -9,7 +9,11 @@ import {
   motion
 } from "framer-motion"
 
-const SmoothScroll = ({ children }) => {
+interface SmoothScrollProps {
+  children: ReactNode;
+}
+
+const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   // scroll container
   const scrollRef = useRef(null)
 
@@ -17,7 +21,7 @@ const SmoothScroll = ({ children }) => {
   const [pageHeight, setPageHeight] = useState(0)
 
   // update scrollable height when browser is resizing
-  const resizePageHeight = useCallback(entries => {
+  const resizePageHeight = useCallback((entries: ResizeObserverEntry[]) => {
     for (let entry of entries) {
       setPageHeight(entry.contentRect.height)
     }
@@ -28,7 +32,9 @@ const SmoothScroll = ({ children }) => {
     const resizeObserver = new ResizeObserver(entries =>
       resizePageHeight(entries)
     )
-    scrollRef && resizeObserver.observe(scrollRef.current)
+  if (scrollRef.current) {
+    resizeObserver.observe(scrollRef.current);
+  }
     return () => resizeObserver.disconnect()
   }, [scrollRef, resizePageHeight])
 
