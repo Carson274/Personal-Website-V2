@@ -115,8 +115,8 @@ const About = () => {
                 with a focus on web development and AI.
               </p>
               <p>
-                I’m from Oregon, and I’m currently based in
-                Corvallis, OR, where I’m pursuing a degree at
+                I&apos;m from Oregon, and I&apos;m currently based in
+                Corvallis, OR, where I&apos;m pursuing a degree at
                 Oregon State University. Both of my parents
                 went here, so I had to continue the legacy!
               </p>
