@@ -11,7 +11,7 @@ const Hero = () => {
     const secrest = document.querySelector<HTMLElement>('.secrest')!;
     const carson = document.querySelector<HTMLElement>('.carson')!;
 
-    logo.style.animation = 'slideLeft 1.5s 0.0s cubic-bezier(0.215, 0.610, 0.355, 1) forwards';
+    logo.style.animation = 'slideLeft 1.2s 0.0s cubic-bezier(0.215, 0.610, 0.355, 1) forwards';
 
     // make it so that when the animation has ended, the logo will stay in place to the left 100%
     logo.addEventListener('animationend', () => {
@@ -34,8 +34,8 @@ const Hero = () => {
             (letter as HTMLElement).style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
           }
         });
-      }, 300);
-    }, 600);
+      }, 400);
+    }, 400);
 
     const scroll = document.querySelector<HTMLElement>('.scroll')!;
 

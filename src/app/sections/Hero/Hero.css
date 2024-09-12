@@ -5,11 +5,11 @@
 }
 
 .secrest {
-  transform: translate(79px, 85px);
+  transform: translate(79px, 90px);
 }
 
 .carson {
-  transform: translate(-4px, 65px);
+  transform: translate(-4px, 70px);
 }
 
 .text-div {
@@ -27,19 +27,19 @@
 
 @keyframes slideUp {
   from {
-    transform: translateY(0);
+    transform: translateY(5px);
   }
   to {
-    transform: translateY(-40px);
+    transform: translateY(-45px);
   }
 }
 
 .secrest-cover {
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
 
 .carson-cover {
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
 
 @keyframes slideDown {
