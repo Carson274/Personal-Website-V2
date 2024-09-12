@@ -1,2 +1,2 @@
-# Personal Website v2 - [Live Site](https://personal-website-v2-duzk7wnf9-carson274s-projects.vercel.app/)
+# Personal Website v2 - [Live Site](https://carsonsecrest.me)
 In progress...
