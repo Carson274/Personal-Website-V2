@@ -7,6 +7,7 @@ import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Open_Sans } from 'next/font/google';
 import NavBar from '../../components/NavBar';
+import { cubicBezier } from 'framer-motion';
 
 const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
 
@@ -20,6 +21,8 @@ const About = () => {
   const [bottomRef, bottomInView] = useInView({
     rootMargin: '0px 0px',
   });
+
+  const easeOutSlow = cubicBezier(0.215, 0.610, 0.355, 1);
 
   useEffect(() => {
     if (inView) {
@@ -48,7 +51,7 @@ const About = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.3, ease: easeOutSlow }
     },
   };
 
@@ -56,7 +59,7 @@ const About = () => {
     hidden: { x: '-100%' },
     visible: {
       x: 0,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.3, ease: easeOutSlow }
     },
   };
 
@@ -64,7 +67,7 @@ const About = () => {
     hidden: { x: '100%' },
     visible: {
       x: 0,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.3, ease: easeOutSlow }
     },
   };
 
@@ -103,8 +106,17 @@ const About = () => {
       </section>
       <section className='about-section z-10 flex flex-col my-20 m:my-20 md:flex-row w-full justify-center items-center'>
         <div className='image-div flex w-1/2 h-full p-8 justify-center'>
-          <motion.div style={{ y }} className='image relative -mt-8 md:mt-8 w-full rounded-2xl'>
-            <Image className='rounded-2xl' src='/images/Carson.jpg' alt='Picture of Me' layout='fill' objectFit='contain' />
+          <motion.div 
+            style={{ y }} 
+            className='image relative -mt-8 md:mt-8 w-full rounded-2xl flex justify-center items-center'
+          >
+            <Image
+              className='rounded-2xl'
+              src='/images/Carson.jpg'
+              alt='Picture of Me'
+              width={350}
+              height={100}
+            />
           </motion.div>
         </div>
         <div className='text-div flex w-3/4 md:w-1/2 h-1/2 md:h-full justify-center items-center'>
