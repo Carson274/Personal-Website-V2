@@ -6,6 +6,7 @@ import './Projects.css';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Open_Sans } from 'next/font/google';
+import { cubicBezier } from 'framer-motion';
 
 const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
 
@@ -38,7 +39,7 @@ const Projects = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.3 }
+      transition: { duration: 1.2, ease: cubicBezier(.06,.6,.28,.99) }
     },
   };
 

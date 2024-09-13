@@ -51,7 +51,7 @@ const About = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.3, ease: easeOutSlow }
+      transition: { duration: 1.2, ease: cubicBezier(.06,.6,.28,.99) }
     },
   };
 
