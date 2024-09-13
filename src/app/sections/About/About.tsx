@@ -123,22 +123,23 @@ const About = () => {
           <section className='overflow-hidden border-2 border-brown text relative rounded-2xl flex justify-center w-4/5 items-center'>
             <div className='text-normal text-xs sm:text-sm md:text-md lg:text-lg rounded-2xl flex flex-col z-10 justify-start gap-10 p-10 w-full h-full items-center bg-light-cream text-black'>
               <p>
-                Hi! I&apos;m a sophmore computer science student
+                Hi! I&apos;m a rising Junior computer science student
                 with a focus on web development and AI.
               </p>
               <p>
                 I&apos;m from Oregon, and I&apos;m currently based in
-                Corvallis, OR, where I&apos;m pursuing a degree at
+                Corvallis, OR, where I&apos;m pursuing a Bachelor of
+                Science in Computer Science at
                 Oregon State University. Both of my parents
                 went here, so I had to continue the legacy!
               </p>
               <div className='flex flex-row gap-2 lg:gap-4 xl:gap-8'>
                 <p>
                   Feel free to connect with me on
-                  LinkedIn! I love meeting new people!
+                  LinkedIn! I love meeting new people🤝
                 </p>
                 <a className='flex justify-end' href='https://www.linkedin.com/in/carson-secrest-2830721b5/' target='_blank'>
-                  <Image className='linkedin-icon' src='/images/linkedin.svg' alt='LinkedIn' width={100} height={100} />
+                  <Image className='linkedin-icon' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
                 </a>
               </div>
             </div>
