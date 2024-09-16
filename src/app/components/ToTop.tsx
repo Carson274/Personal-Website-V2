@@ -37,6 +37,10 @@ const ToTop = () => {
             y: -100
           }
         }}
+        transition={{
+          duration: 0.2,
+          cubicBezier: '0.16, 1, 0.3, 1'
+        }}
         initial={'initial'}
         animate={controls}
       >
@@ -57,6 +61,10 @@ const ToTop = () => {
           rise: {
             y: 0
           }
+        }}
+        transition={{
+          duration: 0.2,
+          cubicBezier: '0.16, 1, 0.3, 1'
         }}
         initial={'initial'}
         animate={controls}
