@@ -121,7 +121,7 @@ const About = () => {
         </div>
         <div className='text-div flex w-3/4 md:w-1/2 h-1/2 md:h-full justify-center items-center'>
           <section className='overflow-hidden border-2 border-brown text relative rounded-2xl flex justify-center w-4/5 items-center'>
-            <div className='text-normal text-xs sm:text-sm md:text-md lg:text-lg rounded-2xl flex flex-col z-10 justify-start gap-10 p-10 w-full h-full items-center bg-light-cream text-black'>
+            <div className='text-normal text-xs sm:text-sm md:text-md lg:text-lg rounded-2xl flex flex-col z-10 justify-start gap-10 px-6 py-4 md:px-8 md:py-6 lg:px-10 lg:py-8 w-full h-full items-center bg-light-cream text-black'>
               <p>
                 Hi! I&apos;m a rising Junior computer science student
                 with a focus on web development and AI.
