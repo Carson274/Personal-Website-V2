@@ -7,11 +7,39 @@ import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Open_Sans } from 'next/font/google';
 import { cubicBezier } from 'framer-motion';
+import Project from './components/Project';
 
 const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
 
+export interface ProjectDetails {
+  name: string;
+  imagePath: string;
+  liveSite: string;
+  github: string;
+}
+
 const Projects = () => {
   const controls = useAnimation();
+  const projects: ProjectDetails[] = [
+    {
+      name: 'Slumped Stats',
+      imagePath: '/images/Slumped_Stats.png',
+      liveSite: '',
+      github: 'https://github.com/Carson274/Sleep-App'
+    },
+    {
+      name: 'Box Office Battles',
+      imagePath: '/images/Box_Office_Battles.png',
+      liveSite: '',
+      github: 'https://github.com/Carson274/Box-Office-Battles'
+    },
+    {
+      name: 'Playlist Polyglot',
+      imagePath: '/images/Playlist_Polyglot.png',
+      liveSite: '',
+      github: 'https://github.com/Carson274/Playlist-Polyglot'
+    }
+  ]
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -66,30 +94,9 @@ const Projects = () => {
         </motion.div>
       </section>
       <section className='grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8'>
-        <div className='relative w-full h-full'>
-          <div className='flex flex-col items-center justify-center mx-10'>
-            <h2 className='text-white text-2xl my-8 font-bold text-center'>Slumped Stats</h2>
-            <a href="https://github.com/Carson274/Sleep-App" target="_blank">
-              <Image className='project-image founded-lg border-2 border-brown rounded-xl' src='/images/Slumped_Stats.png' alt='Slumped Stats' width={400} height={400} />
-            </a>
-          </div>
-        </div>
-        <div className='relative w-full h-full'>
-          <div className='flex flex-col items-center justify-center mx-10'>
-            <h2 className='text-white text-2xl my-8 font-bold text-center'>Box Office Battles</h2>
-            <a href="https://github.com/Carson274/Box-Office-Battles" target="_blank">
-              <Image className='project-image founded-lg border-2 border-brown rounded-xl' src='/images/Box_Office_Battles.png' alt='Box Office Battles' width={400} height={400} />
-            </a>
-          </div>
-        </div>
-        <div className='relative w-full h-full'>
-          <div className='flex flex-col items-center justify-center mx-10'>
-            <h2 className='text-white text-2xl my-8 font-bold text-center'>Playlist Polyglot</h2>
-            <a href="https://github.com/Carson274/Playlist-Polyglot" target="_blank">
-              <Image className='project-image founded-lg border-2 border-brown rounded-xl' src='/images/Playlist_Polyglot.png' alt='Playlist Polyglot' width={400} height={400} />
-            </a>
-          </div>
-        </div>
+        {projects.map((project, index) => (
+          <Project key={index} project={project} />
+        ))}
       </section>
     </motion.section>
   )
