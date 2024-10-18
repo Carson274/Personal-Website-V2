@@ -15,6 +15,7 @@ export interface ProjectDetails {
   name: string;
   imagePath: string;
   liveSite: string;
+  devpost: string;
   github: string;
 }
 
@@ -25,19 +26,43 @@ const Projects = () => {
       name: 'Slumped Stats',
       imagePath: '/images/Slumped_Stats.png',
       liveSite: '',
+      devpost: 'https://devpost.com/software/slumped-stats',
       github: 'https://github.com/Carson274/Sleep-App'
     },
     {
       name: 'Box Office Battles',
       imagePath: '/images/Box_Office_Battles.png',
-      liveSite: '',
+      liveSite: 'https://boxofficebattles.lol/',
+      devpost: 'https://devpost.com/software/box-office-battles',
       github: 'https://github.com/Carson274/Box-Office-Battles'
     },
     {
       name: 'Playlist Polyglot',
       imagePath: '/images/Playlist_Polyglot.png',
       liveSite: '',
+      devpost: '',
       github: 'https://github.com/Carson274/Playlist-Polyglot'
+    },
+    {
+      name: 'Crowd',
+      imagePath: '/images/Crowd.png',
+      liveSite: '',
+      devpost: 'https://devpost.com/software/crowd-fjct15',
+      github: 'https://github.com/sebat2004/crowd'
+    },
+    {
+      name: 'PurSend',
+      imagePath: '/images/PurSend.png',
+      liveSite: '',
+      devpost: 'https://devpost.com/software/pursend',
+      github: 'https://github.com/ipoogleduck/PurSend'
+    },
+    {
+      name: 'Personal Website v1',
+      imagePath: '/images/Personal_Website_v1.png',
+      liveSite: 'https://carson274.github.io/Personal-Website',
+      devpost: '',
+      github: 'https://github.com/Carson274/Personal-Website'
     }
   ]
 
