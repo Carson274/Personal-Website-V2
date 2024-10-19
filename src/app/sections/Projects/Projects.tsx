@@ -108,7 +108,7 @@ const Projects = () => {
       <section className='z-0 relative about w-full h-1/5 mt-32 md:mt-40 text-center'>
         <div className='absolute top-full left-0 w-full h-full bg-black'></div>
         <motion.div
-          className='text-white flex flex-row items-center justify-center text-3xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-12'
+          className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-12'
           variants={containerVariants}
         >
           {"MY PROJECTS".split("").map((letter, index) => (
@@ -118,7 +118,7 @@ const Projects = () => {
           ))}
         </motion.div>
       </section>
-      <section className='grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8'>
+      <section className='grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-3'>
         {projects.map((project, index) => (
           <Project key={index} project={project} />
         ))}
