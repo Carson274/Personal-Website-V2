@@ -138,7 +138,7 @@ const About = () => {
                   Feel free to connect with me on
                   LinkedIn! I love meeting new people🤝
                 </p>
-                <a className='flex justify-end' href='https://www.linkedin.com/in/carson-secrest-2830721b5/' target='_blank'>
+                <a className='flex justify-end' href='https://www.linkedin.com/in/carson-secrest' target='_blank'>
                   <Image className='linkedin-icon' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
                 </a>
               </div>
