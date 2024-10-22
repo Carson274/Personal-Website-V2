@@ -6,7 +6,6 @@ import './About.css';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Open_Sans } from 'next/font/google';
-import NavBar from '../../components/NavBar';
 import { cubicBezier } from 'framer-motion';
 
 const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
@@ -85,12 +84,11 @@ const About = () => {
     <motion.section
       ref={ref}
       id="about"
-      className='flex flex-col bg-black w-full rounded-t-3xl z-20 min-h-screen'
+      className='flex flex-col bg-black w-full z-20 min-h-screen'
       initial="hidden"
       animate={controls}
       variants={containerVariants}
     >
-      <NavBar />
       <section className='z-0 relative about w-full h-1/5 sm:mt-20 text-center'>
         <div className='absolute top-full left-0 w-full h-full z-20 bg-black'></div>
         <motion.div
