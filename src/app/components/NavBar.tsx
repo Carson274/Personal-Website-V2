@@ -6,21 +6,21 @@ import { useScroll, motion, useTransform, useInView } from 'framer-motion';
 
 const NavBar = () => {
   const ref = useRef(null);
-  const isInView = useInView({
-    margin: "0px 100px -50px 0px"
-  })
-  const [isAtTop, setIsAtTop] = useState(false);
   const { scrollYProgress, scrollY } = useScroll();
+  // const isInView = useInView({
+  //   margin: "0px 100px -50px 0px"
+  // })
+  // const [isAtTop, setIsAtTop] = useState(false);
 
-  useEffect(() => {
-    if (isInView) {
-      setIsAtTop(true);
-      console.log('at top');
-    } else {
-      setIsAtTop(false);
-      console.log('not at top');
-    }
-  }, [isInView]);
+  // useEffect(() => {
+  //   if (isInView) {
+  //     setIsAtTop(true);
+  //     console.log('at top');
+  //   } else {
+  //     setIsAtTop(false);
+  //     console.log('not at top');
+  //   }
+  // }, [isInView]);
 
   const borderRadius = useTransform(scrollYProgress, [0, 0.2], [60, 0]);
 
