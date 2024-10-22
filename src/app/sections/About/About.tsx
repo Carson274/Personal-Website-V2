@@ -84,7 +84,7 @@ const About = () => {
     <motion.section
       ref={ref}
       id="about"
-      className='flex flex-col bg-black w-full z-20 min-h-screen'
+      className='flex flex-col bg-black w-full z-20 min-h-screen border-t-8 border-black -translate-y-5'
       initial="hidden"
       animate={controls}
       variants={containerVariants}

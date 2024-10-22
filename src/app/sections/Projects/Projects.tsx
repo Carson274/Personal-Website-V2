@@ -100,7 +100,7 @@ const Projects = () => {
     <motion.section
       ref={ref}
       id="projects"
-      className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-40'
+      className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-40 -translate-y-6'
       initial="hidden"
       animate={controls}
       variants={containerVariants}
