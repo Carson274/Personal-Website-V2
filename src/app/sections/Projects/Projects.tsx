@@ -32,7 +32,7 @@ const Projects = () => {
     {
       name: 'Box Office Battles',
       imagePath: '/images/Box_Office_Battles.png',
-      liveSite: 'https://boxofficebattles.lol/',
+      liveSite: '',
       devpost: 'https://devpost.com/software/box-office-battles',
       github: 'https://github.com/Carson274/Box-Office-Battles'
     },
