@@ -110,7 +110,7 @@ const About = () => {
           >
             <Image
               className='rounded-2xl'
-              src='/images/Me.jpg'
+              src='/images/Carson.jpg'
               alt='Picture of Me'
               width={350}
               height={100}
