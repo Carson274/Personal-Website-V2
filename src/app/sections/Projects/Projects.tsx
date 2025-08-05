@@ -23,6 +23,13 @@ const Projects = () => {
   const controls = useAnimation();
   const projects: ProjectDetails[] = [
     {
+      name: 'Campus View',
+      imagePath: '/images/Campus_View.png',
+      liveSite: '',
+      devpost: '',
+      github: 'https://github.com/Carson274/CampusView'
+    },
+    {
       name: 'Slumped Stats',
       imagePath: '/images/Slumped_Stats.png',
       liveSite: '',
@@ -37,6 +44,13 @@ const Projects = () => {
       github: 'https://github.com/Carson274/Box-Office-Battles'
     },
     {
+      name: 'Roll Call Brawl',
+      imagePath: '/images/Roll_Call_Brawl.jpg',
+      liveSite: '',
+      devpost: 'https://devpost.com/software/roll-call-brawl',
+      github: 'https://github.com/Carson274/Roll-Call-Brawl'
+    },
+    {
       name: 'Playlist Polyglot',
       imagePath: '/images/Playlist_Polyglot.png',
       liveSite: '',
@@ -49,6 +63,13 @@ const Projects = () => {
       liveSite: '',
       devpost: 'https://devpost.com/software/crowd-fjct15',
       github: 'https://github.com/sebat2004/crowd'
+    },
+    {
+      name: 'CS Student Milestone Quiz Website',
+      imagePath: '/images/Beaver_Purity.png',
+      liveSite: 'https://beaverpurity.com/',
+      devpost: '',
+      github: 'https://github.com/Carson274/BeaverCsPurity'
     },
     {
       name: 'PurSend',
@@ -100,7 +121,7 @@ const Projects = () => {
     <motion.section
       ref={ref}
       id="projects"
-      className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-40 -translate-y-6'
+      className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-20 -translate-y-6'
       initial="hidden"
       animate={controls}
       variants={containerVariants}

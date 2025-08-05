@@ -106,11 +106,11 @@ const About = () => {
         <div className='image-div flex w-3/4 md:w-1/2 h-full p-8 justify-center'>
           <motion.div 
             style={{ y }} 
-            className='image relative md:mt-8 w-full rounded-2xl flex justify-center items-center'
+            className='image relative md:mt-20 w-full rounded-2xl flex justify-center items-center'
           >
             <Image
               className='rounded-2xl'
-              src='/images/Carson_Sunset.jpeg'
+              src='/images/Me.jpg'
               alt='Picture of Me'
               width={350}
               height={100}
@@ -121,8 +121,8 @@ const About = () => {
           <section className='overflow-hidden border-2 border-brown text relative rounded-2xl flex justify-center w-4/5 items-center'>
             <div className='text-normal text-sm sm:text-sm md:text-md lg:text-lg rounded-2xl flex flex-col z-10 justify-start gap-10 px-6 py-4 md:px-8 md:py-6 lg:px-10 lg:py-8 w-full h-full items-center bg-light-cream text-black'>
               <p>
-                Hi! I&apos;m a rising Junior computer science student
-                with a focus on web development and AI.
+                Hi! I&apos;m a Senior computer science student
+                with a focus on web/mobile development and AI.
               </p>
               <p>
                 I&apos;m from Oregon, and I&apos;m currently based in
@@ -134,7 +134,7 @@ const About = () => {
               <div className='flex flex-row gap-2 lg:gap-4 xl:gap-8'>
                 <p>
                   Feel free to connect with me on
-                  LinkedIn! I love meeting new people🤝
+                  LinkedIn, I love meeting new people!
                 </p>
                 <a className='flex justify-end' href='https://www.linkedin.com/in/carson-secrest' target='_blank'>
                   <Image className='linkedin-icon' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
