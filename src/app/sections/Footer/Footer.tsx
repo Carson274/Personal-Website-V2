@@ -3,7 +3,7 @@ import ToTop from '../../components/ToTop';;
 
 const Footer = () => {
   return (
-    <section className='footer flex flex-row py-8 px-12 w-full bg-light-cream overflow-hidden -translate-y-4'>
+    <section className='footer flex flex-row py-8 px-12 w-full bg-light-cream overflow-hidden'>
       <div className='w-1/3'>
         <p>&copy; Carson Secrest</p>
       </div>
