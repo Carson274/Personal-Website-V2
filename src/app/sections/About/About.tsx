@@ -112,7 +112,7 @@ const About = () => {
               className='rounded-2xl'
               src='/images/Carson.jpg'
               alt='Picture of Me'
-              width={350}
+              width={400}
               height={100}
             />
           </motion.div>
@@ -125,11 +125,11 @@ const About = () => {
                 with a focus on web/mobile development and AI.
               </p>
               <p>
-                I&apos;m from Oregon, and I&apos;m currently based in
-                Corvallis, OR, where I&apos;m pursuing a Bachelor of
+                I&apos;m originally from Oregon and currently based in
+                Corvallis, where I&apos;m pursuing a Bachelor of
                 Science in Computer Science at
-                Oregon State University. Both of my parents
-                went here, so I had to continue the legacy!
+                Oregon State University. Since both of my parents
+                went here, I had to continue the legacy!
               </p>
               <div className='flex flex-row gap-2 lg:gap-4 xl:gap-8'>
                 <p>
