@@ -21,7 +21,6 @@ export default function RootLayout({
     <html lang="en" >
       <Head>
         <link rel="icon" href="./favicon.ico" />
-        <script src="https://unpkg.com/lucide@latest"></script>
       </Head>
       <body className={`${inter.className} bg-light-cream`}>
         {children}

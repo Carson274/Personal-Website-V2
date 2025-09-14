@@ -1,9 +1,32 @@
 import Image from 'next/image';
 import { ProjectDetails } from '../Projects';
-import { getCursorControls } from '../../CustomCursor/CustomCursor';
+import { getCursorControls, getLinkControls } from '../../CustomCursor/CustomCursor';
 
 const Project = ({ project }: { project: ProjectDetails }) => {
   const link = project.liveSite !== '' ? project.liveSite : project.devpost !== '' ? project.devpost : project.github;
+
+  const handleMouseEnter = () => {
+    getCursorControls()?.start({
+      opacity: 1,
+      scale: 3,
+      transition: { duration: 0.1, ease: "easeOut" }
+    });
+    setTimeout(() => {
+      getLinkControls()?.start({ 
+        opacity: 1, 
+        scale: 2,
+        transition: { duration: 0.2, ease: "easeOut" },
+      });
+    }, 100);
+  };
+
+  const handleMouseLeave = () => {
+    const disappearAnimation = {
+      opacity: 0, scale: 0.01 
+    };
+    getCursorControls()?.start(disappearAnimation);
+    getLinkControls()?.start(disappearAnimation);
+  };
 
   return (
     <div className='relative w-full h-full mb-8'>
@@ -16,8 +39,8 @@ const Project = ({ project }: { project: ProjectDetails }) => {
             alt={project.name} 
             width={400} 
             height={400} 
-            onMouseEnter={() => getCursorControls()?.start({ opacity: 1, scale: 3 })}
-            onMouseLeave={() => getCursorControls()?.start({ opacity: 0, scale: 0.01 })}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}          
           />
         </a>
       </div>
