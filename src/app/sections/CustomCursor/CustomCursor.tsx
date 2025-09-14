@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation, AnimationControls } from 'framer-motion';
 import './CustomCursor.css';
+import { ArrowUpRight } from 'lucide-react';
 
 let globalCursorControls: AnimationControls | null = null;
 export const getCursorControls = () => globalCursorControls;
@@ -25,8 +26,9 @@ const CustomCursor = () => {
     <motion.div
       className="custom-cursor"
       animate={cursorControls}
-      initial={{ opacity: 0 }}
-    />
+      initial={{ opacity: 0 }}>
+      <ArrowUpRight color="#403E3A" strokeWidth={1.5} size={16} />
+    </motion.div>
   );
 };
 
