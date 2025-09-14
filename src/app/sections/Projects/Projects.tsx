@@ -65,7 +65,7 @@ const Projects = () => {
       github: 'https://github.com/sebat2004/crowd'
     },
     {
-      name: 'CS Student Milestone Quiz Website',
+      name: 'Student Milestone Quiz',
       imagePath: '/images/Beaver_Purity.png',
       liveSite: 'https://beaverpurity.com/',
       devpost: '',
