@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import './Projects.css';
-import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Open_Sans } from 'next/font/google';
 import { cubicBezier } from 'framer-motion';
@@ -21,6 +21,7 @@ export interface ProjectDetails {
 
 const Projects = () => {
   const controls = useAnimation();
+  const githubControls = useAnimation();
   const projects: ProjectDetails[] = [
     {
       name: 'Campus View',
@@ -98,6 +99,17 @@ const Projects = () => {
     }
   }, [controls, inView]);
 
+  const [githubRef, githubInView] = useInView({
+    triggerOnce: true,
+    rootMargin: '-200px 0px',
+  });
+
+  useEffect(() => {
+    if (githubInView) {
+      githubControls.start('visible');
+    }
+  }, [githubControls, githubInView]);
+
   const containerVariants = {
     hidden: { opacity: 1 },
     visible: {
@@ -115,6 +127,35 @@ const Projects = () => {
       y: 0,
       transition: { duration: 1.2, ease: cubicBezier(.06,.6,.28,.99) }
     },
+  };
+
+  const githubRollVariants = {
+    hidden: { 
+      x: '-60vw',
+      rotate: 0
+    },
+    visible: {
+      x: 0,
+      rotate: 360 * 9,
+      transition: { 
+        duration: 5.0,
+        ease: cubicBezier(0.33, 0, 0.2, 1),
+        type: 'spring',
+        damping: 7,
+        stiffness: 30
+      }
+    },
+    hop: {
+      y: [0, -20, 0, -12, 0, -3, 0],
+      scaleX: [1, 0.97, 1.08, 0.99, 1.03, 1],
+      scaleY: [1, 1.05, 0.92, 1.02, 0.97, 1],
+      transition: {
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatDelay: 2
+      }
+    }
   };
 
   return (
@@ -144,6 +185,21 @@ const Projects = () => {
           <Project key={index} project={project} />
         ))}
       </section>
+      <motion.div className='flex justify-center mt-8' ref={githubRef} variants={githubRollVariants}
+            onAnimationComplete={() => {
+              controls.start("hop");
+              githubControls.start("visible");
+            }}>
+        <a className='flex justify-end' href='https://github.com/Carson274' target='_blank'>
+          <Image 
+            className='github-rolling-icon' 
+            src='/images/GitHub.svg' 
+            alt='GitHub' 
+            width={60} 
+            height={60}
+          />
+        </a>
+      </motion.div>
     </motion.section>
   )
 }
