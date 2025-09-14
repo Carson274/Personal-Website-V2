@@ -1,11 +1,25 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import { ProjectDetails } from '../Projects';
 import { getCursorControls, getLinkControls } from '../../CustomCursor/CustomCursor';
+import { useCursor } from '../../CustomCursor/CursorContext';
 
 const Project = ({ project }: { project: ProjectDetails }) => {
+  const { setLinkType } = useCursor();
+
   const link = project.liveSite !== '' ? project.liveSite : project.devpost !== '' ? project.devpost : project.github;
 
+  const getLinkType = () => {
+    if (project.liveSite) return 'site';
+    if (project.devpost) return 'devpost';
+    if (project.github) return 'github';
+    return null;
+  };
+  
+
   const handleMouseEnter = () => {
+    setLinkType(getLinkType());
+
     getCursorControls()?.start({
       opacity: 1,
       scale: 3,
@@ -21,6 +35,7 @@ const Project = ({ project }: { project: ProjectDetails }) => {
   };
 
   const handleMouseLeave = () => {
+    setLinkType(null);
     const disappearAnimation = {
       opacity: 0, scale: 0.01 
     };

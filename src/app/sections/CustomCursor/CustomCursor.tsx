@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation, AnimationControls } from 'framer-motion';
 import './CustomCursor.css';
 import { ArrowUpRight, Link } from 'lucide-react';
+import { useCursor } from './CursorContext';
 
 let globalCursorControls: AnimationControls | null = null;
 let globalLinkControls: AnimationControls | null = null;
@@ -11,8 +12,14 @@ export const getCursorControls = () => globalCursorControls;
 export const getLinkControls = () => globalLinkControls;
 
 const CustomCursor = () => {
+  const { linkType } = useCursor();
   const cursorControls = useAnimation();
   const linkControls = useAnimation();
+
+  const images = {
+    github: './GitHub_Dark.svg',
+    devpost: './Devpost.svg',
+  }
   
   globalCursorControls = cursorControls;
   globalLinkControls = linkControls;
@@ -46,7 +53,10 @@ const CustomCursor = () => {
         className="cursor-link"
         animate={linkControls}
         initial={{ opacity: 0, x: 15, y: 50 }}>
-        <Link color="#403E3A" strokeWidth={2} size={8} />
+        {linkType === 'github' && <Link color="#403E3A" strokeWidth={2} size={8} />}
+        {linkType === 'devpost' && <Link color="#403E3A" strokeWidth={2} size={8} />}
+        {linkType === 'site' && <Link color="#403E3A" strokeWidth={2} size={8} />}
+        {linkType === null && <Link color="#403E3A" strokeWidth={2} size={8} />}
       </motion.div>
     </>
   );
