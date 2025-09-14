@@ -2,6 +2,7 @@ import Head from "next/head";
 import type { Metadata } from "next";
 import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "./sections/CustomCursor/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"] });
 const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
@@ -20,9 +21,11 @@ export default function RootLayout({
     <html lang="en" >
       <Head>
         <link rel="icon" href="./favicon.ico" />
+        <script src="https://unpkg.com/lucide@latest"></script>
       </Head>
       <body className={`${inter.className} bg-light-cream`}>
         {children}
+        <CustomCursor />
       </body>
     </html>
   );
