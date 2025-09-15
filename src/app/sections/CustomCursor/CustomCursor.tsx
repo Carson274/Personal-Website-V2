@@ -69,7 +69,6 @@ const CustomCursor = () => {
             height={8}
           />}
         {linkType === 'site' && <Link color="#403E3A" strokeWidth={2} size={8} />}
-        {linkType === null && <Link color="#403E3A" strokeWidth={2} size={8} />}
       </motion.div>
     </>
   );
