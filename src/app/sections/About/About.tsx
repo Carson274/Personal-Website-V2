@@ -47,36 +47,21 @@ const About = () => {
 
   const letterVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: {
+    visible: (index: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 1.2, ease: cubicBezier(.06,.6,.28,.99) }
-    },
+      transition: {
+        duration: 0.1,
+        ease: [0.45, 0.8, 0.5, 0.95],
+        type: 'spring',
+        stiffness: 120,
+        damping: 14,
+        mass: 0.5,
+        delay: index * 0.05 + 0.2,
+      },
+    }),
   };
 
-  const slideRightVariants = {
-    hidden: { x: '-100%' },
-    visible: {
-      x: 0,
-      transition: { duration: 0.3, ease: easeOutSlow }
-    },
-  };
-
-  const slideLeftVariants = {
-    hidden: { x: '100%' },
-    visible: {
-      x: 0,
-      transition: { duration: 0.3, ease: easeOutSlow }
-    },
-  };
-
-  // let width = screen.width;
-  // let scrollAmount = 200;
-  // if(width < 1024) {
-  //   scrollAmount = 200;
-  // }
-
-  // useScroll hook to get the scrollYProgress, and move the image up and down based on the scroll
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
@@ -96,7 +81,7 @@ const About = () => {
           variants={containerVariants}
         >
           {"ABOUT ME".split("").map((letter, index) => (
-            <motion.div key={index} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
+            <motion.div key={index} custom={index}  className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
               {letter}
             </motion.div>
           ))}
@@ -134,32 +119,13 @@ const About = () => {
               <div className='flex flex-row gap-2 lg:gap-4 xl:gap-8'>
                 <p>
                   Feel free to connect with me on
-                  LinkedIn, I love meeting new people!
+                  LinkedIn. I love meeting new people!
                 </p>
                 <a className='flex justify-end' href='https://www.linkedin.com/in/carson-secrest' target='_blank'>
                   <Image className='linkedin-icon' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
                 </a>
               </div>
             </div>
-            {/* <motion.div
-              initial="hidden" 
-              animate={textCsControls} 
-              variants={slideRightVariants} 
-              className='text-cs absolute text-lg rounded-2xl flex flex-col justify-start z-20 p-10 w-full h-full items-center bg-grey text-white'
-            >
-              <pre>
-                {
-  `class Carson {
-    private:
-      int schoolYear = 2;
-    public:
-      vector<string> focuses = {"web dev",
-                                "AI"};
-};`
-                }
-              </pre>
-
-            </motion.div> */}
           </section>
         </div>
       </section>

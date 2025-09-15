@@ -22,7 +22,7 @@ const ToTop = () => {
   return (
     <motion.div
       className='cursor-pointer relative'
-      style={{ width: '75px', height: '20px' }}
+      style={{ width: '75px', height: '80px' }}
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
     >

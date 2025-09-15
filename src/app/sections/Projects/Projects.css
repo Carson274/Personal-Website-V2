@@ -8,3 +8,12 @@
   transition: transform 0.5s;
   cursor: none;
 }
+
+.github-rolling-icon {
+  border-radius: 50%;
+  filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.1));
+}
+
+.github-rolling-icon:hover {
+  pointer-events: none;
+}
