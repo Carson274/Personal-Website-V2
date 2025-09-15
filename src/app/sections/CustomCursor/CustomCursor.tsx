@@ -50,26 +50,28 @@ const CustomCursor = () => {
         initial={{ opacity: 0 }}>
         <ArrowUpRight color="#403E3A" strokeWidth={1.5} size={12} />
       </motion.div>
-      <motion.div
-        className="cursor-link"
-        animate={linkControls}
-        initial={{ opacity: 0, x: 15, y: 50 }}>
-        {linkType === 'github' &&             
-          <Image
-            src='/images/GitHub_Brown.svg'
-            alt='GitHub logo'
-            width={8}
-            height={8}
-          />}
-        {linkType === 'devpost' &&             
-          <Image
-            src='/images/Devpost_Brown.svg'
-            alt='Devpost logo'
-            width={8}
-            height={8}
-          />}
-        {linkType === 'site' && <Link color="#403E3A" strokeWidth={2} size={8} />}
-      </motion.div>
+      {linkType &&
+        <motion.div
+          className="cursor-link"
+          animate={linkControls}
+          initial={{ opacity: 0, x: 15, y: 50 }}>
+          {linkType === 'github' &&             
+            <Image
+              src='/images/GitHub_Brown.svg'
+              alt='GitHub logo'
+              width={8}
+              height={8}
+            />}
+          {linkType === 'devpost' &&             
+            <Image
+              src='/images/Devpost_Brown.svg'
+              alt='Devpost logo'
+              width={8}
+              height={8}
+            />}
+          {linkType === 'site' && <Link color="#403E3A" strokeWidth={2} size={8} />}
+        </motion.div>
+      }
     </>
   );
 };
