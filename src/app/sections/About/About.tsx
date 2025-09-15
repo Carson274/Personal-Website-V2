@@ -109,7 +109,7 @@ const About = () => {
             className='image relative md:mt-20 w-full rounded-2xl flex justify-center items-center'
           >
             <Image
-              className='rounded-2xl'
+              className='rounded-2xl border-4 border-cream'
               src='/images/Carson.jpg'
               alt='Picture of Me'
               width={400}

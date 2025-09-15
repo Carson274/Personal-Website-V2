@@ -1,0 +1,78 @@
+'use client';
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
+import './CustomCursor.css';
+import { ArrowUpRight, Link } from 'lucide-react';
+import { useCursor } from './CursorContext';
+
+let globalCursorControls: AnimationControls | null = null;
+let globalLinkControls: AnimationControls | null = null;
+
+export const getCursorControls = () => globalCursorControls;
+export const getLinkControls = () => globalLinkControls;
+
+const CustomCursor = () => {
+  const { linkType } = useCursor();
+  const cursorControls = useAnimation();
+  const linkControls = useAnimation();
+
+  const images = {
+    github: './GitHub_Dark.svg',
+    devpost: './Devpost.svg',
+  }
+  
+  globalCursorControls = cursorControls;
+  globalLinkControls = linkControls;
+
+  useEffect(() => {
+    const move = (e: MouseEvent) => {
+      cursorControls.set({ 
+        x: e.clientX - 10,
+        y: e.clientY - 10
+      });
+      
+      linkControls.set({
+        x: e.clientX - 5 + 20,
+        y: e.clientY - 10 - 20
+      });
+    };
+
+    window.addEventListener('mousemove', move);
+    return () => window.removeEventListener('mousemove', move);
+  }, [cursorControls, linkControls]);
+
+  return (
+    <>
+      <motion.div
+        className="custom-cursor"
+        animate={cursorControls}
+        initial={{ opacity: 0 }}>
+        <ArrowUpRight color="#403E3A" strokeWidth={1.5} size={12} />
+      </motion.div>
+      <motion.div
+        className="cursor-link"
+        animate={linkControls}
+        initial={{ opacity: 0, x: 15, y: 50 }}>
+        {linkType === 'github' &&             
+          <Image
+            src='/images/GitHub_Brown.svg'
+            alt='GitHub logo'
+            width={8}
+            height={8}
+          />}
+        {linkType === 'devpost' &&             
+          <Image
+            src='/images/Devpost_Brown.svg'
+            alt='Devpost logo'
+            width={8}
+            height={8}
+          />}
+        {linkType === 'site' && <Link color="#403E3A" strokeWidth={2} size={8} />}
+        {linkType === null && <Link color="#403E3A" strokeWidth={2} size={8} />}
+      </motion.div>
+    </>
+  );
+};
+
+export default CustomCursor;
