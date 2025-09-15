@@ -134,32 +134,13 @@ const About = () => {
               <div className='flex flex-row gap-2 lg:gap-4 xl:gap-8'>
                 <p>
                   Feel free to connect with me on
-                  LinkedIn, I love meeting new people!
+                  LinkedIn. I love meeting new people!
                 </p>
                 <a className='flex justify-end' href='https://www.linkedin.com/in/carson-secrest' target='_blank'>
                   <Image className='linkedin-icon' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
                 </a>
               </div>
             </div>
-            {/* <motion.div
-              initial="hidden" 
-              animate={textCsControls} 
-              variants={slideRightVariants} 
-              className='text-cs absolute text-lg rounded-2xl flex flex-col justify-start z-20 p-10 w-full h-full items-center bg-grey text-white'
-            >
-              <pre>
-                {
-  `class Carson {
-    private:
-      int schoolYear = 2;
-    public:
-      vector<string> focuses = {"web dev",
-                                "AI"};
-};`
-                }
-              </pre>
-
-            </motion.div> */}
           </section>
         </div>
       </section>
