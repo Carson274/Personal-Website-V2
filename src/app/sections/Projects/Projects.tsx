@@ -173,8 +173,33 @@ const Projects = () => {
           className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-12'
           variants={containerVariants}
         >
-          {"MY PROJECTS".split("").map((letter, index) => (
+          {"MY PR".split("").map((letter, index) => (
             <motion.div key={index} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
+              {letter}
+            </motion.div>
+          ))}
+          <motion.div className='flex justify-center' ref={githubRef} variants={githubRollVariants}
+            onAnimationComplete={() => {
+              controls.start("hop");
+              githubControls.start("visible");
+            }}>
+            <a className='flex justify-end' href='https://github.com/Carson274' target='_blank'>
+              <Image 
+                className='github-rolling-icon' 
+                src='/images/GitHub.svg' 
+                alt='GitHub' 
+                width={60} 
+                height={60} 
+                style={{ 
+                  height: "1em",
+                  width: "auto",
+                  verticalAlign: "middle"
+                }}
+              />
+            </a>
+          </motion.div>
+          {"JECTS".split("").map((letter, index) => (
+            <motion.div key={index + 2} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
               {letter}
             </motion.div>
           ))}
@@ -185,21 +210,6 @@ const Projects = () => {
           <Project key={index} project={project} />
         ))}
       </section>
-      <motion.div className='flex justify-center mt-8' ref={githubRef} variants={githubRollVariants}
-            onAnimationComplete={() => {
-              controls.start("hop");
-              githubControls.start("visible");
-            }}>
-        <a className='flex justify-end' href='https://github.com/Carson274' target='_blank'>
-          <Image 
-            className='github-rolling-icon' 
-            src='/images/GitHub.svg' 
-            alt='GitHub' 
-            width={60} 
-            height={60}
-          />
-        </a>
-      </motion.div>
     </motion.section>
   )
 }
