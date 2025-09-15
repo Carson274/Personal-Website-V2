@@ -47,11 +47,19 @@ const About = () => {
 
   const letterVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: {
+    visible: (index: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 1.2, ease: cubicBezier(.06,.6,.28,.99) }
-    },
+      transition: {
+        duration: 0.1,
+        ease: [0.45, 0.8, 0.5, 0.95],
+        type: 'spring',
+        stiffness: 120,
+        damping: 14,
+        mass: 0.5,
+        delay: index * 0.05 + 0.2,
+      },
+    }),
   };
 
   const { scrollYProgress } = useScroll();
@@ -73,7 +81,7 @@ const About = () => {
           variants={containerVariants}
         >
           {"ABOUT ME".split("").map((letter, index) => (
-            <motion.div key={index} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
+            <motion.div key={index} custom={index}  className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
               {letter}
             </motion.div>
           ))}

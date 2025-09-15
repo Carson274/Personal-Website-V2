@@ -122,11 +122,19 @@ const Projects = () => {
 
   const letterVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: {
+    visible: (index: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 1.2, ease: cubicBezier(.06,.6,.28,.99) }
-    },
+      transition: {
+        duration: 0.2,
+        ease: [0.45, 0.8, 0.5, 0.95],
+        type: 'spring',
+        stiffness: 120,
+        damping: 14,
+        mass: 1.3,
+        delay: index * 0.05 + 0.55,
+      },
+    }),
   };
 
   const githubRollVariants = {
@@ -138,11 +146,8 @@ const Projects = () => {
       x: 0,
       rotate: 360 * 9,
       transition: { 
-        duration: 5.0,
+        duration: 1.0,
         ease: cubicBezier(0.33, 0, 0.2, 1),
-        type: 'spring',
-        damping: 7,
-        stiffness: 30
       }
     },
     hop: {
@@ -174,7 +179,7 @@ const Projects = () => {
           variants={containerVariants}
         >
           {"MY PR".split("").map((letter, index) => (
-            <motion.div key={index} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
+            <motion.div key={index} custom={index} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
               {letter}
             </motion.div>
           ))}
@@ -199,7 +204,7 @@ const Projects = () => {
             </a>
           </motion.div>
           {"JECTS".split("").map((letter, index) => (
-            <motion.div key={index + 2} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
+            <motion.div key={index + 5} custom={index + 5} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
               {letter}
             </motion.div>
           ))}
