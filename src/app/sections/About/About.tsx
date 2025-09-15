@@ -102,7 +102,7 @@ const About = () => {
           ))}
         </motion.div>
       </section>
-      <section className='about-section z-10 flex flex-col my-20 m:my-20 md:flex-row w-full justify-center items-center'>
+      <section className='about-section z-10 flex flex-col my-20 md:my-0 md:flex-row w-full justify-center items-center'>
         <div className='image-div flex w-3/4 md:w-1/2 h-full p-8 justify-center'>
           <motion.div 
             style={{ y }} 
