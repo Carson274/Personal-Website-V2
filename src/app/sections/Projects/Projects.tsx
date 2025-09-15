@@ -167,7 +167,7 @@ const Projects = () => {
       animate={controls}
       variants={containerVariants}
     >
-      <section className='z-0 relative about w-full h-1/5 mt-32 md:mt-40 text-center'>
+      <section className='z-0 relative about w-full h-1/5 mt-20 md:mt-32 text-center'>
         <div className='absolute top-full left-0 w-full h-full bg-black'></div>
         <motion.div
           className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-12'

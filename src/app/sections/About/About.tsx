@@ -102,14 +102,14 @@ const About = () => {
           ))}
         </motion.div>
       </section>
-      <section className='about-section z-10 flex flex-col my-20 m:my-20 md:flex-row w-full justify-center items-center'>
+      <section className='about-section z-10 flex flex-col my-20 md:my-0 md:flex-row w-full justify-center items-center'>
         <div className='image-div flex w-3/4 md:w-1/2 h-full p-8 justify-center'>
           <motion.div 
             style={{ y }} 
             className='image relative md:mt-20 w-full rounded-2xl flex justify-center items-center'
           >
             <Image
-              className='rounded-2xl'
+              className='rounded-2xl border-4 border-cream'
               src='/images/Carson.jpg'
               alt='Picture of Me'
               width={400}
