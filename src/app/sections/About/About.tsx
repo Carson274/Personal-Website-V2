@@ -54,29 +54,6 @@ const About = () => {
     },
   };
 
-  const slideRightVariants = {
-    hidden: { x: '-100%' },
-    visible: {
-      x: 0,
-      transition: { duration: 0.3, ease: easeOutSlow }
-    },
-  };
-
-  const slideLeftVariants = {
-    hidden: { x: '100%' },
-    visible: {
-      x: 0,
-      transition: { duration: 0.3, ease: easeOutSlow }
-    },
-  };
-
-  // let width = screen.width;
-  // let scrollAmount = 200;
-  // if(width < 1024) {
-  //   scrollAmount = 200;
-  // }
-
-  // useScroll hook to get the scrollYProgress, and move the image up and down based on the scroll
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
