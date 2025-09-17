@@ -6,9 +6,6 @@ import './About.css';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Open_Sans } from 'next/font/google';
-import { cubicBezier } from 'framer-motion';
-
-const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
 
 const About = () => {
   const controls = useAnimation();

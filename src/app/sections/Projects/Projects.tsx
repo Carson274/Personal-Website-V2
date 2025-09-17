@@ -10,8 +10,6 @@ import { cubicBezier } from 'framer-motion';
 import Project from './components/Project';
 import projectsJson from './projects.json';
 
-const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
-
 export interface ProjectDetails {
   name: string;
   imagePath: string;

@@ -6,7 +6,6 @@ import CustomCursor from "./components/CustomCursor/CustomCursor";
 import { CursorProvider } from './components/CustomCursor/CursorContext';
 
 const inter = Inter({ subsets: ["latin"] });
-const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
 
 export const metadata: Metadata = {
   title: "Carson Secrest",

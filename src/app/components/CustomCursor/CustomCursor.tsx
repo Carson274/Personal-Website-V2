@@ -17,11 +17,6 @@ const CustomCursor = () => {
   const cursorControls = useAnimation();
   const linkControls = useAnimation();
   const [hasMoved, setHasMoved] = useState(false);
-
-  const images = {
-    github: './GitHub_Dark.svg',
-    devpost: './Devpost.svg',
-  }
   
   globalCursorControls = cursorControls;
   globalLinkControls = linkControls;

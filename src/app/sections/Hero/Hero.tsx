@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import './Hero.css';
 import { useScroll, useTransform, motion } from "framer-motion"

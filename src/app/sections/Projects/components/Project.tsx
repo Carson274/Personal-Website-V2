@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Image from 'next/image';
 import { ProjectDetails } from '../Projects';
 import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
