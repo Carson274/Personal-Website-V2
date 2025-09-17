@@ -76,7 +76,7 @@ const About = () => {
         </motion.div>
       </section>
       <section className='about-section z-10 flex flex-col my-20 md:my-0 md:flex-row w-full justify-center items-center'>
-        <div className='image-div flex w-3/4 md:w-1/2 h-full p-8 justify-center'>
+        <div className='flex w-full md:w-1/2 h-full p-8 justify-center'>
           <motion.div 
             style={{ y }} 
             className='image relative md:mt-20 w-full rounded-2xl flex justify-center items-center'
@@ -90,14 +90,14 @@ const About = () => {
             />
           </motion.div>
         </div>
-        <div className='text-div flex w-3/4 md:w-1/2 h-1/2 md:h-full justify-center items-center'>
+        <div className='text-div flex w-full md:w-1/2 h-1/2 md:h-full p-8 justify-center items-center'>
           <AboutText/>
         </div>
       </section>
       <section 
         ref={bottomRef} 
         className='bottom-section w-full h-1/5 bg-black'
-      ></section>
+      />
     </motion.section>
   )
 }
