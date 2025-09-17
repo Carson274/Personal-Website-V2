@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import { Open_Sans } from 'next/font/google';
 import { cubicBezier } from 'framer-motion';
 import Project from './components/Project';
-import projectsJson from './projects.json';
+import projectsJson from './data/projects.json';
 
 export interface ProjectDetails {
   name: string;
