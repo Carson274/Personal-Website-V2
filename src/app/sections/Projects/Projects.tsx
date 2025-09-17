@@ -93,9 +93,7 @@ const Projects = () => {
       scaleY: [1, 1.05, 0.92, 1.02, 0.97, 1],
       transition: {
         duration: 1.5,
-        repeat: Infinity,
         ease: "easeInOut",
-        repeatDelay: 2
       }
     }
   };
@@ -122,8 +120,10 @@ const Projects = () => {
           ))}
           <motion.div className='flex justify-center' ref={githubRef} variants={githubRollVariants}
             onAnimationComplete={() => {
-              controls.start("hop");
               githubControls.start("visible");
+            }}
+            onMouseEnter={() => {
+              controls.start("hop");
             }}>
             <a className='flex justify-end' href='https://github.com/Carson274' target='_blank'>
               <Image 
