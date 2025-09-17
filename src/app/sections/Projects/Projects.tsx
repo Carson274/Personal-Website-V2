@@ -15,9 +15,9 @@ const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
 export interface ProjectDetails {
   name: string;
   imagePath: string;
-  liveSite: string;
-  devpost: string;
-  github: string;
+  liveSite?: string;
+  devpost?: string;
+  github?: string;
 }
 
 const Projects = () => {
