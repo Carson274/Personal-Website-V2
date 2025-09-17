@@ -23,3 +23,15 @@
 .about-section {
   height: 80vh;
 }
+
+.linkedin-icon {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+@media (min-width: 1024px) {
+  .linkedin-icon {
+    max-width: 60px;
+    max-height: 60px;
+  }
+}
