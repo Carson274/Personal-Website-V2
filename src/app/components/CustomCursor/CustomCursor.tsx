@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, AnimationControls } from 'framer-motion';
@@ -45,7 +46,7 @@ const CustomCursor = () => {
       {hasMoved && (
         <>
           <motion.div
-            className="custom-cursor"
+            className="custom-cursor fixed top-0 left-0 w-4 h-4 bg-light-cream pointer-events-none z-40 flex items-center justify-center"
             animate={cursorControls}
             initial={{ opacity: 0 }}
           >
@@ -53,7 +54,7 @@ const CustomCursor = () => {
           </motion.div>
           {linkType && (
             <motion.div
-              className="cursor-link"
+              className="cursor-link fixed top-0 left-0 w-4 h-4 bg-light-cream pointer-events-none z-50 flex items-center justify-center"
               animate={linkControls}
               initial={{ opacity: 0, x: 15, y: 50 }}
             >
