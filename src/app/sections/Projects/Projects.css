@@ -1,6 +1,8 @@
 .project-image {
   transform: scale(1);
   transition: transform 0.5s;
+  max-height: 220px;
+  width: auto;
 }
 
 .project-image:hover {
