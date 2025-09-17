@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import { cubicBezier } from 'framer-motion';
 import Project from './components/Project';
 import projectsJson from './data/projects.json';
+import { singleHop } from '@/app/utils/animations';
 
 export interface ProjectDetails {
   name: string;
@@ -84,15 +85,7 @@ const Projects = () => {
         ease: cubicBezier(0.33, 0, 0.2, 1),
       }
     },
-    hop: {
-      y: [0, -20, 0, -12, 0, -3, 0],
-      scaleX: [1, 0.97, 1.08, 0.99, 1.03, 1],
-      scaleY: [1, 1.05, 0.92, 1.02, 0.97, 1],
-      transition: {
-        duration: 1.5,
-        ease: "easeInOut",
-      }
-    }
+    hop: singleHop
   };
 
   return (
