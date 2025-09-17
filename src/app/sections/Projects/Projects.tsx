@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import { Open_Sans } from 'next/font/google';
 import { cubicBezier } from 'framer-motion';
 import Project from './components/Project';
+import projectsJson from './projects.json';
 
 const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
 
@@ -22,71 +23,7 @@ export interface ProjectDetails {
 const Projects = () => {
   const controls = useAnimation();
   const githubControls = useAnimation();
-  const projects: ProjectDetails[] = [
-    {
-      name: 'Campus View',
-      imagePath: '/images/Campus_View.png',
-      liveSite: '',
-      devpost: '',
-      github: 'https://github.com/Carson274/CampusView'
-    },
-    {
-      name: 'Slumped Stats',
-      imagePath: '/images/Slumped_Stats.png',
-      liveSite: '',
-      devpost: 'https://devpost.com/software/slumped-stats',
-      github: 'https://github.com/Carson274/Sleep-App'
-    },
-    {
-      name: 'Box Office Battles',
-      imagePath: '/images/Box_Office_Battles.png',
-      liveSite: '',
-      devpost: 'https://devpost.com/software/box-office-battles',
-      github: 'https://github.com/Carson274/Box-Office-Battles'
-    },
-    {
-      name: 'Roll Call Brawl',
-      imagePath: '/images/Roll_Call_Brawl.jpg',
-      liveSite: '',
-      devpost: 'https://devpost.com/software/roll-call-brawl',
-      github: 'https://github.com/Carson274/Roll-Call-Brawl'
-    },
-    {
-      name: 'Playlist Polyglot',
-      imagePath: '/images/Playlist_Polyglot.png',
-      liveSite: '',
-      devpost: '',
-      github: 'https://github.com/Carson274/Playlist-Polyglot'
-    },
-    {
-      name: 'Crowd',
-      imagePath: '/images/Crowd.png',
-      liveSite: '',
-      devpost: 'https://devpost.com/software/crowd-fjct15',
-      github: 'https://github.com/sebat2004/crowd'
-    },
-    {
-      name: 'Student Milestone Quiz',
-      imagePath: '/images/Beaver_Purity.png',
-      liveSite: 'https://beaverpurity.com/',
-      devpost: '',
-      github: 'https://github.com/Carson274/BeaverCsPurity'
-    },
-    {
-      name: 'PurSend',
-      imagePath: '/images/PurSend.png',
-      liveSite: '',
-      devpost: 'https://devpost.com/software/pursend',
-      github: 'https://github.com/ipoogleduck/PurSend'
-    },
-    {
-      name: 'Personal Website v1',
-      imagePath: '/images/Personal_Website_v1.png',
-      liveSite: 'https://carson274.github.io/Personal-Website',
-      devpost: '',
-      github: 'https://github.com/Carson274/Personal-Website'
-    }
-  ]
+  const projects: ProjectDetails[] = projectsJson;
 
   const [ref, inView] = useInView({
     triggerOnce: true,
