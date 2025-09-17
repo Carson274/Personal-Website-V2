@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { ProjectDetails } from '../Projects';
-import { getCursorControls, getLinkControls } from '../../CustomCursor/CustomCursor';
-import { useCursor } from '../../CustomCursor/CursorContext';
+import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
+import { useCursor } from '../../../components/CustomCursor/CursorContext';
 
 const Project = ({ project }: { project: ProjectDetails }) => {
   const { setLinkType } = useCursor();
