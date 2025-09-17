@@ -12,7 +12,7 @@ const openSans = Open_Sans({ subsets: ['latin'], display: 'swap', });
 
 const About = () => {
   const controls = useAnimation();
-  const textCsControls = useAnimation();
+  const linkedinControls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-400px 0px',
@@ -21,19 +21,12 @@ const About = () => {
     rootMargin: '0px 0px',
   });
 
-  const easeOutSlow = cubicBezier(0.215, 0.610, 0.355, 1);
-
   useEffect(() => {
     if (inView) {
       controls.start('visible');
+      linkedinControls.start('hop');
     }
   }, [controls, inView]);
-
-  useEffect(() => {
-    if (bottomInView) {
-      textCsControls.start("visible");
-    }
-  }, [textCsControls, bottomInView]);
 
   const containerVariants = {
     hidden: { opacity: 1 },
@@ -61,6 +54,20 @@ const About = () => {
       },
     }),
   };
+
+  const linkedinVariants = {
+    hop: {
+      y: [0, -20, 0, -12, 0, -3, 0],
+      scaleX: [1, 0.97, 1.08, 0.99, 1.03, 1],
+      scaleY: [1, 1.05, 0.92, 1.02, 0.97, 1],
+      transition: {
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatDelay: 2
+      }
+    }
+  }
 
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
@@ -121,9 +128,15 @@ const About = () => {
                   Feel free to connect with me on
                   LinkedIn. I love meeting new people!
                 </p>
-                <a className='flex justify-end' href='https://www.linkedin.com/in/carson-secrest' target='_blank'>
-                  <Image className='linkedin-icon' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
-                </a>
+                <motion.a 
+                  className='flex justify-end'
+                  href='https://www.linkedin.com/in/carson-secrest'
+                  target='_blank'
+                  animate={linkedinControls}
+                  variants={linkedinVariants}
+                >
+                  <Image className='linkedin-icon inline-block' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
+                </motion.a>
               </div>
             </div>
           </section>

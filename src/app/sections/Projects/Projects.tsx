@@ -74,7 +74,7 @@ const Projects = () => {
     }),
   };
 
-  const githubRollVariants = {
+  const githubVariants = {
     hidden: { 
       x: '-60vw',
       rotate: 0
@@ -118,7 +118,7 @@ const Projects = () => {
               {letter}
             </motion.div>
           ))}
-          <motion.div className='flex justify-center' ref={githubRef} variants={githubRollVariants}
+          <motion.div className='flex justify-center' ref={githubRef} variants={githubVariants}
             onAnimationComplete={() => {
               githubControls.start("visible");
             }}
