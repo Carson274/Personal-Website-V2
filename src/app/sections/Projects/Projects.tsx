@@ -5,7 +5,6 @@ import Image from 'next/image';
 import './Projects.css';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Open_Sans } from 'next/font/google';
 import { cubicBezier } from 'framer-motion';
 import Project from './components/Project';
 import projectsJson from './data/projects.json';

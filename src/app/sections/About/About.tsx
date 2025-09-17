@@ -5,11 +5,10 @@ import Image from 'next/image';
 import './About.css';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Open_Sans } from 'next/font/google';
+import AboutText from './components/AboutText';
 
 const About = () => {
   const controls = useAnimation();
-  const linkedinControls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-400px 0px',
@@ -21,7 +20,6 @@ const About = () => {
   useEffect(() => {
     if (inView) {
       controls.start('visible');
-      linkedinControls.start('hop');
     }
   }, [controls, inView]);
 
@@ -51,20 +49,6 @@ const About = () => {
       },
     }),
   };
-
-  const linkedinVariants = {
-    hop: {
-      y: [0, -20, 0, -12, 0, -3, 0],
-      scaleX: [1, 0.97, 1.08, 0.99, 1.03, 1],
-      scaleY: [1, 1.05, 0.92, 1.02, 0.97, 1],
-      transition: {
-        duration: 1.5,
-        repeat: Infinity,
-        ease: "easeInOut",
-        repeatDelay: 2
-      }
-    }
-  }
 
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
@@ -107,36 +91,7 @@ const About = () => {
           </motion.div>
         </div>
         <div className='text-div flex w-3/4 md:w-1/2 h-1/2 md:h-full justify-center items-center'>
-          <section className='overflow-hidden border-2 border-brown text relative rounded-2xl flex justify-center w-4/5 items-center'>
-            <div className='text-normal text-sm sm:text-sm md:text-md lg:text-lg rounded-2xl flex flex-col z-10 justify-start gap-10 px-6 py-4 md:px-8 md:py-6 lg:px-10 lg:py-8 w-full h-full items-center bg-light-cream text-black'>
-              <p>
-                Hi! I&apos;m a senior computer science student
-                with a focus on web/mobile development and AI.
-              </p>
-              <p>
-                I&apos;m originally from Oregon and currently based in
-                Corvallis, where I&apos;m pursuing a Bachelor of
-                Science in Computer Science at
-                Oregon State University. Since both of my parents
-                went here, I had to continue the legacy!
-              </p>
-              <div className='flex flex-row gap-2 lg:gap-4 xl:gap-8'>
-                <p>
-                  Feel free to connect with me on
-                  LinkedIn. I love meeting new people!
-                </p>
-                <motion.a 
-                  className='flex justify-end'
-                  href='https://www.linkedin.com/in/carson-secrest'
-                  target='_blank'
-                  animate={linkedinControls}
-                  variants={linkedinVariants}
-                >
-                  <Image className='linkedin-icon inline-block' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
-                </motion.a>
-              </div>
-            </div>
-          </section>
+          <AboutText/>
         </div>
       </section>
       <section 
