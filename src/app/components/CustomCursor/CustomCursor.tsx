@@ -56,7 +56,7 @@ const CustomCursor = () => {
             <motion.div
               className="cursor-link fixed top-0 left-0 w-4 h-4 bg-light-cream pointer-events-none z-50 flex items-center justify-center"
               animate={linkControls}
-              initial={{ opacity: 0, x: 15, y: 50 }}
+              initial={{ opacity: 0, x: -100, y: -100 }}
             >
               {linkType === 'github' && (
                 <Image
