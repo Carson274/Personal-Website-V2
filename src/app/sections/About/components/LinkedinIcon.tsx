@@ -1,13 +1,13 @@
 import React from 'react'
 import Image from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
-import { infiniteHop } from '../../../utils/animations';
+import { shake } from '../../../utils/animations';
 
 function LinkedinIcon() {
   const linkedinControls = useAnimation();
 
   const linkedinVariants = {
-    hop: infiniteHop
+    hop: shake
   }
 
   return (

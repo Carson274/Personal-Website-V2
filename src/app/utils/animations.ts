@@ -19,3 +19,14 @@ export const singleHop = {
     ease: "easeInOut"
   }
 }
+
+export const shake = {
+  rotate: [0, -10, 8, -5, 3, -2, 1, 0],
+  transformOrigin: "bottom center",
+  transition: {
+    duration: 0.8,
+    ease: [0.36, 0.07, 0.19, 0.97],
+    repeat: Infinity,
+    repeatDelay: 1.8,
+  },
+};
