@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect } from 'react';
-import Image from 'next/image';
 import './Projects.css';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -9,6 +8,7 @@ import { cubicBezier } from 'framer-motion';
 import Project from './components/Project';
 import projectsJson from './data/projects.json';
 import { singleHop } from '@/app/utils/animations';
+import GitHubIcon from './components/GitHubIcon';
 
 export interface ProjectDetails {
   name: string;
@@ -115,20 +115,7 @@ const Projects = () => {
             onMouseEnter={() => {
               controls.start("hop");
             }}>
-            <a className='flex justify-end' href='https://github.com/Carson274' target='_blank'>
-              <Image 
-                className='github-rolling-icon' 
-                src='/images/GitHub.svg' 
-                alt='GitHub' 
-                width={60} 
-                height={60} 
-                style={{ 
-                  height: "1em",
-                  width: "auto",
-                  verticalAlign: "middle"
-                }}
-              />
-            </a>
+              <GitHubIcon />
           </motion.div>
           {"JECTS".split("").map((letter, index) => (
             <motion.div key={index + 5} custom={index + 5} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
