@@ -1,20 +1,13 @@
-import React from 'react'
+import React from 'react';
 import Image from 'next/image';
-import { motion, useAnimation } from 'framer-motion';
-import { shake } from '../../../utils/animations';
 import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
 import { useCursor } from '../../../components/CustomCursor/CursorContext';
 
-function LinkedinIcon() {
-  const linkedinControls = useAnimation();
+export default function GitHubIcon() {
   const { setLinkType } = useCursor();
 
-  const linkedinVariants = {
-    hop: shake
-  }
-
   const handleMouseEnter = () => {
-    setLinkType('site');
+    setLinkType('github');
 
     getCursorControls()?.start({
       opacity: 1,
@@ -40,19 +33,25 @@ function LinkedinIcon() {
   }
 
   return (
-    <motion.a 
+    <a
       className='flex justify-end cursor-none'
-      href='https://www.linkedin.com/in/carson-secrest'
+      href='https://github.com/Carson274'
       target='_blank'
-      animate={linkedinControls}
-      variants={linkedinVariants}
-      whileInView={linkedinVariants.hop}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Image className='linkedin-icon inline-block' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
-    </motion.a>
+      <Image 
+        className='github-rolling-icon' 
+        src='/images/GitHub.svg' 
+        alt='GitHub' 
+        width={60} 
+        height={60} 
+        style={{ 
+          height: "1em",
+          width: "auto",
+          verticalAlign: "middle"
+        }}
+      />
+    </a>
   )
 }
-
-export default LinkedinIcon;
