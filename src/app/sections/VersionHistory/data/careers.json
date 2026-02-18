@@ -1,7 +1,7 @@
 [
     {
         "name": "CASS",
-        "color": "#FF8C00",
+        "color": "#FFD700",
         "logo": "/images/events/logos/CASS_logo.png",
         "startMonth": "May 2024",
         "endMonth": "May 2025",
@@ -25,7 +25,7 @@
     },
     {
         "name": "ODOT",
-        "color": "#2E7D32",
+        "color": "#1a3a6b",
         "logo": "/images/events/logos/ODOT_logo.png",
         "startMonth": "January 2026",
         "endMonth": null,
