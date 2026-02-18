@@ -12,11 +12,17 @@ interface Tag {
     linkedin: string;
 }
 
+interface Link {
+    name: string;
+    url: string;
+}
+
 interface EventDetails {
     month: string;
     caption: string;
     imagePath: string;
     tags: Tag[];
+    links: Link[];
 }
 
 const VersionHistory = () => {
@@ -98,6 +104,7 @@ const VersionHistory = () => {
                         caption={event.caption}
                         imagePath={event.imagePath}
                         tags={event.tags}
+                        links={event.links}
                         index={index}
                     />
                 ))}
