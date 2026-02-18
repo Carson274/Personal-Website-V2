@@ -23,6 +23,7 @@ interface EventDetails {
     month: string;
     caption: string;
     imagePath: string;
+    career?: string;
     tags: Tag[];
     links: Link[];
 }
@@ -262,11 +263,23 @@ const VersionHistory = () => {
                     {timeline.map((item, index) => {
                         if (item.type === 'event') {
                             const e = item.data as EventDetails;
+                            // Look up career color if the event is associated with a career
+                            const careerColor = e.career
+                                ? careers.find(c => c.name === e.career)?.color
+                                : undefined;
                             return (
                                 <div key={`event-${index}`} className='event-column'>
-                                    <div className='event-node' />
+                                    <div
+                                        className='event-node'
+                                        style={careerColor ? { borderColor: careerColor } : undefined}
+                                    />
                                     <div className='event-connector' />
-                                    <span className='event-date'>{e.month}</span>
+                                    <span
+                                        className='event-date'
+                                        style={careerColor ? { background: careerColor, color: '#000' } : undefined}
+                                    >
+                                        {e.month}
+                                    </span>
                                     <EventCard
                                         month={e.month}
                                         caption={e.caption}

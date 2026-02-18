@@ -3,6 +3,7 @@
         "month": "July 2025",
         "caption": "Me and my co-intern Kasey at Workiva headquarters in Iowa during our internship summit. One quoted highlight from the team about us was, \"Them teaching the uncs (full time staff) their Gen-Z vernacular.\"",
         "imagePath": "/images/events/workiva_july_2025.jpeg",
+        "career": "Workiva",
         "tags": [
             {
                 "name": "Kasey Liu",
@@ -15,6 +16,7 @@
         "month": "February 2025",
         "caption": "",
         "imagePath": "/images/events/ACM_february_2025.jpeg",
+        "career": "ACM",
         "tags": [
             {
                 "name": "Sebastian Torresola",
@@ -31,6 +33,7 @@
         "month": "October 2024",
         "caption": "",
         "imagePath": "/images/events/ACM_october_2024.jpeg",
+        "career": "ACM",
         "tags": [
             {
                 "name": "Chris Ho",
@@ -43,6 +46,7 @@
         "month": "June 2024",
         "caption": "",
         "imagePath": "/images/events/CASS_june_2024.jpeg",
+        "career": "CASS",
         "tags": [
             {
                 "name": "Artem Kolpakov",
