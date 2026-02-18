@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 
 interface CareerCardProps {
     name: string;
+    role: string;
     color: string;
     logo: string;
     label: string;
@@ -14,7 +15,7 @@ interface CareerCardProps {
     index: number;
 }
 
-const CareerCard = ({ name, color, logo, label, url, index }: CareerCardProps) => {
+const CareerCard = ({ name, role, color, logo, label, url, index }: CareerCardProps) => {
     const [ref, inView] = useInView({
         triggerOnce: true,
         rootMargin: '0px 100px',
@@ -35,6 +36,7 @@ const CareerCard = ({ name, color, logo, label, url, index }: CareerCardProps) =
                 />
             </div>
             <p className='text-cream text-xs font-semibold text-center'>{name}</p>
+            <p className='text-cream/60 text-[10px] text-center'>{role}</p>
             <span
                 className='text-[10px] font-semibold uppercase tracking-widest rounded-full px-2 py-0.5 text-center'
                 style={{ color: '#000', background: color }}

@@ -29,6 +29,7 @@ interface EventDetails {
 
 interface CareerDetails {
     name: string;
+    role: string;
     color: string;
     logo: string;
     startMonth: string;
@@ -319,6 +320,7 @@ const VersionHistory = () => {
                                     {/* Career card */}
                                     <CareerCard
                                         name={c.name}
+                                        role={c.role}
                                         color={c.color}
                                         logo={c.logo}
                                         label={label}
