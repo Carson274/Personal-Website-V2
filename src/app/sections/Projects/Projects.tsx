@@ -73,14 +73,14 @@ const Projects = () => {
   };
 
   const githubVariants = {
-    hidden: { 
+    hidden: {
       x: '-60vw',
       rotate: 0
     },
     visible: {
       x: 0,
       rotate: 360 * 9,
-      transition: { 
+      transition: {
         duration: 1.0,
         ease: cubicBezier(0.33, 0, 0.2, 1),
       }
@@ -92,7 +92,7 @@ const Projects = () => {
     <motion.section
       ref={ref}
       id="projects"
-      className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-20'
+      className='flex flex-col bg-black w-full z-10 -mt-1 pb-20'
       initial="hidden"
       animate={controls}
       variants={containerVariants}
@@ -115,7 +115,7 @@ const Projects = () => {
             onMouseEnter={() => {
               controls.start("hop");
             }}>
-              <GitHubIcon />
+            <GitHubIcon />
           </motion.div>
           {"JECTS".split("").map((letter, index) => (
             <motion.div key={index + 5} custom={index + 5} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "CASS",
+        "role": "Software Developer",
+        "color": "#FFD700",
+        "logo": "/images/events/logos/CASS_logo.png",
+        "startMonth": "May 2024",
+        "endMonth": "May 2025",
+        "url": "https://cass.oregonstate.edu/"
+    },
+    {
+        "name": "ACM",
+        "role": "Officer",
+        "color": "#FF6B00",
+        "logo": "/images/events/logos/ACM_logo.png",
+        "startMonth": "June 2024",
+        "endMonth": "June 2025",
+        "url": "https://acm.oregonstate.edu/"
+    },
+    {
+        "name": "Workiva",
+        "role": "Software Engineer Intern",
+        "color": "#00B140",
+        "logo": "/images/events/logos/Workiva_logo.webp",
+        "startMonth": "June 2025",
+        "endMonth": "September 2025",
+        "url": "https://www.workiva.com/"
+    },
+    {
+        "name": "ODOT",
+        "role": "Software Developer",
+        "color": "#1a3a6b",
+        "logo": "/images/events/logos/ODOT_logo.png",
+        "startMonth": "January 2026",
+        "endMonth": null,
+        "url": null
+    }
+]

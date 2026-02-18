@@ -1,0 +1,116 @@
+/* Timeline wrapper */
+.timeline-row {
+    position: relative;
+}
+
+/* Horizontal timeline line — stays fixed while cards scroll */
+.timeline-line {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent 0%, #f5f0e6 8%, #f5f0e6 92%, transparent 100%);
+    z-index: 1;
+}
+
+/* Horizontal scroll container — z-index: 2 so nodes paint above the line */
+.version-scroll {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px 2rem 1.5rem;
+    scrollbar-width: none;
+    /* Fade masks on left and right edges */
+    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+.version-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Event/career column */
+.event-column {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* GitHub-style commit node on the timeline */
+.event-node {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #f5f0e6;
+    background: #000;
+    flex-shrink: 0;
+    margin-top: -7px;
+    position: relative;
+    z-index: 3;
+}
+
+/* Connector line from node to date badge (default cream) */
+.event-connector {
+    width: 2px;
+    height: 1.5rem;
+    background: #f5f0e6;
+    flex-shrink: 0;
+}
+
+/* Career connector (colored, variable height) */
+.career-connector {
+    width: 2px;
+    flex-shrink: 0;
+}
+
+/* Date badge */
+.event-date {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #000;
+    background: #f5f0e6;
+    border-radius: 9999px;
+    padding: 2px 8px;
+    white-space: nowrap;
+    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* Event card */
+.event-card {
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+.event-card-image {
+    transition: transform 0.5s;
+}
+
+.event-card-image:hover {
+    transform: scale(1.03);
+}
+
+/* Branch line (colored horizontal line below main timeline) */
+.branch-line {
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .event-column {
+        flex: 0 0 300px;
+    }
+}
