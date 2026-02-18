@@ -40,6 +40,8 @@ const EventCard = ({ month, caption, imagePath, tags, links, index }: EventCardP
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.5, delay: index * 0.1, ease: [0.45, 0.8, 0.5, 0.95] }}
         >
+            {/* GitHub-style commit node on the timeline */}
+            <div className='event-node' />
             {/* Connector from timeline to date */}
             <div className='event-connector' />
             {/* Date badge */}
