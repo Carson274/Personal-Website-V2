@@ -1,70 +1,92 @@
 [
     {
         "month": "November 2025",
-        "caption": "Action shot of me and my friend AJ during our pickleball tournament",
+        "caption": "Action shot of me and my friend AJ during our pickleball tournament fall term (we got destroyed).",
         "imagePath": "/images/events/pickleball_november_2025.jpeg",
         "tags": [
             {
                 "name": "AJ Gokule",
                 "linkedin": "https://www.linkedin.com/in/ajinkyagokule/"
             }
-        ]
+        ],
+        "links": []
     },
     {
         "month": "October 2025",
-        "caption": "My brothers and I dressing as the Mario Bros and Yoshi for Halloween",
+        "caption": "My brothers and I dressing as the Mario Bros and Yoshi for Halloween last year! Fun fact: I'm going to name my first cat Yoshi.",
         "imagePath": "/images/events/halloween_october_2025.jpeg",
-        "tags": []
+        "tags": [],
+        "links": []
     },
     {
         "month": "September 2025",
-        "caption": "",
+        "caption": "A picture from a trip I took to Japan with my friends!",
         "imagePath": "/images/events/japan_september_2025.jpeg",
         "tags": [
             {
                 "name": "Sebastian Torresola",
                 "linkedin": "https://www.linkedin.com/in/sebastiantorresola/"
             }
-        ]
+        ],
+        "links": []
     },
     {
         "month": "July 2025",
-        "caption": "Me and my co-intern at Workiva in Iowa",
+        "caption": "Me and my co-intern Kasey at Workiva headquarters in Iowa during our internship summit. One quoted highlight from the team about us was, \"Them teaching the uncs (full time staff) their Gen-Z vernacular.\"",
         "imagePath": "/images/events/workiva_july_2025.jpeg",
         "tags": [
             {
                 "name": "Kasey Liu",
                 "linkedin": "https://www.linkedin.com/in/kasey-liu/"
             }
+        ],
+        "links": [
+            {
+                "name": "Workiva",
+                "url": "https://www.workiva.com/"
+            }
         ]
     },
     {
         "month": "June 2025",
-        "caption": "Professor Guyer demoing one of my projects",
+        "caption": "My Networks professor, Professor Guyer, demoing one of my projects, a \"Purity Test\" for Computer Science students at Oregon State, in front of the entire class.",
         "imagePath": "/images/events/guyer_june_2025.jpeg",
-        "tags": []
+        "tags": [],
+        "links": [
+            {
+                "name": "BeaverPurity",
+                "url": "https://beaverpurity.com/"
+            }
+        ]
     },
     {
         "month": "May 2025",
-        "caption": "CASS awards night for the software development group I work for on campus",
+        "caption": "CASS awards night for the software development group I work for on campus.",
         "imagePath": "/images/events/CASS_awards_may_2025.jpeg",
         "tags": [
             {
                 "name": "Nick Rist",
                 "linkedin": "https://www.linkedin.com/in/nicolas-rist-b30547249/"
             }
+        ],
+        "links": [
+            {
+                "name": "CASS",
+                "url": "https://cass.oregonstate.edu/"
+            }
         ]
     },
     {
         "month": "March 2025",
-        "caption": "",
+        "caption": "Spring break 2025 trip to San Francisco!",
         "imagePath": "/images/events/SF_march_2025.jpeg",
         "tags": [
             {
                 "name": "Harshil Shah",
                 "linkedin": "https://www.linkedin.com/in/harshilshah-uw/"
             }
-        ]
+        ],
+        "links": []
     },
     {
         "month": "February 2025",
@@ -79,19 +101,27 @@
                 "name": "Daniel Lee",
                 "linkedin": "https://www.linkedin.com/in/daniel-lee-7aa300278/"
             }
+        ],
+        "links": [
+            {
+                "name": "ACM @ OSU",
+                "url": "https://acm.oregonstate.edu/"
+            }
         ]
     },
     {
         "month": "December 2024",
         "caption": "",
         "imagePath": "/images/events/korea_december_2024.jpeg",
-        "tags": []
+        "tags": [],
+        "links": []
     },
     {
         "month": "October 2024",
         "caption": "",
         "imagePath": "/images/events/Dubhacks_october_2024.jpeg",
-        "tags": []
+        "tags": [],
+        "links": []
     },
     {
         "month": "October 2024",
@@ -102,19 +132,27 @@
                 "name": "Chris Ho",
                 "linkedin": "https://www.linkedin.com/in/chris-ho-/"
             }
+        ],
+        "links": [
+            {
+                "name": "ACM @ OSU",
+                "url": "https://acm.oregonstate.edu/"
+            }
         ]
     },
     {
         "month": "July 2024",
         "caption": "",
         "imagePath": "/images/events/Tyler_july_2024.jpeg",
-        "tags": []
+        "tags": [],
+        "links": []
     },
     {
         "month": "June 2024",
         "caption": "",
         "imagePath": "/images/events/New_York_june_2024.jpeg",
-        "tags": []
+        "tags": [],
+        "links": []
     },
     {
         "month": "June 2024",
@@ -125,12 +163,19 @@
                 "name": "Artem Kolpakov",
                 "linkedin": "https://www.linkedin.com/in/artem-kolpakov/"
             }
+        ],
+        "links": [
+            {
+                "name": "CASS",
+                "url": "https://cass.oregonstate.edu/"
+            }
         ]
     },
     {
         "month": "May 2024",
         "caption": "",
         "imagePath": "/images/events/Kinetic_may_2024.jpeg",
-        "tags": []
+        "tags": [],
+        "links": []
     }
 ]
