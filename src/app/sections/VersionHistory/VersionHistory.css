@@ -1,0 +1,39 @@
+/* Horizontal scroll container */
+.version-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem 2rem 1.5rem;
+    scrollbar-width: none;
+}
+
+.version-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Event card */
+.event-card {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+.event-card-image {
+    transition: transform 0.5s;
+}
+
+.event-card-image:hover {
+    transform: scale(1.03);
+}
+
+@media (min-width: 768px) {
+    .event-card {
+        flex: 0 0 300px;
+    }
+}
