@@ -14,7 +14,7 @@
     z-index: 1;
 }
 
-/* Horizontal scroll container — z-index: 2 so circles paint above the line */
+/* Horizontal scroll container — z-index: 2 so nodes paint above the line */
 .version-scroll {
     position: relative;
     z-index: 2;
@@ -35,7 +35,7 @@
     display: none;
 }
 
-/* Event column: node + connector + date + card */
+/* Event/career column */
 .event-column {
     flex: 0 0 260px;
     scroll-snap-align: start;
@@ -53,13 +53,21 @@
     background: #000;
     flex-shrink: 0;
     margin-top: -7px;
+    position: relative;
+    z-index: 3;
 }
 
-/* Connector line from node to date badge */
+/* Connector line from node to date badge (default cream) */
 .event-connector {
     width: 2px;
     height: 1.5rem;
     background: #f5f0e6;
+    flex-shrink: 0;
+}
+
+/* Career connector (colored, variable height) */
+.career-connector {
+    width: 2px;
     flex-shrink: 0;
 }
 
@@ -94,6 +102,11 @@
 
 .event-card-image:hover {
     transform: scale(1.03);
+}
+
+/* Branch line (colored horizontal line below main timeline) */
+.branch-line {
+    pointer-events: none;
 }
 
 @media (min-width: 768px) {
