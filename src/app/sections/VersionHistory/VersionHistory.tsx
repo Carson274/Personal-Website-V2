@@ -95,19 +95,22 @@ const VersionHistory = () => {
                 </motion.div>
             </section>
 
-            {/* Horizontal scroll */}
-            <div className='version-scroll mt-4'>
-                {events.map((event, index) => (
-                    <EventCard
-                        key={index}
-                        month={event.month}
-                        caption={event.caption}
-                        imagePath={event.imagePath}
-                        tags={event.tags}
-                        links={event.links}
-                        index={index}
-                    />
-                ))}
+            {/* Horizontal timeline */}
+            <div className='timeline-row mt-4'>
+                <div className='timeline-line' />
+                <div className='version-scroll'>
+                    {events.map((event, index) => (
+                        <EventCard
+                            key={index}
+                            month={event.month}
+                            caption={event.caption}
+                            imagePath={event.imagePath}
+                            tags={event.tags}
+                            links={event.links}
+                            index={index}
+                        />
+                    ))}
+                </div>
             </div>
         </motion.section>
     );
