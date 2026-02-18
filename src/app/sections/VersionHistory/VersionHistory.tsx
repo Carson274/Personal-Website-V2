@@ -273,7 +273,10 @@ const VersionHistory = () => {
                                         className='event-node'
                                         style={careerColor ? { borderColor: careerColor } : undefined}
                                     />
-                                    <div className='event-connector' />
+                                    <div
+                                        className='event-connector'
+                                        style={careerColor ? { background: careerColor } : undefined}
+                                    />
                                     <span
                                         className='event-date'
                                         style={careerColor ? { background: careerColor, color: '#000' } : undefined}
