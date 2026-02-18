@@ -111,6 +111,17 @@ const VersionHistory = () => {
         }
     }, [controls, inView]);
 
+    // Auto-scroll so "Present" (first item, index 0) is centered
+    useEffect(() => {
+        if (scrollRef.current) {
+            const containerWidth = scrollRef.current.clientWidth;
+            // Center of first column
+            const targetScroll = 0; // item 0 is already at the left, center it
+            const centerOffset = (colWidth / 2) - (containerWidth / 2) + PADDING_LEFT;
+            scrollRef.current.scrollLeft = Math.max(0, centerOffset);
+        }
+    }, [colWidth]);
+
     const containerVariants = {
         hidden: { opacity: 1 },
         visible: {
@@ -155,31 +166,36 @@ const VersionHistory = () => {
 
     // Sort careers by start column to assign levels
     // Use greedy interval scheduling: careers that don't overlap share the same level
+    // With descending sort, endCol < startCol, so use min/max for actual left/right positions
     const sortedCareerIndices = Object.keys(careerStartCols)
         .map(Number)
-        .sort((a, b) => careerStartCols[a] - careerStartCols[b]);
+        .sort((a, b) => {
+            const aLeft = Math.min(careerStartCols[a], careerEndCols[a]);
+            const bLeft = Math.min(careerStartCols[b], careerEndCols[b]);
+            return aLeft - bLeft;
+        });
 
-    const levelEndCols: number[] = []; // tracks the end column of each level
+    const levelRightCols: number[] = []; // tracks the rightmost column of each level
 
     sortedCareerIndices.forEach((ci) => {
-        const start = careerStartCols[ci];
-        const end = careerEndCols[ci];
+        const leftCol = Math.min(careerStartCols[ci], careerEndCols[ci]);
+        const rightCol = Math.max(careerStartCols[ci], careerEndCols[ci]);
         // Find a level where this career doesn't overlap
         let assignedLevel = -1;
-        for (let l = 0; l < levelEndCols.length; l++) {
-            if (levelEndCols[l] < start) {
+        for (let l = 0; l < levelRightCols.length; l++) {
+            if (levelRightCols[l] < leftCol) {
                 assignedLevel = l;
-                levelEndCols[l] = end;
+                levelRightCols[l] = rightCol;
                 break;
             }
         }
         if (assignedLevel === -1) {
-            assignedLevel = levelEndCols.length;
-            levelEndCols.push(end);
+            assignedLevel = levelRightCols.length;
+            levelRightCols.push(rightCol);
         }
         branchLines.push({
-            startCol: start,
-            endCol: end,
+            startCol: careerStartCols[ci],
+            endCol: careerEndCols[ci],
             color: careers[ci].color,
             level: assignedLevel,
         });
@@ -221,7 +237,7 @@ const VersionHistory = () => {
                     {branchLines.map((branch, i) => {
                         const startX = PADDING_LEFT + branch.startCol * (colWidth + COLUMN_GAP) + colWidth / 2;
                         const endX = PADDING_LEFT + branch.endCol * (colWidth + COLUMN_GAP) + colWidth / 2;
-                        const branchY = 26 + branch.level * 12;
+                        const branchY = 26 + branch.level * 6;
                         const leftX = Math.min(startX, endX);
                         const lineWidth = Math.abs(endX - startX);
                         return (
@@ -276,7 +292,7 @@ const VersionHistory = () => {
                             );
                             const ci = (item as any).careerIndex;
                             const careerBranch = branchLines.find(b => b.startCol === careerStartCols[ci]);
-                            const branchY = careerBranch ? 26 + careerBranch.level * 12 : 26;
+                            const branchY = careerBranch ? 26 + careerBranch.level * 6 : 26;
 
                             return (
                                 <div key={`career-${index}`} className='event-column'>

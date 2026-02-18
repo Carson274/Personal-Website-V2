@@ -9,12 +9,7 @@
                 "linkedin": "https://www.linkedin.com/in/kasey-liu/"
             }
         ],
-        "links": [
-            {
-                "name": "Workiva",
-                "url": "https://www.workiva.com/"
-            }
-        ]
+        "links": []
     },
     {
         "month": "February 2025",
@@ -30,12 +25,7 @@
                 "linkedin": "https://www.linkedin.com/in/daniel-lee-7aa300278/"
             }
         ],
-        "links": [
-            {
-                "name": "ACM @ OSU",
-                "url": "https://acm.oregonstate.edu/"
-            }
-        ]
+        "links": []
     },
     {
         "month": "October 2024",
@@ -47,12 +37,7 @@
                 "linkedin": "https://www.linkedin.com/in/chris-ho-/"
             }
         ],
-        "links": [
-            {
-                "name": "ACM @ OSU",
-                "url": "https://acm.oregonstate.edu/"
-            }
-        ]
+        "links": []
     },
     {
         "month": "June 2024",
@@ -64,11 +49,6 @@
                 "linkedin": "https://www.linkedin.com/in/artem-kolpakov/"
             }
         ],
-        "links": [
-            {
-                "name": "CASS",
-                "url": "https://cass.oregonstate.edu/"
-            }
-        ]
+        "links": []
     }
 ]
