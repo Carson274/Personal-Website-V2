@@ -4,6 +4,7 @@ import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "./components/CustomCursor/CustomCursor";
 import { CursorProvider } from './components/CustomCursor/CursorContext';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
           <CustomCursor />
         </CursorProvider>
+        <Analytics />
       </body>
     </html>
   );
