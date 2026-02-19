@@ -117,12 +117,16 @@ const VersionHistory = () => {
     useEffect(() => {
         if (scrollRef.current) {
             const containerWidth = scrollRef.current.clientWidth;
-            // Center of first column
-            const targetScroll = 0; // item 0 is already at the left, center it
             const centerOffset = (colWidth / 2) - (containerWidth / 2) + PADDING_LEFT;
             scrollRef.current.scrollLeft = Math.max(0, centerOffset);
         }
     }, [colWidth]);
+
+    const scrollByAmount = (dir: 1 | -1) => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: dir * (colWidth + COLUMN_GAP) * 2, behavior: 'smooth' });
+        }
+    };
 
     const containerVariants = {
         hidden: { opacity: 1 },
@@ -166,9 +170,6 @@ const VersionHistory = () => {
         }
     });
 
-    // Sort careers by start column to assign levels
-    // Use greedy interval scheduling: careers that don't overlap share the same level
-    // With descending sort, endCol < startCol, so use min/max for actual left/right positions
     const sortedCareerIndices = Object.keys(careerStartCols)
         .map(Number)
         .sort((a, b) => {
@@ -177,12 +178,11 @@ const VersionHistory = () => {
             return aLeft - bLeft;
         });
 
-    const levelRightCols: number[] = []; // tracks the rightmost column of each level
+    const levelRightCols: number[] = [];
 
     sortedCareerIndices.forEach((ci) => {
         const leftCol = Math.min(careerStartCols[ci], careerEndCols[ci]);
         const rightCol = Math.max(careerStartCols[ci], careerEndCols[ci]);
-        // Find a level where this career doesn't overlap
         let assignedLevel = -1;
         for (let l = 0; l < levelRightCols.length; l++) {
             if (levelRightCols[l] < leftCol) {
@@ -232,7 +232,28 @@ const VersionHistory = () => {
             </section>
 
             {/* Horizontal timeline */}
-            <div className='timeline-row mt-4'>
+            <div className='timeline-row mt-4 relative'>
+                {/* Left arrow */}
+                <button
+                    onClick={() => scrollByAmount(-1)}
+                    className='absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-coffee border border-brown text-cream hover:bg-brown transition-colors shadow-lg'
+                    aria-label='Scroll right'
+                >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                </button>
+                {/* Right arrow */}
+                <button
+                    onClick={() => scrollByAmount(1)}
+                    className='absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-coffee border border-brown text-cream hover:bg-brown transition-colors shadow-lg'
+                    aria-label='Scroll left'
+                >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </button>
+
                 <div className='timeline-line' />
                 <div className='version-scroll' ref={scrollRef}>
                     {/* Branch lines rendered as absolutely positioned divs */}
@@ -263,7 +284,6 @@ const VersionHistory = () => {
                     {timeline.map((item, index) => {
                         if (item.type === 'event') {
                             const e = item.data as EventDetails;
-                            // Look up career color if the event is associated with a career
                             const careerColor = e.career
                                 ? careers.find(c => c.name === e.career)?.color
                                 : undefined;
@@ -294,7 +314,6 @@ const VersionHistory = () => {
                                 </div>
                             );
                         } else {
-                            // career-start or career-end
                             const c = item.data as CareerDetails;
                             const isStart = item.type === 'career-start';
                             const label = isStart
@@ -303,22 +322,16 @@ const VersionHistory = () => {
                                     ? `Ended ${c.endMonth}`
                                     : 'Present';
 
-                            // Find the branch level for the connector height
-                            const branch = branchLines.find(b =>
-                                b.startCol === (isStart ? index : -1) || b.endCol === (!isStart ? index : -1)
-                            );
                             const ci = (item as any).careerIndex;
                             const careerBranch = branchLines.find(b => b.startCol === careerStartCols[ci]);
                             const branchY = careerBranch ? 26 + careerBranch.level * 6 : 26;
 
                             return (
                                 <div key={`career-${index}`} className='event-column'>
-                                    {/* Colored node on the main timeline */}
                                     <div
                                         className='event-node'
                                         style={{ borderColor: c.color, background: '#000' }}
                                     />
-                                    {/* Colored connector from timeline to branch level */}
                                     <div
                                         className='career-connector'
                                         style={{
@@ -326,14 +339,12 @@ const VersionHistory = () => {
                                             height: `${branchY - 20 + 8}px`,
                                         }}
                                     />
-                                    {/* Date badge with career color */}
                                     <span
                                         className='event-date'
                                         style={{ background: c.color, color: '#000' }}
                                     >
                                         {isStart ? c.startMonth : (c.endMonth || 'Present')}
                                     </span>
-                                    {/* Career card */}
                                     <CareerCard
                                         name={c.name}
                                         role={c.role}

@@ -18,7 +18,7 @@ interface CareerCardProps {
 const CareerCard = ({ name, role, color, logo, label, url, index }: CareerCardProps) => {
     const [ref, inView] = useInView({
         triggerOnce: true,
-        rootMargin: '0px 100px',
+        rootMargin: '0px 200px', // pre-load before scrolling into view
     });
 
     const content = (
@@ -50,9 +50,9 @@ const CareerCard = ({ name, role, color, logo, label, url, index }: CareerCardPr
         <motion.div
             ref={ref}
             className='event-card'
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: [0.45, 0.8, 0.5, 0.95] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, delay: 0, ease: [0.45, 0.8, 0.5, 0.95] }}
         >
             {url ? (
                 <a href={url} target='_blank' rel='noopener noreferrer' className='block'>

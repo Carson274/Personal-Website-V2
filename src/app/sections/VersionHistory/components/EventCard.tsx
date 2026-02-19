@@ -29,16 +29,16 @@ const EventCard = ({ month, caption, imagePath, tags, links, index }: EventCardP
     const [showLinks, setShowLinks] = useState(false);
     const [ref, inView] = useInView({
         triggerOnce: true,
-        rootMargin: '0px 100px',
+        rootMargin: '0px 200px', // larger margin so cards pre-load before they're visible
     });
 
     return (
         <motion.div
             ref={ref}
             className='event-card'
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: [0.45, 0.8, 0.5, 0.95] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, delay: 0, ease: [0.45, 0.8, 0.5, 0.95] }}
         >
             <div className='bg-grey rounded-xl p-3 border border-brown h-full flex flex-col'>
                 <div className='overflow-hidden rounded-lg mb-2'>
