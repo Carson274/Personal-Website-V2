@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import './About.css';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -79,15 +79,18 @@ const About = () => {
         <div className='flex w-full md:w-1/2 h-full p-8 justify-center'>
           <motion.div 
             style={{ y }} 
-            className='image relative md:mt-20 w-full rounded-2xl flex justify-center items-center'
+            className='image relative mt-32 w-full rounded-2xl flex justify-center items-center'
           >
-            <Image
-              className='rounded-2xl border-4 border-cream'
-              src='/images/Carson.jpg'
-              alt='Picture of Me'
-              width={400}
-              height={100}
-            />
+            <div style={{ position: 'relative', width: '360px', height: '420px' }}>
+              <Image
+                className='rounded-2xl border-4 border-cream'
+                src='/images/Carson.jpg'
+                alt='Picture of Me'
+                layout='fill'
+                objectFit='cover'
+                priority={true}
+              />
+            </div>
           </motion.div>
         </div>
         <div className='text-div flex w-full md:w-1/2 h-1/2 md:h-full p-8 justify-center items-center'>

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useScroll, motion, useTransform } from 'framer-motion';
 
 const NavBar = () => {

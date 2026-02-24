@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { motion, useAnimation } from 'framer-motion';
 import { shake } from '../../../utils/animations';
 import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
@@ -47,6 +47,7 @@ function LinkedinIcon() {
       animate={linkedinControls}
       variants={linkedinVariants}
       whileInView={linkedinVariants.hop}
+      style={{ transformOrigin: "bottom center" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

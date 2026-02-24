@@ -29,7 +29,7 @@ const EventCard = ({ month, caption, imagePath, tags, links, index }: EventCardP
     const [showLinks, setShowLinks] = useState(false);
     const [ref, inView] = useInView({
         triggerOnce: true,
-        rootMargin: '0px 200px', // larger margin so cards pre-load before they're visible
+        rootMargin: '0px 200px',
     });
 
     return (
@@ -48,6 +48,7 @@ const EventCard = ({ month, caption, imagePath, tags, links, index }: EventCardP
                         alt={caption || month}
                         width={300}
                         height={225}
+                        sizes="(max-width: 768px) 260px, 300px"
                         style={{ width: '100%', height: 'auto' }}
                     />
                 </div>

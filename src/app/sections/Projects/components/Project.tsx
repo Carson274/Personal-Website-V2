@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { ProjectDetails } from '../Projects';
 import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
 import { useCursor } from '../../../components/CustomCursor/CursorContext';
@@ -43,19 +43,25 @@ const Project = ({ project }: { project: ProjectDetails }) => {
   };
 
   return (
-    <div className='relative w-full h-full mb-8'>
+    <div className='relative w-full mb-8'>
       <div className='flex flex-col items-center justify-center mx-6'>
         <h2 className='text-white text-xl sm:text-2xl md:text-base lg:text-2xl my-8 font-bold text-center'>{project.name}</h2>
-        <a href={link} target="_blank">
-          <Image 
-            className='project-image founded-lg border-2 border-brown rounded-xl' 
-            src={project.imagePath} 
-            alt={project.name} 
-            width={400} 
-            height={400} 
+        <a href={link} target="_blank" className='w-full block'>
+          <div
+            className='relative w-full border-2 border-brown rounded-xl overflow-hidden'
+            style={{ aspectRatio: '16 / 9' }}
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}          
-          />
+            onMouseLeave={handleMouseLeave}
+          >
+            <Image 
+              className='rounded-xl'
+              src={project.imagePath} 
+              alt={project.name} 
+              layout="fill"
+              objectFit="cover"
+              priority={false}
+            />
+          </div>
         </a>
       </div>
     </div>
