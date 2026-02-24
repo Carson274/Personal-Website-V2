@@ -18,7 +18,7 @@ interface CareerCardProps {
 const CareerCard = ({ name, role, color, logo, label, url, index }: CareerCardProps) => {
     const [ref, inView] = useInView({
         triggerOnce: true,
-        rootMargin: '0px 200px', // pre-load before scrolling into view
+        rootMargin: '0px 200px',
     });
 
     const content = (
@@ -26,13 +26,13 @@ const CareerCard = ({ name, role, color, logo, label, url, index }: CareerCardPr
             className='bg-grey rounded-xl p-3 h-full flex flex-col items-center gap-2'
             style={{ border: `2px solid ${color}` }}
         >
-            <div className='w-12 h-12 relative flex items-center justify-center'>
+            <div className='relative w-12 h-12'>
                 <Image
                     src={logo}
                     alt={`${name} logo`}
-                    width={48}
-                    height={48}
-                    style={{ width: 'auto', height: '100%', objectFit: 'contain' }}
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    sizes="48px"
                 />
             </div>
             <p className='text-cream text-xs font-semibold text-center'>{name}</p>

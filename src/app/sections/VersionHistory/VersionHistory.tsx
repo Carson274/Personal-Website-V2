@@ -215,19 +215,32 @@ const VersionHistory = () => {
             {/* Header */}
             <section className='w-full mt-12 md:mt-20 text-center'>
                 <motion.div
-                    className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-8'
+                    className='text-white flex flex-col sm:flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-8'
                     variants={containerVariants}
                 >
-                    {"VERSION HISTORY".split("").map((letter, index) => (
-                        <motion.div
-                            key={index}
-                            custom={index}
-                            className={letter === " " ? "mx-1 sm:mx-4" : ""}
-                            variants={letterVariants}
-                        >
-                            {letter}
-                        </motion.div>
-                    ))}
+                    <div className='flex flex-row'>
+                        {"VERSION".split("").map((letter, index) => (
+                            <motion.div
+                                key={index}
+                                custom={index}
+                                variants={letterVariants}
+                            >
+                                {letter}
+                            </motion.div>
+                        ))}
+                    </div>
+                    <div className='hidden sm:block sm:mx-4' />
+                    <div className='flex flex-row'>
+                        {"HISTORY".split("").map((letter, index) => (
+                            <motion.div
+                                key={index + 8}
+                                custom={index + 8}
+                                variants={letterVariants}
+                            >
+                                {letter}
+                            </motion.div>
+                        ))}
+                    </div>
                 </motion.div>
             </section>
 

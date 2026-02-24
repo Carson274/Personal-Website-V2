@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
 import { useCursor } from '../../../components/CustomCursor/CursorContext';
 
@@ -34,22 +33,20 @@ export default function GitHubIcon() {
 
   return (
     <a
-      className='flex justify-end cursor-none'
+      className='flex items-center justify-center cursor-none'
       href='https://github.com/Carson274'
       target='_blank'
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Image 
-        className='github-rolling-icon' 
-        src='/images/GitHub.svg' 
-        alt='GitHub' 
-        width={60} 
-        height={60} 
-        style={{ 
-          height: "1em",
-          width: "auto",
-          verticalAlign: "middle"
+      <img
+        className='github-rolling-icon'
+        src='/images/GitHub.svg'
+        alt='GitHub'
+        style={{
+          height: '1em',
+          width: '1em',
+          display: 'block',
         }}
       />
     </a>
