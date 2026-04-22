@@ -92,9 +92,14 @@ const MAIN_LINE_CENTER_Y = 20;
 const BRANCH_BASE_Y = 26;
 const BRANCH_LEVEL_STEP = 6;
 const NODE_RADIUS = 7;
+const NODE_SIZE = NODE_RADIUS * 2;
 const MAIN_CONNECTOR_HEIGHT = 30;
-const BRANCH_CONNECTOR_HEIGHT = MAIN_CONNECTOR_HEIGHT - (BRANCH_BASE_Y - MAIN_LINE_CENTER_Y);
+const SPINE_BOTTOM_BEFORE_DATE = -NODE_RADIUS + NODE_SIZE + MAIN_CONNECTOR_HEIGHT;
 const SCROLL_EDGE_EPSILON = 2;
+
+function connectorHeightToDate(nodeMarginTopPx: number): number {
+    return Math.max(10, SPINE_BOTTOM_BEFORE_DATE - nodeMarginTopPx - NODE_SIZE);
+}
 
 const VersionHistory = () => {
     const controls = useAnimation();
@@ -331,7 +336,7 @@ const VersionHistory = () => {
                             const nodeMarginTop = isBranchEvent
                                 ? BRANCH_BASE_Y + (branchForEvent?.level || 0) * BRANCH_LEVEL_STEP - (MAIN_LINE_CENTER_Y + NODE_RADIUS)
                                 : -NODE_RADIUS;
-                            const connectorHeight = isBranchEvent ? BRANCH_CONNECTOR_HEIGHT : MAIN_CONNECTOR_HEIGHT;
+                            const connectorHeight = connectorHeightToDate(nodeMarginTop);
                             return (
                                 <div key={`event-${index}`} className='event-column'>
                                     <div
@@ -371,7 +376,7 @@ const VersionHistory = () => {
                             const isPresentMarker = item.type === 'career-end' && !c.endMonth;
                             const isMainLineCareerNode = isStart || isIncoming || item.type === 'career-end';
                             const nodeMarginTop = isMainLineCareerNode ? -NODE_RADIUS : 0;
-                            const connectorHeight = isMainLineCareerNode ? MAIN_CONNECTOR_HEIGHT : BRANCH_CONNECTOR_HEIGHT;
+                            const connectorHeight = connectorHeightToDate(nodeMarginTop);
                             const label = isStart
                                 ? `Started ${c.startMonth}`
                                 : isIncoming

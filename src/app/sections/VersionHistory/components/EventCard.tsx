@@ -40,23 +40,22 @@ const EventCard = ({ month, caption, imagePath, tags, links, index }: EventCardP
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.3, delay: 0, ease: [0.45, 0.8, 0.5, 0.95] }}
         >
-            <div className='bg-grey rounded-xl p-3 border border-brown h-full flex flex-col'>
-                <div className='overflow-hidden rounded-lg mb-2'>
+            <div className='bg-grey rounded-xl p-3 border border-brown flex flex-col h-[25rem] md:h-[26rem]'>
+                <div className='relative w-full flex-1 min-h-0 overflow-hidden rounded-lg border-2 border-cream mb-2'>
                     <Image
-                        className='event-card-image rounded-lg border-2 border-cream'
+                        className='event-card-image object-cover'
                         src={imagePath}
                         alt={caption || month}
-                        width={300}
-                        height={225}
+                        fill
                         sizes="(max-width: 768px) 260px, 300px"
-                        style={{ width: '100%', height: 'auto' }}
                     />
                 </div>
-                {caption && <p className='text-cream text-s mb-2'>{caption}</p>}
-
-                {/* Icons row */}
-                {(links.length > 0 || tags.length > 0) && (
-                    <div className='mt-auto flex items-end justify-end relative'>
+                <div className='flex flex-col gap-2 shrink-0'>
+                    {caption && (
+                        <p className='text-cream text-sm leading-snug'>{caption}</p>
+                    )}
+                    {(links.length > 0 || tags.length > 0) ? (
+                    <div className='flex items-end justify-end relative shrink-0'>
                         <div className='flex items-center gap-1.5'>
                             {links.length > 0 && (
                                 <div className='relative'>
@@ -147,7 +146,8 @@ const EventCard = ({ month, caption, imagePath, tags, links, index }: EventCardP
                             )}
                         </div>
                     </div>
-                )}
+                    ) : null}
+                </div>
             </div>
         </motion.div>
     );
