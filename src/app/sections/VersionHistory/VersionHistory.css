@@ -1,9 +1,7 @@
-/* Timeline wrapper */
 .timeline-row {
     position: relative;
 }
 
-/* Horizontal timeline line — stays fixed while cards scroll */
 .timeline-line {
     position: absolute;
     top: 20px;
@@ -14,7 +12,6 @@
     z-index: 1;
 }
 
-/* Horizontal scroll container — z-index: 2 so nodes paint above the line */
 .version-scroll {
     position: relative;
     z-index: 2;
@@ -26,7 +23,6 @@
     -webkit-overflow-scrolling: touch;
     padding: 20px 2rem 1.5rem;
     scrollbar-width: none;
-    /* Fade masks on left and right edges */
     mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
@@ -35,7 +31,6 @@
     display: none;
 }
 
-/* Event/career column */
 .event-column {
     flex: 0 0 260px;
     scroll-snap-align: start;
@@ -44,7 +39,6 @@
     align-items: center;
 }
 
-/* GitHub-style commit node on the timeline */
 .event-node {
     width: 14px;
     height: 14px;
@@ -57,21 +51,13 @@
     z-index: 3;
 }
 
-/* Connector line from node to date badge (default cream) */
 .event-connector {
     width: 2px;
-    height: 1.5rem;
+    height: 1.9rem;
     background: #f5f0e6;
     flex-shrink: 0;
 }
 
-/* Career connector (colored, variable height) */
-.career-connector {
-    width: 2px;
-    flex-shrink: 0;
-}
-
-/* Date badge */
 .event-date {
     font-size: 10px;
     font-weight: 600;
@@ -82,11 +68,11 @@
     border-radius: 9999px;
     padding: 2px 8px;
     white-space: nowrap;
-    margin-bottom: 0.75rem;
+    margin-top: 0.15rem;
+    margin-bottom: 0.7rem;
     flex-shrink: 0;
 }
 
-/* Event card */
 .event-card {
     width: 100%;
     transition: transform 0.3s ease;
@@ -104,9 +90,9 @@
     transform: scale(1.03);
 }
 
-/* Branch line (colored horizontal line below main timeline) */
 .branch-line {
     pointer-events: none;
+    opacity: 0.88;
 }
 
 @media (min-width: 768px) {
