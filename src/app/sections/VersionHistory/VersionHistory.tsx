@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './VersionHistory.css';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -87,7 +87,7 @@ function buildTimeline(events: EventDetails[], careers: CareerDetails[]): Timeli
 const COLUMN_WIDTH = 260;
 const COLUMN_GAP = 24;
 const MD_COLUMN_WIDTH = 300;
-const PADDING_LEFT = 32;
+const PADDING_LEFT = 80;
 const MAIN_LINE_CENTER_Y = 20;
 const BRANCH_BASE_Y = 26;
 const BRANCH_LEVEL_STEP = 6;
@@ -105,12 +105,13 @@ const VersionHistory = () => {
     const controls = useAnimation();
     const events: EventDetails[] = eventsJson;
     const careers: CareerDetails[] = careersJson as CareerDetails[];
-    const timeline = buildTimeline(events, careers);
+    const timeline = useMemo(() => buildTimeline(events, careers), [events, careers]);
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const [colWidth, setColWidth] = useState(COLUMN_WIDTH);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
+    const [hasUserScrolled, setHasUserScrolled] = useState(false);
 
     useEffect(() => {
         const updateWidth = () => {
@@ -132,7 +133,7 @@ const VersionHistory = () => {
         }
     }, [controls, inView]);
 
-    const handleScroll = () => {
+    const updateEdgeState = () => {
         if (!scrollRef.current) {
             return;
         }
@@ -142,17 +143,25 @@ const VersionHistory = () => {
         setCanScrollRight(scrollLeft < maxScrollLeft - SCROLL_EDGE_EPSILON);
     };
 
+    const handleScroll = () => {
+        updateEdgeState();
+        if (scrollRef.current && scrollRef.current.scrollLeft > SCROLL_EDGE_EPSILON) {
+            setHasUserScrolled(true);
+        }
+    };
+
     const scrollByAmount = (dir: 1 | -1) => {
         if (scrollRef.current) {
-            if (dir === -1 && !canScrollLeft) {
+            if (dir === -1 && (!hasUserScrolled || !canScrollLeft)) {
                 return;
             }
+            setHasUserScrolled(true);
             scrollRef.current.scrollBy({ left: dir * (colWidth + COLUMN_GAP) * 2, behavior: 'smooth' });
         }
     };
 
     useEffect(() => {
-        const id = window.requestAnimationFrame(handleScroll);
+        const id = window.requestAnimationFrame(updateEdgeState);
         return () => window.cancelAnimationFrame(id);
     }, [colWidth, timeline]);
 
@@ -273,11 +282,15 @@ const VersionHistory = () => {
             <div className='timeline-row mt-4 relative'>
                 <button
                     onClick={() => scrollByAmount(-1)}
-                    disabled={!canScrollLeft}
-                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full border text-cream transition-colors shadow-lg ${
-                        !canScrollLeft
-                            ? 'bg-coffee/40 border-brown/40 text-cream/40 cursor-not-allowed'
-                            : 'bg-coffee border-brown hover:bg-brown'
+                    disabled={!hasUserScrolled || !canScrollLeft}
+                    aria-hidden={!hasUserScrolled}
+                    tabIndex={!hasUserScrolled ? -1 : 0}
+                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full border shadow-lg transition-opacity duration-300 ${
+                        !hasUserScrolled
+                            ? 'opacity-0 pointer-events-none bg-coffee border-brown text-cream'
+                            : !canScrollLeft
+                                ? 'opacity-100 bg-coffee/40 border-brown/40 text-cream/40 cursor-not-allowed'
+                                : 'opacity-100 bg-coffee border-brown text-cream hover:bg-brown transition-colors'
                     }`}
                     aria-label='Scroll left'
                 >
@@ -285,20 +298,26 @@ const VersionHistory = () => {
                         <polyline points="15 18 9 12 15 6" />
                     </svg>
                 </button>
-                <button
+                <motion.button
                     onClick={() => scrollByAmount(1)}
                     disabled={!canScrollRight}
-                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full border text-cream transition-colors shadow-lg ${
+                    animate={!hasUserScrolled && canScrollRight ? { x: [0, 8, 0, 8, 0] } : { x: 0 }}
+                    transition={!hasUserScrolled && canScrollRight
+                        ? { duration: 1.2, repeat: Infinity, repeatDelay: 0.5, ease: 'easeInOut' }
+                        : { duration: 0.2 }}
+                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full border shadow-lg transition-colors ${
                         !canScrollRight
                             ? 'bg-coffee/40 border-brown/40 text-cream/40 cursor-not-allowed'
-                            : 'bg-coffee border-brown hover:bg-brown'
+                            : !hasUserScrolled
+                                ? 'bg-cream border-cream !text-black ring-2 ring-cream/60 shadow-[0_0_18px_rgba(245,240,230,0.45)]'
+                                : 'bg-coffee border-brown text-cream hover:bg-brown'
                     }`}
                     aria-label='Scroll right'
                 >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="9 18 15 12 9 6" />
                     </svg>
-                </button>
+                </motion.button>
 
                 <div className='timeline-line' />
                 <div className='version-scroll' ref={scrollRef} onScroll={handleScroll}>
@@ -366,6 +385,7 @@ const VersionHistory = () => {
                                         tags={e.tags}
                                         links={e.links}
                                         index={index}
+                                        careerColor={careerColor}
                                     />
                                 </div>
                             );

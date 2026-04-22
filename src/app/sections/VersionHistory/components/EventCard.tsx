@@ -22,9 +22,10 @@ interface EventCardProps {
     tags: Tag[];
     links: Link[];
     index: number;
+    careerColor?: string;
 }
 
-const EventCard = ({ month, caption, imagePath, tags, links, index }: EventCardProps) => {
+const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor }: EventCardProps) => {
     const [showTags, setShowTags] = useState(false);
     const [showLinks, setShowLinks] = useState(false);
     const [ref, inView] = useInView({
@@ -40,8 +41,11 @@ const EventCard = ({ month, caption, imagePath, tags, links, index }: EventCardP
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.3, delay: 0, ease: [0.45, 0.8, 0.5, 0.95] }}
         >
-            <div className='bg-grey rounded-xl p-3 border border-brown flex flex-col h-[25rem] md:h-[26rem]'>
-                <div className='relative w-full flex-1 min-h-0 overflow-hidden rounded-lg border-2 border-cream mb-2'>
+            <div
+                className={`bg-grey rounded-xl p-3 flex flex-col h-[25rem] md:h-[26rem] ${careerColor ? '' : 'border border-brown'}`}
+                style={careerColor ? { border: `2px solid ${careerColor}` } : undefined}
+            >
+                <div className='relative w-full flex-1 min-h-0 overflow-hidden rounded-lg border-2 border-brown mb-2'>
                     <Image
                         className='event-card-image object-cover'
                         src={imagePath}

@@ -19,9 +19,8 @@
     gap: 1.5rem;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding: 20px 2rem 1.5rem;
+    padding: 20px 5rem 1.5rem;
     scrollbar-width: none;
     mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
@@ -33,7 +32,6 @@
 
 .event-column {
     flex: 0 0 260px;
-    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     align-items: center;
