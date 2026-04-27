@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -9,13 +8,12 @@ interface CareerCardProps {
     name: string;
     role: string;
     color: string;
-    logo: string;
     label: string;
     url: string | null;
     index: number;
 }
 
-const CareerCard = ({ name, role, color, logo, label, url }: CareerCardProps) => {
+const CareerCard = ({ name, role, color, label, url }: CareerCardProps) => {
     const [showLinks, setShowLinks] = useState(false);
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -31,22 +29,21 @@ const CareerCard = ({ name, role, color, logo, label, url }: CareerCardProps) =>
             transition={{ duration: 0.3, delay: 0, ease: [0.45, 0.8, 0.5, 0.95] }}
         >
             <div
-                className='relative bg-grey rounded-xl p-3 h-full flex flex-col items-center gap-2'
+                className='relative bg-grey rounded-xl px-4 pt-4 pb-3 flex flex-col items-center gap-2'
                 style={{ border: `2px solid ${color}` }}
             >
-                <div className='relative w-12 h-12'>
-                    <Image
-                        src={logo}
-                        alt={`${name} logo`}
-                        fill
-                        style={{ objectFit: 'contain' }}
-                        sizes="48px"
-                    />
-                </div>
-                <p className='text-cream text-sm font-bold text-center leading-tight'>{name}</p>
-                <p className='text-cream text-xs font-semibold text-center leading-snug'>{role}</p>
+                <p
+                    className='font-extrabold text-2xl leading-none tracking-tight uppercase text-center break-words'
+                    style={{ color }}
+                >
+                    {name}
+                </p>
+                <p className='text-cream text-sm font-semibold text-center leading-snug'>
+                    {role}
+                </p>
+
                 <span
-                    className='text-[10px] font-semibold uppercase tracking-widest rounded-full px-2 py-0.5 text-center'
+                    className='text-[10px] font-bold uppercase tracking-widest rounded-full px-2.5 py-1 text-center'
                     style={{ color: '#000', background: color }}
                 >
                     {label}

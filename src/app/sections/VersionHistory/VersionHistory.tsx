@@ -33,7 +33,6 @@ interface CareerDetails {
     name: string;
     role: string;
     color: string;
-    logo: string;
     startMonth: string;
     endMonth: string | null;
     url: string | null;
@@ -426,7 +425,6 @@ const VersionHistory = () => {
                                             name={c.name}
                                             role={c.role}
                                             color={c.color}
-                                            logo={c.logo}
                                             url={c.url}
                                         />
                                     ) : (
@@ -434,7 +432,6 @@ const VersionHistory = () => {
                                             name={c.name}
                                             role={c.role}
                                             color={c.color}
-                                            logo={c.logo}
                                             label={label}
                                             url={c.url}
                                             index={index}
