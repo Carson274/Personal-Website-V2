@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './VersionHistory.css';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import EventCard from './components/EventCard';
 import CareerCard from './components/CareerCard';
+import PresentCareerCard from './components/PresentCareerCard';
 import eventsJson from './data/events.json';
 import careersJson from './data/careers.json';
 
@@ -32,17 +33,17 @@ interface CareerDetails {
     name: string;
     role: string;
     color: string;
-    logo: string;
     startMonth: string;
     endMonth: string | null;
     url: string | null;
+    state?: 'active' | 'incoming';
 }
 
-// Unified timeline item
 type TimelineItem =
     | { type: 'event'; data: EventDetails; sortDate: number }
     | { type: 'career-start'; data: CareerDetails; careerIndex: number; sortDate: number }
-    | { type: 'career-end'; data: CareerDetails; careerIndex: number; sortDate: number };
+    | { type: 'career-end'; data: CareerDetails; careerIndex: number; sortDate: number }
+    | { type: 'career-incoming'; data: CareerDetails; careerIndex: number; sortDate: number };
 
 function monthToSortDate(month: string): number {
     const months: Record<string, number> = {
@@ -56,42 +57,60 @@ function monthToSortDate(month: string): number {
     return y * 100 + m;
 }
 
-// Build unified sorted timeline (oldest first → left to right)
 function buildTimeline(events: EventDetails[], careers: CareerDetails[]): TimelineItem[] {
     const items: TimelineItem[] = [];
+    const now = new Date();
+    const presentSortDate = now.getFullYear() * 100 + (now.getMonth() + 1);
 
     events.forEach((e) => {
         items.push({ type: 'event', data: e, sortDate: monthToSortDate(e.month) });
     });
 
     careers.forEach((c, ci) => {
+        if (c.state === 'incoming') {
+            items.push({ type: 'career-incoming', data: c, careerIndex: ci, sortDate: monthToSortDate(c.startMonth) });
+            return;
+        }
         items.push({ type: 'career-start', data: c, careerIndex: ci, sortDate: monthToSortDate(c.startMonth) });
         if (c.endMonth) {
             items.push({ type: 'career-end', data: c, careerIndex: ci, sortDate: monthToSortDate(c.endMonth) });
         } else {
-            // "Present" — sort to the far right
-            items.push({ type: 'career-end', data: c, careerIndex: ci, sortDate: 999999 });
+            items.push({ type: 'career-end', data: c, careerIndex: ci, sortDate: presentSortDate });
         }
     });
 
-    // Sort descending (newest first, left to right)
     items.sort((a, b) => b.sortDate - a.sortDate);
     return items;
 }
 
 const COLUMN_WIDTH = 260;
-const COLUMN_GAP = 24; // 1.5rem
+const COLUMN_GAP = 24;
 const MD_COLUMN_WIDTH = 300;
-const PADDING_LEFT = 32; // 2rem
+const PADDING_LEFT = 80;
+const MAIN_LINE_CENTER_Y = 20;
+const BRANCH_BASE_Y = 26;
+const BRANCH_LEVEL_STEP = 6;
+const NODE_RADIUS = 7;
+const NODE_SIZE = NODE_RADIUS * 2;
+const MAIN_CONNECTOR_HEIGHT = 30;
+const SPINE_BOTTOM_BEFORE_DATE = -NODE_RADIUS + NODE_SIZE + MAIN_CONNECTOR_HEIGHT;
+const SCROLL_EDGE_EPSILON = 2;
+
+function connectorHeightToDate(nodeMarginTopPx: number): number {
+    return Math.max(10, SPINE_BOTTOM_BEFORE_DATE - nodeMarginTopPx - NODE_SIZE);
+}
 
 const VersionHistory = () => {
     const controls = useAnimation();
     const events: EventDetails[] = eventsJson;
     const careers: CareerDetails[] = careersJson as CareerDetails[];
-    const timeline = buildTimeline(events, careers);
+    const timeline = useMemo(() => buildTimeline(events, careers), [events, careers]);
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const [colWidth, setColWidth] = useState(COLUMN_WIDTH);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(false);
+    const [hasUserScrolled, setHasUserScrolled] = useState(false);
 
     useEffect(() => {
         const updateWidth = () => {
@@ -113,20 +132,37 @@ const VersionHistory = () => {
         }
     }, [controls, inView]);
 
-    // Auto-scroll so "Present" (first item, index 0) is centered
-    useEffect(() => {
-        if (scrollRef.current) {
-            const containerWidth = scrollRef.current.clientWidth;
-            const centerOffset = (colWidth / 2) - (containerWidth / 2) + PADDING_LEFT;
-            scrollRef.current.scrollLeft = Math.max(0, centerOffset);
+    const updateEdgeState = () => {
+        if (!scrollRef.current) {
+            return;
         }
-    }, [colWidth]);
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        const maxScrollLeft = Math.max(0, scrollWidth - clientWidth);
+        setCanScrollLeft(scrollLeft > SCROLL_EDGE_EPSILON);
+        setCanScrollRight(scrollLeft < maxScrollLeft - SCROLL_EDGE_EPSILON);
+    };
+
+    const handleScroll = () => {
+        updateEdgeState();
+        if (scrollRef.current && scrollRef.current.scrollLeft > SCROLL_EDGE_EPSILON) {
+            setHasUserScrolled(true);
+        }
+    };
 
     const scrollByAmount = (dir: 1 | -1) => {
         if (scrollRef.current) {
+            if (dir === -1 && (!hasUserScrolled || !canScrollLeft)) {
+                return;
+            }
+            setHasUserScrolled(true);
             scrollRef.current.scrollBy({ left: dir * (colWidth + COLUMN_GAP) * 2, behavior: 'smooth' });
         }
     };
+
+    useEffect(() => {
+        const id = window.requestAnimationFrame(updateEdgeState);
+        return () => window.cancelAnimationFrame(id);
+    }, [colWidth, timeline]);
 
     const containerVariants = {
         hidden: { opacity: 1 },
@@ -155,10 +191,8 @@ const VersionHistory = () => {
         }),
     };
 
-    // Compute branch lines: for each career, find the column index of start and end
     const branchLines: { startCol: number; endCol: number; color: string; level: number }[] = [];
 
-    // Assign levels to avoid overlap
     const careerStartCols: Record<number, number> = {};
     const careerEndCols: Record<number, number> = {};
 
@@ -172,6 +206,7 @@ const VersionHistory = () => {
 
     const sortedCareerIndices = Object.keys(careerStartCols)
         .map(Number)
+        .filter((index) => careerEndCols[index] !== undefined)
         .sort((a, b) => {
             const aLeft = Math.min(careerStartCols[a], careerEndCols[a]);
             const bLeft = Math.min(careerStartCols[b], careerEndCols[b]);
@@ -212,7 +247,6 @@ const VersionHistory = () => {
             animate={controls}
             variants={containerVariants}
         >
-            {/* Header */}
             <section className='w-full mt-12 md:mt-20 text-center'>
                 <motion.div
                     className='text-white flex flex-col sm:flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-8'
@@ -244,36 +278,52 @@ const VersionHistory = () => {
                 </motion.div>
             </section>
 
-            {/* Horizontal timeline */}
             <div className='timeline-row mt-4 relative'>
-                {/* Left arrow */}
                 <button
                     onClick={() => scrollByAmount(-1)}
-                    className='absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-coffee border border-brown text-cream hover:bg-brown transition-colors shadow-lg'
-                    aria-label='Scroll right'
+                    disabled={!hasUserScrolled || !canScrollLeft}
+                    aria-hidden={!hasUserScrolled}
+                    tabIndex={!hasUserScrolled ? -1 : 0}
+                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full border shadow-lg transition-opacity duration-300 ${
+                        !hasUserScrolled
+                            ? 'opacity-0 pointer-events-none bg-coffee border-brown text-cream'
+                            : !canScrollLeft
+                                ? 'opacity-100 bg-coffee/40 border-brown/40 text-cream/40 cursor-not-allowed'
+                                : 'opacity-100 bg-coffee border-brown text-cream hover:bg-brown transition-colors'
+                    }`}
+                    aria-label='Scroll left'
                 >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="15 18 9 12 15 6" />
                     </svg>
                 </button>
-                {/* Right arrow */}
-                <button
+                <motion.button
                     onClick={() => scrollByAmount(1)}
-                    className='absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-coffee border border-brown text-cream hover:bg-brown transition-colors shadow-lg'
-                    aria-label='Scroll left'
+                    disabled={!canScrollRight}
+                    animate={!hasUserScrolled && canScrollRight ? { x: [0, 8, 0, 8, 0] } : { x: 0 }}
+                    transition={!hasUserScrolled && canScrollRight
+                        ? { duration: 1.2, repeat: Infinity, repeatDelay: 0.5, ease: 'easeInOut' }
+                        : { duration: 0.2 }}
+                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full border shadow-lg transition-colors ${
+                        !canScrollRight
+                            ? 'bg-coffee/40 border-brown/40 text-cream/40 cursor-not-allowed'
+                            : !hasUserScrolled
+                                ? 'bg-cream border-cream !text-black ring-2 ring-cream/60 shadow-[0_0_18px_rgba(245,240,230,0.45)]'
+                                : 'bg-coffee border-brown text-cream hover:bg-brown'
+                    }`}
+                    aria-label='Scroll right'
                 >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="9 18 15 12 9 6" />
                     </svg>
-                </button>
+                </motion.button>
 
                 <div className='timeline-line' />
-                <div className='version-scroll' ref={scrollRef}>
-                    {/* Branch lines rendered as absolutely positioned divs */}
+                <div className='version-scroll' ref={scrollRef} onScroll={handleScroll}>
                     {branchLines.map((branch, i) => {
                         const startX = PADDING_LEFT + branch.startCol * (colWidth + COLUMN_GAP) + colWidth / 2;
                         const endX = PADDING_LEFT + branch.endCol * (colWidth + COLUMN_GAP) + colWidth / 2;
-                        const branchY = 26 + branch.level * 6;
+                        const branchY = BRANCH_BASE_Y + branch.level * BRANCH_LEVEL_STEP;
                         const leftX = Math.min(startX, endX);
                         const lineWidth = Math.abs(endX - startX);
                         return (
@@ -297,18 +347,29 @@ const VersionHistory = () => {
                     {timeline.map((item, index) => {
                         if (item.type === 'event') {
                             const e = item.data as EventDetails;
-                            const careerColor = e.career
-                                ? careers.find(c => c.name === e.career)?.color
-                                : undefined;
+                            const careerIndex = e.career ? careers.findIndex((c) => c.name === e.career) : -1;
+                            const careerColor = careerIndex >= 0 ? careers[careerIndex]?.color : undefined;
+                            const branchForEvent = branchLines.find((branch) => branch.startCol === careerStartCols[careerIndex]);
+                            const isBranchEvent = Boolean(branchForEvent);
+                            const nodeMarginTop = isBranchEvent
+                                ? BRANCH_BASE_Y + (branchForEvent?.level || 0) * BRANCH_LEVEL_STEP - (MAIN_LINE_CENTER_Y + NODE_RADIUS)
+                                : -NODE_RADIUS;
+                            const connectorHeight = connectorHeightToDate(nodeMarginTop);
                             return (
                                 <div key={`event-${index}`} className='event-column'>
                                     <div
                                         className='event-node'
-                                        style={careerColor ? { borderColor: careerColor } : undefined}
+                                        style={{
+                                            ...(careerColor ? { borderColor: careerColor } : {}),
+                                            marginTop: `${nodeMarginTop}px`,
+                                        }}
                                     />
                                     <div
                                         className='event-connector'
-                                        style={careerColor ? { background: careerColor } : undefined}
+                                        style={{
+                                            ...(careerColor ? { background: careerColor } : {}),
+                                            height: `${connectorHeight}px`,
+                                        }}
                                     />
                                     <span
                                         className='event-date'
@@ -323,50 +384,59 @@ const VersionHistory = () => {
                                         tags={e.tags}
                                         links={e.links}
                                         index={index}
+                                        careerColor={careerColor}
                                     />
                                 </div>
                             );
                         } else {
                             const c = item.data as CareerDetails;
                             const isStart = item.type === 'career-start';
+                            const isIncoming = item.type === 'career-incoming';
+                            const isPresentMarker = item.type === 'career-end' && !c.endMonth;
+                            const isMainLineCareerNode = isStart || isIncoming || item.type === 'career-end';
+                            const nodeMarginTop = isMainLineCareerNode ? -NODE_RADIUS : 0;
+                            const connectorHeight = connectorHeightToDate(nodeMarginTop);
                             const label = isStart
                                 ? `Started ${c.startMonth}`
-                                : c.endMonth
+                                : isIncoming
+                                    ? 'Incoming'
+                                    : c.endMonth
                                     ? `Ended ${c.endMonth}`
                                     : 'Present';
-
-                            const ci = (item as any).careerIndex;
-                            const careerBranch = branchLines.find(b => b.startCol === careerStartCols[ci]);
-                            const branchY = careerBranch ? 26 + careerBranch.level * 6 : 26;
 
                             return (
                                 <div key={`career-${index}`} className='event-column'>
                                     <div
                                         className='event-node'
-                                        style={{ borderColor: c.color, background: '#000' }}
+                                        style={{ borderColor: c.color, background: '#000', marginTop: `${nodeMarginTop}px` }}
                                     />
                                     <div
-                                        className='career-connector'
-                                        style={{
-                                            background: c.color,
-                                            height: `${branchY - 20 + 8}px`,
-                                        }}
+                                        className='event-connector'
+                                        style={{ background: c.color, height: `${connectorHeight}px` }}
                                     />
                                     <span
                                         className='event-date'
                                         style={{ background: c.color, color: '#000' }}
                                     >
-                                        {isStart ? c.startMonth : (c.endMonth || 'Present')}
+                                        {isStart ? c.startMonth : isIncoming ? c.startMonth : (c.endMonth || 'Present')}
                                     </span>
-                                    <CareerCard
-                                        name={c.name}
-                                        role={c.role}
-                                        color={c.color}
-                                        logo={c.logo}
-                                        label={label}
-                                        url={c.url}
-                                        index={index}
-                                    />
+                                    {isPresentMarker ? (
+                                        <PresentCareerCard
+                                            name={c.name}
+                                            role={c.role}
+                                            color={c.color}
+                                            url={c.url}
+                                        />
+                                    ) : (
+                                        <CareerCard
+                                            name={c.name}
+                                            role={c.role}
+                                            color={c.color}
+                                            label={label}
+                                            url={c.url}
+                                            index={index}
+                                        />
+                                    )}
                                 </div>
                             );
                         }
