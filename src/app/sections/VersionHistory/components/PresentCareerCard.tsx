@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -9,9 +10,10 @@ interface PresentCareerCardProps {
     role: string;
     color: string;
     url: string | null;
+    logoSrc?: string;
 }
 
-const PresentCareerCard = ({ name, role, color, url }: PresentCareerCardProps) => {
+const PresentCareerCard = ({ name, role, color, url, logoSrc }: PresentCareerCardProps) => {
     const [showLinks, setShowLinks] = useState(false);
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -33,8 +35,19 @@ const PresentCareerCard = ({ name, role, color, url }: PresentCareerCardProps) =
                     boxShadow: `0 0 0 1px ${color}40`,
                 }}
             >
+                {logoSrc && (
+                    <div className='relative h-20 w-full flex items-center justify-center mb-1'>
+                        <Image
+                            src={logoSrc}
+                            alt={`${name} logo`}
+                            width={220}
+                            height={80}
+                            className='max-h-20 w-auto object-contain'
+                        />
+                    </div>
+                )}
                 <p
-                    className='font-extrabold text-2xl leading-none tracking-tight uppercase text-center break-words'
+                    className='font-extrabold text-xl leading-none tracking-tight uppercase text-center break-words'
                     style={{ color }}
                 >
                     {name}
@@ -43,12 +56,6 @@ const PresentCareerCard = ({ name, role, color, url }: PresentCareerCardProps) =
                     {role}
                 </p>
 
-                <span
-                    className='text-[10px] font-bold uppercase tracking-widest rounded-full px-2.5 py-1 text-center'
-                    style={{ color: '#000', background: color }}
-                >
-                    Present
-                </span>
                 {url && (
                     <div className='absolute bottom-2 right-2'>
                         <button

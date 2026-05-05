@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -8,12 +9,11 @@ interface CareerCardProps {
     name: string;
     role: string;
     color: string;
-    label: string;
     url: string | null;
-    index: number;
+    logoSrc?: string;
 }
 
-const CareerCard = ({ name, role, color, label, url }: CareerCardProps) => {
+const CareerCard = ({ name, role, color, url, logoSrc }: CareerCardProps) => {
     const [showLinks, setShowLinks] = useState(false);
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -32,8 +32,19 @@ const CareerCard = ({ name, role, color, label, url }: CareerCardProps) => {
                 className='relative bg-grey rounded-xl px-4 pt-4 pb-3 flex flex-col items-center gap-2'
                 style={{ border: `2px solid ${color}` }}
             >
+                {logoSrc && (
+                    <div className='relative h-20 w-full flex items-center justify-center mb-1'>
+                        <Image
+                            src={logoSrc}
+                            alt={`${name} logo`}
+                            width={220}
+                            height={80}
+                            className='max-h-20 w-auto object-contain'
+                        />
+                    </div>
+                )}
                 <p
-                    className='font-extrabold text-2xl leading-none tracking-tight uppercase text-center break-words'
+                    className='font-extrabold text-xl leading-none tracking-tight uppercase text-center break-words'
                     style={{ color }}
                 >
                     {name}
@@ -42,12 +53,6 @@ const CareerCard = ({ name, role, color, label, url }: CareerCardProps) => {
                     {role}
                 </p>
 
-                <span
-                    className='text-[10px] font-bold uppercase tracking-widest rounded-full px-2.5 py-1 text-center'
-                    style={{ color: '#000', background: color }}
-                >
-                    {label}
-                </span>
                 {url && (
                     <div className='absolute bottom-2 right-2'>
                         <button

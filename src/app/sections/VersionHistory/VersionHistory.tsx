@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import EventCard from './components/EventCard';
 import CareerCard from './components/CareerCard';
 import PresentCareerCard from './components/PresentCareerCard';
+import { getCareerLogoSrc } from './careerLogos';
 import eventsJson from './data/events.json';
 import careersJson from './data/careers.json';
 
@@ -396,14 +397,6 @@ const VersionHistory = () => {
                             const isMainLineCareerNode = isStart || isIncoming || item.type === 'career-end';
                             const nodeMarginTop = isMainLineCareerNode ? -NODE_RADIUS : 0;
                             const connectorHeight = connectorHeightToDate(nodeMarginTop);
-                            const label = isStart
-                                ? `Started ${c.startMonth}`
-                                : isIncoming
-                                    ? 'Incoming'
-                                    : c.endMonth
-                                    ? `Ended ${c.endMonth}`
-                                    : 'Present';
-
                             return (
                                 <div key={`career-${index}`} className='event-column'>
                                     <div
@@ -426,15 +419,15 @@ const VersionHistory = () => {
                                             role={c.role}
                                             color={c.color}
                                             url={c.url}
+                                            logoSrc={getCareerLogoSrc(c.name)}
                                         />
                                     ) : (
                                         <CareerCard
                                             name={c.name}
                                             role={c.role}
                                             color={c.color}
-                                            label={label}
                                             url={c.url}
-                                            index={index}
+                                            logoSrc={getCareerLogoSrc(c.name)}
                                         />
                                     )}
                                 </div>
