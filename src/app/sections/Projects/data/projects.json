@@ -1,5 +1,33 @@
 [
   {
+    "name": "Accent Guessr",
+    "imagePath": "/images/Accent_Guessr.png",
+    "liveSite": "https://accent-guessr.vercel.app/",
+    "devpost": "",
+    "github": "https://github.com/Carson274/Accent-Guessr"
+  },
+  {
+    "name": "Box Office Battles",
+    "imagePath": "/images/Box_Office_Battles.png",
+    "liveSite": "",
+    "devpost": "",
+    "github": "https://github.com/Jakhangir18/BeaverHacks-2026"
+  },
+  {
+    "name": "SPOOT",
+    "imagePath": "/images/Spoot_Thumbnail.png",
+    "liveSite": "https://beaverpurity.com/",
+    "devpost": "",
+    "github": "https://github.com/Carson274/BeaverCsPurity"
+  },
+  {
+    "name": "Student Milestone Quiz",
+    "imagePath": "/images/Beaver_Purity.png",
+    "liveSite": "https://beaverpurity.com/",
+    "devpost": "",
+    "github": "https://github.com/Carson274/BeaverCsPurity"
+  },
+  {
     "name": "Campus View",
     "imagePath": "/images/Campus_View.png",
     "liveSite": "",
@@ -12,13 +40,6 @@
     "liveSite": "",
     "devpost": "https://devpost.com/software/slumped-stats",
     "github": "https://github.com/Carson274/Sleep-App"
-  },
-  {
-    "name": "Box Office Battles",
-    "imagePath": "/images/Box_Office_Battles.png",
-    "liveSite": "",
-    "devpost": "https://devpost.com/software/box-office-battles",
-    "github": "https://github.com/Carson274/Box-Office-Battles"
   },
   {
     "name": "Roll Call Brawl",
@@ -42,13 +63,6 @@
     "github": "https://github.com/sebat2004/crowd"
   },
   {
-    "name": "Student Milestone Quiz",
-    "imagePath": "/images/Beaver_Purity.png",
-    "liveSite": "https://beaverpurity.com/",
-    "devpost": "",
-    "github": "https://github.com/Carson274/BeaverCsPurity"
-  },
-  {
     "name": "PurSend",
     "imagePath": "/images/PurSend.png",
     "liveSite": "",
@@ -61,5 +75,12 @@
     "liveSite": "https://carson274.github.io/Personal-Website",
     "devpost": "",
     "github": "https://github.com/Carson274/Personal-Website"
+  },
+  {
+    "name": "LinguaSketch",
+    "imagePath": "/images/LinguaSketch.png",
+    "liveSite": "",
+    "devpost": "",
+    "github": "https://github.com/sebat2004/linguasketch"
   }
 ]
