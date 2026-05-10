@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -15,14 +15,29 @@ interface PresentCareerCardProps {
 
 const PresentCareerCard = ({ name, role, color, url, logoSrc }: PresentCareerCardProps) => {
     const [showLinks, setShowLinks] = useState(false);
-    const [ref, inView] = useInView({
+    const popoverChromeRef = useRef<HTMLDivElement>(null);
+    const [inViewRef, inView] = useInView({
         triggerOnce: true,
         rootMargin: '0px 200px',
     });
 
+    useEffect(() => {
+        if (!showLinks) return;
+        const chrome = popoverChromeRef.current;
+        if (!chrome) return;
+
+        const onPointerDown = (e: PointerEvent) => {
+            if (!chrome.contains(e.target as Node)) {
+                setShowLinks(false);
+            }
+        };
+        document.addEventListener('pointerdown', onPointerDown, true);
+        return () => document.removeEventListener('pointerdown', onPointerDown, true);
+    }, [showLinks]);
+
     return (
         <motion.div
-            ref={ref}
+            ref={inViewRef}
             className='event-card'
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -37,13 +52,31 @@ const PresentCareerCard = ({ name, role, color, url, logoSrc }: PresentCareerCar
             >
                 {logoSrc && (
                     <div className='relative h-20 w-full flex items-center justify-center mb-1'>
-                        <Image
-                            src={logoSrc}
-                            alt={`${name} logo`}
-                            width={220}
-                            height={80}
-                            className='max-h-20 w-auto object-contain'
-                        />
+                        {url ? (
+                            <a
+                                href={url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='flex items-center justify-center max-h-20 outline-offset-4 rounded'
+                                aria-label={`${name} website`}
+                            >
+                                <Image
+                                    src={logoSrc}
+                                    alt={`${name} logo`}
+                                    width={220}
+                                    height={80}
+                                    className='max-h-20 w-auto object-contain'
+                                />
+                            </a>
+                        ) : (
+                            <Image
+                                src={logoSrc}
+                                alt={`${name} logo`}
+                                width={220}
+                                height={80}
+                                className='max-h-20 w-auto object-contain'
+                            />
+                        )}
                     </div>
                 )}
                 <p
@@ -57,7 +90,7 @@ const PresentCareerCard = ({ name, role, color, url, logoSrc }: PresentCareerCar
                 </p>
 
                 {url && (
-                    <div className='absolute bottom-2 right-2'>
+                    <div ref={popoverChromeRef} className='absolute bottom-2 right-2'>
                         <button
                             onClick={() => setShowLinks((s) => !s)}
                             className='w-6 h-6 flex items-center justify-center rounded-full bg-coffee hover:bg-brown transition-colors'

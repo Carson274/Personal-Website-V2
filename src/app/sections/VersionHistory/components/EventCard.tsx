@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -30,14 +30,30 @@ const SPINE_CREAM = '#f5f0e6';
 const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor }: EventCardProps) => {
     const [showTags, setShowTags] = useState(false);
     const [showLinks, setShowLinks] = useState(false);
-    const [ref, inView] = useInView({
+    const popoverChromeRef = useRef<HTMLDivElement>(null);
+    const [inViewRef, inView] = useInView({
         triggerOnce: true,
         rootMargin: '0px 200px',
     });
 
+    useEffect(() => {
+        if (!showLinks && !showTags) return;
+        const chrome = popoverChromeRef.current;
+        if (!chrome) return;
+
+        const onPointerDown = (e: PointerEvent) => {
+            if (!chrome.contains(e.target as Node)) {
+                setShowLinks(false);
+                setShowTags(false);
+            }
+        };
+        document.addEventListener('pointerdown', onPointerDown, true);
+        return () => document.removeEventListener('pointerdown', onPointerDown, true);
+    }, [showLinks, showTags]);
+
     return (
         <motion.div
-            ref={ref}
+            ref={inViewRef}
             className='event-card'
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -67,7 +83,7 @@ const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor 
                         <p className='text-cream text-sm leading-snug'>{caption}</p>
                     )}
                     {(links.length > 0 || tags.length > 0) ? (
-                    <div className='flex items-end justify-end relative shrink-0'>
+                    <div ref={popoverChromeRef} className='flex items-end justify-end relative shrink-0'>
                         <div className='flex items-center gap-1.5'>
                             {links.length > 0 && (
                                 <div className='relative'>
