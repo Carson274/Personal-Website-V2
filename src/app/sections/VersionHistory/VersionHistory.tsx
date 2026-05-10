@@ -192,6 +192,22 @@ const VersionHistory = () => {
         }),
     };
 
+    /** After last letter delay (same formula as letterVariants) + spring settle */
+    const subtitleFadeDelay =
+        0.55 + (8 + 'HISTORY'.length - 1) * 0.05 + 0.42;
+
+    const subtitleVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 0.72,
+            transition: {
+                delay: subtitleFadeDelay,
+                duration: 0.55,
+                ease: [0.45, 0.8, 0.5, 0.95],
+            },
+        },
+    };
+
     const branchLines: { startCol: number; endCol: number; color: string; level: number }[] = [];
 
     const careerStartCols: Record<number, number> = {};
@@ -243,14 +259,14 @@ const VersionHistory = () => {
         <motion.section
             ref={ref}
             id="version-control"
-            className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-12'
+            className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-28 md:pb-32'
             initial="hidden"
             animate={controls}
             variants={containerVariants}
         >
             <section className='w-full mt-12 md:mt-20 text-center'>
                 <motion.div
-                    className='text-white flex flex-col sm:flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-8'
+                    className='text-white flex flex-col sm:flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-1 sm:mb-4'
                     variants={containerVariants}
                 >
                     <div className='flex flex-row'>
@@ -277,6 +293,14 @@ const VersionHistory = () => {
                         ))}
                     </div>
                 </motion.div>
+                <motion.p
+                    className='text-[#f5f0e6] italic text-base sm:text-lg md:text-xl font-medium tracking-wide mt-1 sm:mt-2 px-4'
+                    initial='hidden'
+                    animate={controls}
+                    variants={subtitleVariants}
+                >
+                    In reverse chronological order
+                </motion.p>
             </section>
 
             <div className='timeline-row mt-4 relative'>
@@ -353,7 +377,9 @@ const VersionHistory = () => {
                             const branchForEvent = branchLines.find((branch) => branch.startCol === careerStartCols[careerIndex]);
                             const isBranchEvent = Boolean(branchForEvent);
                             const nodeMarginTop = isBranchEvent
-                                ? BRANCH_BASE_Y + (branchForEvent?.level || 0) * BRANCH_LEVEL_STEP - (MAIN_LINE_CENTER_Y + NODE_RADIUS)
+                                ? BRANCH_BASE_Y +
+                                  (branchForEvent?.level || 0) * BRANCH_LEVEL_STEP -
+                                  (MAIN_LINE_CENTER_Y + NODE_RADIUS)
                                 : -NODE_RADIUS;
                             const connectorHeight = connectorHeightToDate(nodeMarginTop);
                             return (
