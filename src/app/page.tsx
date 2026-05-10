@@ -12,8 +12,8 @@ export default function Home() {
       <Hero />
       <NavBar />
       <About />
-      <Projects />
       <VersionHistory />
+      <Projects />
       <Footer />
     </SmoothScroll>
   );

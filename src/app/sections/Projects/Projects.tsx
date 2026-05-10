@@ -92,12 +92,12 @@ const Projects = () => {
     <motion.section
       ref={ref}
       id="projects"
-      className='flex flex-col bg-black w-full z-10 -mt-1 pb-20'
+      className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-28 md:pb-32'
       initial="hidden"
       animate={controls}
       variants={containerVariants}
     >
-      <section className='z-0 relative about w-full h-1/5 mt-32 text-center'>
+      <section className='z-0 relative about w-full h-1/5 mt-12 md:mt-20 text-center'>
         <div className='absolute top-full left-0 w-full h-full bg-black'></div>
         <motion.div
           className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-12'

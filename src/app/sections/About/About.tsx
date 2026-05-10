@@ -62,7 +62,7 @@ const About = () => {
       animate={controls}
       variants={containerVariants}
     >
-      <section className='z-0 relative about w-full h-1/5 sm:mt-20 text-center'>
+      <section className='z-0 relative about w-full h-1/5 mt-12 md:mt-20 text-center'>
         <div className='absolute top-full left-0 w-full h-full z-20 bg-black'></div>
         <motion.div
           className='text-white flex flex-row items-center justify-center mb-10 sm:mb-20 md:mb-0 text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold my-2'

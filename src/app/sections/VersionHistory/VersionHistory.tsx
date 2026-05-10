@@ -259,7 +259,7 @@ const VersionHistory = () => {
         <motion.section
             ref={ref}
             id="version-control"
-            className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-28 md:pb-32'
+            className='flex flex-col bg-black w-full z-10 -mt-1 pb-20'
             initial="hidden"
             animate={controls}
             variants={containerVariants}
