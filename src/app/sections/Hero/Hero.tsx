@@ -49,37 +49,43 @@ const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   return (
-    <section className='hero top-0 flex justify-center items-center min-h-screen bg-light-cream w-full sticky'>
-      <motion.div style={{ opacity: opacity }}className='logo-div flex items-center'>
-        <div className='logo z-10 relative w-44 h-44'>
-          <Image src="/images/Logo_Dark.svg" alt="Logo" layout='fill' objectFit='contain' priority={true} />
+    <section className='hero relative top-0 flex justify-center items-center min-h-screen bg-light-cream w-full sticky'>
+      <motion.div
+        style={{ opacity }}
+        className='relative flex min-h-[100dvh] w-full justify-center items-center'
+      >
+        <div className='logo-div flex items-center'>
+          <div className='logo z-10 relative w-44 h-44'>
+            <Image src="/images/Logo_Dark.svg" alt="Logo" layout='fill' objectFit='contain' priority={true} />
+          </div>
+          <div className='text-div z-0 absolute flex flex-col items-center mb-0'>
+            <section className='secrest z-0 flex flex-row' >
+              <div className='secrest-cover z-10 flex absolute w-full h-full bg-light-cream'></div>
+              <section className='e'>e</section>
+              <section className='c'>c</section>
+              <section className='r'>r</section>
+              <section className='e'>e</section>
+              <section className='s'>s</section>
+              <section className='t'>t</section>
+            </section>
+            <section className='carson z-20 flex flex-row' >
+              <div className='carson-cover z-30 flex absolute w-full h-full bg-light-cream'></div>
+              <section className='a'>a</section>
+              <section className='r'>r</section>
+              <section className='s'>s</section>
+              <section className='o'>o</section>
+              <section className='n'>n</section>
+            </section>
+          </div>
         </div>
-        <div className='text-div z-0 absolute flex flex-col items-center mb-0'>
-          <section className='secrest z-0 flex flex-row' >
-            <div className='secrest-cover z-10 flex absolute w-full h-full bg-light-cream'></div>
-            <section className='e'>e</section>
-            <section className='c'>c</section>
-            <section className='r'>r</section>
-            <section className='e'>e</section>
-            <section className='s'>s</section>
-            <section className='t'>t</section>
-          </section>
-          <section className='carson z-20 flex flex-row' >
-            <div className='carson-cover z-30 flex absolute w-full h-full bg-light-cream'></div>
-            <section className='a'>a</section>
-            <section className='r'>r</section>
-            <section className='s'>s</section>
-            <section className='o'>o</section>
-            <section className='n'>n</section>
-          </section>
-        </div>  
+
+        <div className='pointer-events-none absolute bottom-12 right-0 hidden md:flex md:flex-col md:items-center md:justify-center md:space-y-8'>
+          <div className='scroll-text rotate-90 text-body-3'>scroll</div>
+          <div className='relative h-1 w-10 rotate-90 overflow-hidden mr-1'>
+            <div className='scroll absolute h-[0.08em] w-10 translate-x-10 bg-coffee'></div>
+          </div>
+        </div>
       </motion.div>
-      <div className='absolute bottom-12 right-0 flex flex-col items-center justify-center space-y-8'>
-        <div className='scroll-text rotate-90 text-body-3'>scroll</div>
-        <div className='relative h-1 w-10 rotate-90 overflow-hidden mr-1'>
-          <div className='scroll absolute h-[0.08em] w-10 translate-x-10 bg-coffee'></div>
-        </div>
-      </div>
     </section>
   )
 }

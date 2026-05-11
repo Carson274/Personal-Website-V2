@@ -8,12 +8,17 @@ import {
   useSpring,
   motion
 } from "framer-motion"
+import { useMdUp } from "@/app/hooks/useMdUp"
 
 interface SmoothScrollProps {
   children: ReactNode;
 }
 
+const STATIC_WRAPPER_CLASSES = 'flex flex-col items-center bg-light-cream'
+
 const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
+  const mdUp = useMdUp()
+
   // scroll container
   const scrollRef = useRef(null)
 
@@ -27,16 +32,22 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     }
   }, [])
 
-  // observe when browser is resizing
+  // ResizeObserver only feeds the smooth-scroll transform (`md` and up).
   useLayoutEffect(() => {
+    if (!mdUp) {
+      return
+    }
+
     const resizeObserver = new ResizeObserver(entries =>
       resizePageHeight(entries)
     )
-  if (scrollRef.current) {
-    resizeObserver.observe(scrollRef.current);
-  }
+
+    const node = scrollRef.current
+    if (node) {
+      resizeObserver.observe(node)
+    }
     return () => resizeObserver.disconnect()
-  }, [scrollRef, resizePageHeight])
+  }, [mdUp, resizePageHeight])
 
   const { scrollY } = useScroll() // measures how many pixels user has scrolled vertically
   // as scrollY changes between 0px and the scrollable height, create a negative scroll value...
@@ -45,20 +56,15 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   const physics = { damping: 15, mass: 0.27, stiffness: 55, bounce: 0 } // no overshoot past scroll ends
   const spring = useSpring(transform, physics)
 
+  // Native scroll on small viewports (`md`-down): no sprung translate — avoids odd touch scrolling + layout overlap.
   return (
-    <>
       <motion.div
         ref={scrollRef}
-        style={{ y: spring }} // translateY of scroll container using negative scroll value
-        className="flex flex-col items-center bg-light-cream"
+        style={mdUp ? { y: spring } : undefined}
+        className={STATIC_WRAPPER_CLASSES}
       >
         {children}
       </motion.div>
-      {/* blank div that has a dynamic height based on the content's inherent height */}
-      {/* this is neccessary to allow the scroll container to scroll... */}
-      {/* ... using the browser's native scroll bar */}
-      {/* <div style={{ height: pageHeight }} /> */}
-    </>
   )
 }
 

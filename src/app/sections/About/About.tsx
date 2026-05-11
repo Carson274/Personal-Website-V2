@@ -6,6 +6,7 @@ import './About.css';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import AboutText from './components/AboutText';
+import { useMdUp } from '@/app/hooks/useMdUp';
 
 const About = () => {
   const controls = useAnimation();
@@ -50,6 +51,7 @@ const About = () => {
     }),
   };
 
+  const mdUp = useMdUp();
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
@@ -65,7 +67,7 @@ const About = () => {
       <section className='z-0 relative about w-full h-1/5 mt-12 md:mt-20 text-center'>
         <div className='absolute top-full left-0 w-full h-full z-20 bg-black'></div>
         <motion.div
-          className='text-white flex flex-row items-center justify-center mb-10 sm:mb-20 md:mb-0 text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold my-2'
+          className='text-white flex flex-row items-center justify-center mb-6 text-5xl sm:mb-12 sm:text-6xl md:mb-0 md:text-6xl lg:text-8xl font-bold my-2'
           variants={containerVariants}
         >
           {"ABOUT ME".split("").map((letter, index) => (
@@ -75,11 +77,11 @@ const About = () => {
           ))}
         </motion.div>
       </section>
-      <section className='about-section z-10 flex flex-col mt-10 mb-12 gap-10 md:my-0 md:gap-0 md:flex-row w-full justify-center items-center'>
-        <div className='flex w-full md:w-1/2 h-full px-6 pt-2 pb-4 md:p-8 justify-center'>
+      <section className='about-section z-10 flex flex-col mt-6 mb-12 gap-10 md:my-0 md:gap-0 md:flex-row w-full justify-center items-center'>
+        <div className='relative z-0 flex w-full md:w-1/2 h-full px-6 pt-2 pb-0 md:p-8 justify-center'>
           <motion.div 
-            style={{ y }} 
-            className='image relative mt-6 md:mt-24 lg:mt-32 w-full rounded-2xl flex justify-center items-center'
+            style={mdUp ? { y } : undefined}
+            className='image relative z-0 mt-4 md:mt-24 lg:mt-32 w-full rounded-2xl flex justify-center items-center'
           >
             <div style={{ position: 'relative', width: '360px', height: '420px' }}>
               <Image
@@ -93,7 +95,7 @@ const About = () => {
             </div>
           </motion.div>
         </div>
-        <div className='text-div flex w-full flex-col items-start justify-start px-6 pb-6 pt-10 md:h-full md:w-1/2 md:justify-center md:pb-14 md:pl-10 md:pr-14'>
+        <div className='text-div relative z-10 flex w-full flex-col items-start justify-start px-6 pb-6 pt-2 md:h-full md:w-1/2 md:justify-center md:pb-14 md:pl-10 md:pr-14 md:pt-0'>
           <AboutText/>
         </div>
       </section>
