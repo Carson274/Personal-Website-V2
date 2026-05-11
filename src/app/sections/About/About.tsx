@@ -75,11 +75,11 @@ const About = () => {
           ))}
         </motion.div>
       </section>
-      <section className='about-section z-10 flex flex-col my-20 md:my-0 md:flex-row w-full justify-center items-center'>
-        <div className='flex w-full md:w-1/2 h-full p-8 justify-center'>
+      <section className='about-section z-10 flex flex-col mt-10 mb-12 gap-10 md:my-0 md:gap-0 md:flex-row w-full justify-center items-center'>
+        <div className='flex w-full md:w-1/2 h-full px-6 pt-2 pb-4 md:p-8 justify-center'>
           <motion.div 
             style={{ y }} 
-            className='image relative mt-32 w-full rounded-2xl flex justify-center items-center'
+            className='image relative mt-6 md:mt-24 lg:mt-32 w-full rounded-2xl flex justify-center items-center'
           >
             <div style={{ position: 'relative', width: '360px', height: '420px' }}>
               <Image
@@ -93,13 +93,13 @@ const About = () => {
             </div>
           </motion.div>
         </div>
-        <div className='text-div flex w-full md:w-1/2 h-1/2 md:h-full p-8 justify-center items-center'>
+        <div className='text-div flex w-full flex-col items-start justify-start px-6 pb-6 pt-10 md:h-full md:w-1/2 md:justify-center md:pb-14 md:pl-10 md:pr-14'>
           <AboutText/>
         </div>
       </section>
       <section 
         ref={bottomRef} 
-        className='bottom-section w-full h-1/5 bg-black'
+        className='bottom-section w-full bg-black shrink-0 pb-12 md:pb-0 md:min-h-[20vh]'
       />
     </motion.section>
   )

@@ -259,12 +259,12 @@ const VersionHistory = () => {
         <motion.section
             ref={ref}
             id="version-control"
-            className='flex flex-col bg-black w-full z-10 -mt-1 pb-20'
+            className='flex flex-col bg-black w-full z-10 -mt-1 pb-8 md:pb-14 lg:pb-20'
             initial="hidden"
             animate={controls}
             variants={containerVariants}
         >
-            <section className='w-full mt-12 md:mt-20 text-center'>
+            <section className='w-full mt-10 md:mt-16 lg:mt-20 text-center'>
                 <motion.div
                     className='text-white flex flex-col sm:flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-1 sm:mb-4'
                     variants={containerVariants}

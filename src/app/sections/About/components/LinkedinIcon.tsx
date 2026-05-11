@@ -2,7 +2,12 @@ import React from 'react'
 import Image from "next/legacy/image";
 import { motion, useAnimation } from 'framer-motion';
 import { shake } from '../../../utils/animations';
-function LinkedinIcon() {
+
+type LinkedinIconProps = {
+  className?: string;
+};
+
+function LinkedinIcon({ className }: LinkedinIconProps) {
   const linkedinControls = useAnimation();
 
   const linkedinVariants = {
@@ -11,7 +16,7 @@ function LinkedinIcon() {
 
   return (
     <motion.a 
-      className='flex justify-end'
+      className={`flex ${className ?? 'justify-end'}`}
       href='https://www.linkedin.com/in/carson-secrest'
       target='_blank'
       animate={linkedinControls}
@@ -19,7 +24,13 @@ function LinkedinIcon() {
       whileInView={linkedinVariants.hop}
       style={{ transformOrigin: "bottom center" }}
     >
-      <Image className='linkedin-icon inline-block' src='/images/Linkedin.svg' alt='LinkedIn' width={100} height={100} />
+      <Image
+        className='linkedin-icon inline-block max-h-[40px] max-w-[40px] object-contain lg:max-h-[60px] lg:max-w-[60px]'
+        src='/images/Linkedin.svg'
+        alt='LinkedIn'
+        width={40}
+        height={40}
+      />
     </motion.a>
   )
 }

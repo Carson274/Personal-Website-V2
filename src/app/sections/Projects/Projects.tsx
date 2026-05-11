@@ -92,15 +92,15 @@ const Projects = () => {
     <motion.section
       ref={ref}
       id="projects"
-      className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-28 md:pb-32'
+      className='flex flex-col bg-black w-full rounded-b-3xl z-10 -mt-1 pb-16 md:pb-28 lg:pb-32'
       initial="hidden"
       animate={controls}
       variants={containerVariants}
     >
-      <section className='z-0 relative about w-full h-1/5 mt-12 md:mt-20 text-center'>
+      <section className='z-0 relative about w-full h-1/5 mt-6 md:mt-12 lg:mt-20 text-center'>
         <div className='absolute top-full left-0 w-full h-full bg-black'></div>
         <motion.div
-          className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-2 sm:mb-12'
+          className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-8 lg:mb-12'
           variants={containerVariants}
         >
           {"MY PR".split("").map((letter, index) => (

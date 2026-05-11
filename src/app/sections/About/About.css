@@ -20,8 +20,16 @@
   }
 }
 
+/* Fixed height clipped tall stacks on narrow viewports so the bio could
+   overflow and overlap the Version History section in document paint order. */
 .about-section {
-  height: 80vh;
+  min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .about-section {
+    min-height: 80vh;
+  }
 }
 
 .linkedin-icon {

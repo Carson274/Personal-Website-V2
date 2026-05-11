@@ -20,7 +20,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    padding: 20px 5rem 1.5rem;
+    padding: 20px clamp(3rem, 8vw, 5rem) 1.25rem;
     scrollbar-width: none;
     mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
@@ -94,6 +94,10 @@
 }
 
 @media (min-width: 768px) {
+    .version-scroll {
+        padding: 20px 5rem 1.5rem;
+    }
+
     .event-column {
         flex: 0 0 300px;
     }
