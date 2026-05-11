@@ -124,7 +124,7 @@ const VersionHistory = () => {
 
     const [ref, inView] = useInView({
         triggerOnce: true,
-        rootMargin: '-400px 0px',
+        rootMargin: '-140px 0px',
     });
 
     useEffect(() => {
@@ -187,14 +187,14 @@ const VersionHistory = () => {
                 stiffness: 120,
                 damping: 14,
                 mass: 1.3,
-                delay: index * 0.05 + 0.55,
+                delay: index * 0.04 + 0.32,
             },
         }),
     };
 
-    /** After last letter delay (same formula as letterVariants) + spring settle */
+    /** After last letter delay (same formula as letterVariants) + settle */
     const subtitleFadeDelay =
-        0.55 + (8 + 'HISTORY'.length - 1) * 0.05 + 0.42;
+        0.32 + (8 + 'HISTORY'.length - 1) * 0.04 + 0.3;
 
     const subtitleVariants = {
         hidden: { opacity: 0 },

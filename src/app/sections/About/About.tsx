@@ -12,7 +12,7 @@ const About = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
-    rootMargin: '-400px 0px',
+    rootMargin: '-140px 0px',
   });
   const [bottomRef, bottomInView] = useInView({
     rootMargin: '0px 0px',
@@ -46,7 +46,7 @@ const About = () => {
         stiffness: 120,
         damping: 14,
         mass: 0.5,
-        delay: index * 0.05 + 0.2,
+        delay: index * 0.04 + 0.12,
       },
     }),
   };

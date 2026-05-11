@@ -25,7 +25,7 @@ const Projects = () => {
 
   const [ref, inView] = useInView({
     triggerOnce: true,
-    rootMargin: '-400px 0px',
+    rootMargin: '-140px 0px',
   });
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Projects = () => {
 
   const [githubRef, githubInView] = useInView({
     triggerOnce: true,
-    rootMargin: '-200px 0px',
+    rootMargin: '-60px 0px',
   });
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Projects = () => {
         stiffness: 120,
         damping: 14,
         mass: 1.3,
-        delay: index * 0.05 + 0.55,
+        delay: index * 0.04 + 0.32,
       },
     }),
   };
@@ -97,7 +97,7 @@ const Projects = () => {
       animate={controls}
       variants={containerVariants}
     >
-      <section className='z-0 relative about w-full h-1/5 mt-6 md:mt-12 lg:mt-20 text-center'>
+      <section className='z-0 relative about w-full h-auto md:h-1/5 mt-2 sm:mt-5 md:mt-12 lg:mt-20 text-center'>
         <div className='absolute top-full left-0 w-full h-full bg-black'></div>
         <motion.div
           className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-8 lg:mb-12'
