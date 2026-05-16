@@ -1,6 +1,6 @@
 'use client'
 
-import Image from "next/legacy/image"
+import Image from "next/image"
 import { motion, useAnimationControls } from 'framer-motion';
 
 const ToTop = () => {
@@ -26,7 +26,7 @@ const ToTop = () => {
       onHoverEnd={handleHoverEnd}
     >
       <motion.button 
-        className='absolute top-0 left-0 right-0 bottom-0 m-auto'
+        className='absolute inset-0 flex items-center justify-center'
         onClick={scrollTop}
         variants={{
           initial: {
@@ -43,15 +43,16 @@ const ToTop = () => {
         initial={'initial'}
         animate={controls}
       >
-        <Image
-          src='/images/Arrow_Up.svg'
-          width={75}
-          height={75}
-          alt="Arrow pointing up"
-        />
+        <div className='relative size-[75px]'>
+          <Image
+            src='/images/Arrow_Up.svg'
+            fill
+            alt="Arrow pointing up"
+          />
+        </div>
       </motion.button>
       <motion.button 
-        className='absolute top-0 left-0 right-0 bottom-0 m-auto'
+        className='absolute inset-0 flex items-center justify-center'
         onClick={scrollTop}
         variants={{
           initial: {
@@ -68,12 +69,13 @@ const ToTop = () => {
         initial={'initial'}
         animate={controls}
       >
-        <Image
-          src='/images/Arrow_Up.svg'
-          width={75}
-          height={75}
-          alt="Arrow pointing up"
-        />
+        <div className='relative size-[75px]'>
+          <Image
+            src='/images/Arrow_Up.svg'
+            fill
+            alt="Arrow pointing up"
+          />
+        </div>
       </motion.button>
     </motion.div>
   )

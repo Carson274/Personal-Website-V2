@@ -16,6 +16,7 @@ export interface ProjectDetails {
   liveSite?: string;
   devpost?: string;
   github?: string;
+  priority?: boolean;
 }
 
 const Projects = () => {

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { ProjectDetails } from '../Projects';
 import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
 import { useCursor } from '../../../components/CustomCursor/CursorContext';
@@ -54,12 +54,12 @@ const Project = ({ project }: { project: ProjectDetails }) => {
             onMouseLeave={handleMouseLeave}
           >
             <Image 
-              className='rounded-xl'
+              className='rounded-xl object-cover'
               src={project.imagePath} 
               alt={project.name} 
-              layout="fill"
-              objectFit="cover"
-              priority={false}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={project.priority}
             />
           </div>
         </a>

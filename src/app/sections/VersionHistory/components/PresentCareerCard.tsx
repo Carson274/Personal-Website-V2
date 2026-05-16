@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -57,25 +57,27 @@ const PresentCareerCard = ({ name, role, color, url, logoSrc }: PresentCareerCar
                                 href={url}
                                 target='_blank'
                                 rel='noopener noreferrer'
-                                className='flex items-center justify-center max-h-20 outline-offset-4 rounded'
+                                className='relative block h-20 w-full max-w-[220px] outline-offset-4 rounded'
                                 aria-label={`${name} website`}
                             >
                                 <Image
                                     src={logoSrc}
                                     alt={`${name} logo`}
-                                    width={220}
-                                    height={80}
-                                    className='max-h-20 w-auto object-contain'
+                                    fill
+                                    className='object-contain'
+                                    sizes='220px'
                                 />
                             </a>
                         ) : (
-                            <Image
-                                src={logoSrc}
-                                alt={`${name} logo`}
-                                width={220}
-                                height={80}
-                                className='max-h-20 w-auto object-contain'
-                            />
+                            <div className='relative h-20 w-full max-w-[220px]'>
+                                <Image
+                                    src={logoSrc}
+                                    alt={`${name} logo`}
+                                    fill
+                                    className='object-contain'
+                                    sizes='220px'
+                                />
+                            </div>
                         )}
                     </div>
                 )}

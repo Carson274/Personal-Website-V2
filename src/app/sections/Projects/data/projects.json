@@ -65,6 +65,7 @@
   {
     "name": "PurSend",
     "imagePath": "/images/PurSend.png",
+    "priority": true,
     "liveSite": "",
     "devpost": "https://devpost.com/software/pursend",
     "github": "https://github.com/ipoogleduck/PurSend"

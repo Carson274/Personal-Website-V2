@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import './Hero.css';
 import { useScroll, useTransform, motion } from "framer-motion"
 
@@ -56,7 +56,7 @@ const Hero = () => {
       >
         <div className='logo-div flex items-center'>
           <div className='logo z-10 relative w-44 h-44'>
-            <Image src="/images/Logo_Dark.svg" alt="Logo" layout='fill' objectFit='contain' priority={true} />
+            <Image src="/images/Logo_Dark.svg" alt="Logo" fill className="object-contain" priority />
           </div>
           <div className='text-div z-0 absolute flex flex-col items-center mb-0'>
             <section className='secrest z-0 flex flex-row' >

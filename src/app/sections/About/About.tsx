@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import './About.css';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -85,12 +85,12 @@ const About = () => {
           >
             <div style={{ position: 'relative', width: '360px', height: '420px' }}>
               <Image
-                className='rounded-2xl border-4 border-cream'
+                className='rounded-2xl border-4 border-cream object-cover'
                 src='/images/Carson.jpg'
                 alt='Picture of Me'
-                layout='fill'
-                objectFit='cover'
-                priority={true}
+                fill
+                sizes="360px"
+                priority
               />
             </div>
           </motion.div>

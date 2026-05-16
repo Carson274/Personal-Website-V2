@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -71,7 +71,7 @@ const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor 
             >
                 <div className='relative w-full flex-1 min-h-0 overflow-hidden rounded-lg border-2 border-brown mb-2'>
                     <Image
-                        className='event-card-image object-cover'
+                        className='object-cover'
                         src={imagePath}
                         alt={caption || month}
                         fill
