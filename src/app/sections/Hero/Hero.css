@@ -16,9 +16,9 @@
   color: #403E3A;
 }
 
-@keyframes slideLeft {
+@keyframes heroLogoSlideLeft {
   from {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   to {
     transform: translateX(-99px);

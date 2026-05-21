@@ -7,17 +7,11 @@ import { useScroll, useTransform, motion } from "framer-motion"
 
 const Hero = () => {
   useEffect(() => {
-    const logo = document.querySelector<HTMLImageElement>('.logo')!;
+    const logo = document.querySelector<HTMLElement>('.logo')!;
     const secrest = document.querySelector<HTMLElement>('.secrest')!;
     const carson = document.querySelector<HTMLElement>('.carson')!;
 
-    logo.style.animation = 'slideLeft 1.2s 0.0s cubic-bezier(0.215, 0.610, 0.355, 1) forwards';
-
-    // make it so that when the animation has ended, the logo will stay in place to the left 100%
-    logo.addEventListener('animationend', () => {
-      logo.style.left = '-99px';
-      logo.style.animation = '';
-    }, { once: true });
+    logo.style.animation = 'heroLogoSlideLeft 1.2s 0.0s cubic-bezier(0.215, 0.610, 0.355, 1) forwards';
 
     setTimeout(() => {
       // make each letter in carson slide up one at a time
