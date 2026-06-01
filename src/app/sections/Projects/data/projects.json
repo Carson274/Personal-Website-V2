@@ -11,14 +11,16 @@
     "imagePath": "/images/Box_Office_Battles.png",
     "liveSite": "",
     "devpost": "",
-    "github": "https://github.com/Jakhangir18/BeaverHacks-2026"
+    "github": "https://github.com/Carson274/Box-Office-Battles",
+    "hackathon": "Won 2nd place overall at BeaverHacks 2024."
   },
   {
     "name": "SPOOT",
     "imagePath": "/images/Spoot_Thumbnail.png",
-    "liveSite": "https://beaverpurity.com/",
+    "liveSite": "",
     "devpost": "",
-    "github": "https://github.com/Carson274/BeaverCsPurity"
+    "github": "https://github.com/Jakhangir18/BeaverHacks-2026",
+    "hackathon": "Won 3rd place in the Gemini track as BeaverHacks 2026."
   },
   {
     "name": "Student Milestone Quiz",
@@ -39,7 +41,8 @@
     "imagePath": "/images/Slumped_Stats.png",
     "liveSite": "",
     "devpost": "https://devpost.com/software/slumped-stats",
-    "github": "https://github.com/Carson274/Sleep-App"
+    "github": "https://github.com/Carson274/Sleep-App",
+    "hackathon": "Won 2nd place overall at App Development Club's winter hackathon in 2024."
   },
   {
     "name": "Roll Call Brawl",
@@ -68,7 +71,8 @@
     "priority": true,
     "liveSite": "",
     "devpost": "https://devpost.com/software/pursend",
-    "github": "https://github.com/ipoogleduck/PurSend"
+    "github": "https://github.com/ipoogleduck/PurSend",
+    "hackathon": "Won 1st place overall at App Development Club's spring hackathon in 2024."
   },
   {
     "name": "Personal Website v1",
