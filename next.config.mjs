@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+
+// Change strict mode to false to see the CustomCursor during development
+const nextConfig = {
+  reactStrictMode: true
+};
 
 export default nextConfig;
