@@ -17,6 +17,7 @@ export interface ProjectDetails {
   devpost?: string;
   github?: string;
   priority?: boolean;
+  hackathon?: string;
 }
 
 const Projects = () => {
