@@ -11,6 +11,57 @@
   cursor: none;
 }
 
+.crown-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  /* Clip the light band to the crown's silhouette */
+  -webkit-mask-image: url('/images/Crown.svg');
+  mask-image: url('/images/Crown.svg');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  /* Diagonal light band */
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0) 38%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0) 62%
+  );
+  background-repeat: no-repeat;
+  background-size: 250% 100%;
+  background-position: 200% 0;
+}
+
+.project-card:hover .crown-shine {
+  animation: crown-shine-sweep 0.7s ease-in-out;
+}
+
+@keyframes crown-shine-sweep {
+  0% {
+    background-position: 200% 0;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    background-position: -120% 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card:hover .crown-shine {
+    animation: none;
+  }
+}
+
 .github-rolling-icon {
   border-radius: 50%;
   filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.1));

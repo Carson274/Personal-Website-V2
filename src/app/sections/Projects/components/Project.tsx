@@ -48,13 +48,11 @@ const Project = ({ project }: { project: ProjectDetails }) => {
         <h2 className='text-white text-xl sm:text-2xl md:text-base lg:text-2xl my-8 font-bold text-center'>{project.name}</h2>
         <a href={link} target="_blank" className='w-full block'>
           <div
-            className='relative w-full'
+            className='project-card relative w-full'
             style={{ aspectRatio: '16 / 9' }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
           >
             {project.hackathon && (
-              <span className='absolute -top-[6%] -right-[6%] z-10 block w-[16%] rotate-[35deg] pointer-events-none drop-shadow-md'>
+              <span className='absolute -top-[6%] -right-[6%] z-10 block w-[16%] rotate-[35deg] drop-shadow-md'>
                 <Image
                   src="/images/Crown.svg"
                   alt="Hackathon project"
@@ -62,9 +60,14 @@ const Project = ({ project }: { project: ProjectDetails }) => {
                   height={190}
                   className='h-auto w-full'
                 />
+                <span className='crown-shine' aria-hidden='true' />
               </span>
             )}
-            <div className='relative h-full w-full border-2 border-brown rounded-xl overflow-hidden'>
+            <div
+              className='relative h-full w-full border-2 border-brown rounded-xl overflow-hidden'
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               <Image 
                 className='rounded-xl object-cover'
                 src={project.imagePath} 
