@@ -1,5 +1,13 @@
 [
   {
+    "name": "Poses for Dummies",
+    "imagePath": "/images/Poses_for_Dummies.png",
+    "liveSite": "https://quackhacks3.seufert.workers.dev",
+    "devpost": "",
+    "github": "",
+    "hackathon": "Won 3rd place in the Pipeworks track at QuackHacks 3 in 2026."
+  },
+  {
     "name": "Accent Guessr",
     "imagePath": "/images/Accent_Guessr.png",
     "liveSite": "https://accent-guessr.vercel.app/",
@@ -20,7 +28,7 @@
     "liveSite": "",
     "devpost": "",
     "github": "https://github.com/Jakhangir18/BeaverHacks-2026",
-    "hackathon": "Won 3rd place in the Gemini track as BeaverHacks 2026."
+    "hackathon": "Won 3rd place in the Gemini track at BeaverHacks 2026."
   },
   {
     "name": "Student Milestone Quiz",
