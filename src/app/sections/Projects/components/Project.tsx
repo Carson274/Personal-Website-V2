@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import { ProjectDetails } from '../Projects';
 import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
@@ -5,6 +6,7 @@ import { useCursor } from '../../../components/CustomCursor/CursorContext';
 
 const Project = ({ project }: { project: ProjectDetails }) => {
   const { setLinkType } = useCursor();
+  const [showCrownTooltip, setShowCrownTooltip] = useState(false);
 
   const link = project.liveSite !== '' ? project.liveSite : project.devpost !== '' ? project.devpost : project.github;
 
@@ -52,16 +54,30 @@ const Project = ({ project }: { project: ProjectDetails }) => {
             style={{ aspectRatio: '16 / 9' }}
           >
             {project.hackathon && (
-              <span className='absolute -top-[6%] -right-[6%] z-10 block w-[16%] rotate-[35deg] drop-shadow-md'>
-                <Image
-                  src="/images/Crown.svg"
-                  alt="Hackathon project"
-                  width={383}
-                  height={190}
-                  className='h-auto w-full'
-                />
-                <span className='crown-shine' aria-hidden='true' />
-              </span>
+              <>
+                <span
+                  className='crown-host absolute -top-[6%] -right-[6%] z-20 block w-[16%]'
+                  onMouseEnter={() => setShowCrownTooltip(true)}
+                  onMouseLeave={() => setShowCrownTooltip(false)}
+                >
+                  <span className='block w-full rotate-[35deg] drop-shadow-md'>
+                    <Image
+                      src="/images/Crown.svg"
+                      alt="Hackathon project"
+                      width={383}
+                      height={190}
+                      className='h-auto w-full'
+                    />
+                    <span className='crown-shine' aria-hidden='true' />
+                  </span>
+                </span>
+                <span
+                  role='tooltip'
+                  className={`crown-tooltip${showCrownTooltip ? ' crown-tooltip--visible' : ''}`}
+                >
+                  {project.hackathon}
+                </span>
+              </>
             )}
             <div
               className='relative h-full w-full border-2 border-brown rounded-xl overflow-hidden'

@@ -35,8 +35,47 @@
   background-position: 200% 0;
 }
 
-.project-card:hover .crown-shine {
+.crown-host:hover .crown-shine {
   animation: crown-shine-sweep 0.7s ease-in-out;
+}
+
+.crown-tooltip {
+  position: absolute;
+  top: 9%;
+  right: 5%;
+  z-index: 30;
+  width: max-content;
+  max-width: min(62%, 220px);
+  padding: 7px 10px;
+  border-radius: 9px;
+  background: rgba(18, 18, 18, 0.96);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  color: #f5f3ec;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 500;
+  text-align: left;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-4px) scale(0.97);
+  transform-origin: top right;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.crown-tooltip--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crown-tooltip {
+    transition: opacity 0.18s ease;
+    transform: none;
+  }
+  .crown-tooltip--visible {
+    transform: none;
+  }
 }
 
 @keyframes crown-shine-sweep {
