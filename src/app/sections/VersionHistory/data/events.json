@@ -22,7 +22,7 @@
     },
     {
         "month": "July 2025",
-        "caption": "My co-intern Kasey and I at Workiva headquarters in Iowa during our internship summit. One memorable quote from the team about us was, \"They were teaching the uncs (full-time staff) Gen Z vernacular.\"",
+        "caption": "My co-intern Kasey and I at Workiva headquarters in Iowa during our internship summit.",
         "imagePath": "/images/events/workiva_july_2025.jpeg",
         "career": "Workiva",
         "tags": [
@@ -35,7 +35,7 @@
     },
     {
         "month": "February 2025",
-        "caption": "Started posting brain rot reels for ACM.",
+        "caption": "Started posting reels for ACM.",
         "imagePath": "/images/events/ACM_february_2025.jpeg",
         "career": "ACM",
         "tags": [
@@ -52,7 +52,7 @@
     },
     {
         "month": "May 2025",
-        "caption": "Mogging at CASS awards night 2025.",
+        "caption": "Celebrating CASS awards night 2025 with Sandy, Rahul, Lukas, and Sahith.",
         "imagePath": "/images/events/CASS_awards_silly.jpg",
         "career": "CASS",
         "tags": [
@@ -67,6 +67,10 @@
             {
                 "name": "Sahith Chandra",
                 "linkedin": "https://www.linkedin.com/in/sahith-chandra/"
+            },
+            {
+                "name": "Lukas Seufert",
+                "linkedin": "https://www.linkedin.com/in/lukas-seufert/"
             }
         ],
         "links": []
@@ -80,19 +84,6 @@
             {
                 "name": "Chris Ho",
                 "linkedin": "https://www.linkedin.com/in/chris-ho-/"
-            }
-        ],
-        "links": []
-    },
-    {
-        "month": "June 2024",
-        "caption": "Artem's last day at CASS. Clearly he didn't have enough coffee.",
-        "imagePath": "/images/events/CASS_june_2024.jpeg",
-        "career": "CASS",
-        "tags": [
-            {
-                "name": "Artem Kolpakov",
-                "linkedin": "https://www.linkedin.com/in/artem-kolpakov/"
             }
         ],
         "links": []
