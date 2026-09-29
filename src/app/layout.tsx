@@ -9,8 +9,21 @@ import { Analytics } from '@vercel/analytics/next';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://carsonsecrest.me'),
   title: "Carson Secrest",
-  description: "Personal Website v2",
+  description: "Software developer studying Computer Science at Oregon State. Projects, experience, and work in web, mobile, and AI.",
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Carson Secrest',
+    title: 'Carson Secrest',
+    description: 'Software developer · Web, mobile & AI',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Carson Secrest',
+    description: 'Software developer · Web, mobile & AI',
+  },
 };
 
 export default function RootLayout({
