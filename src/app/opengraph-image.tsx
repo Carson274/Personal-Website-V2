@@ -18,17 +18,16 @@ export default async function SocialPreview() {
           height: '100%',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 56,
           background: '#E5E5E0',
           color: '#403E3A',
         }}
       >
-        {/* ImageResponse renders this image directly into the preview PNG. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`data:image/svg+xml;base64,${logo}`} alt='' width={200} height={200} />
-        <div style={{ display: 'flex', flexDirection: 'column', fontSize: 86, fontWeight: 600, lineHeight: 1.08, letterSpacing: -3 }}>
-          <span>Carson</span>
-          <span>Secrest</span>
+        <div style={{ display: 'flex', position: 'relative', width: 720, height: 352, fontSize: 120, fontWeight: 400, lineHeight: 1, letterSpacing: -2 }}>
+          {/* The monogram supplies the first letter of each name, as in the hero. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`data:image/svg+xml;base64,${logo}`} alt='' width={352} height={352} />
+          <span style={{ position: 'absolute', left: 358, top: 132 }}>ecrest</span>
+          <span style={{ position: 'absolute', left: 210, top: 236 }}>arson</span>
         </div>
       </div>
     ),
