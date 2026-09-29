@@ -1,5 +1,42 @@
 [
     {
+        "month": "August 2026",
+        "caption": "A summer trip to Lake Tahoe with the Netflix interns!",
+        "imagePath": "/images/events/Netflix_Tahoe_August_2026.jpeg",
+        "career": "Netflix",
+        "tags": [
+            {
+                "name": "Peter Mora Stevens",
+                "linkedin": "https://www.linkedin.com/in/peter-mora-stevens/"
+            },
+            {
+                "name": "Steven Romero",
+                "linkedin": "https://www.linkedin.com/in/stevenromeror/"
+            },
+            {
+                "name": "Mariana Ma",
+                "linkedin": "https://www.linkedin.com/in/mariana-ma-7a70b6316/"
+            },
+            {
+                "name": "Isabella Socci",
+                "linkedin": "https://www.linkedin.com/in/isabella-socci/"
+            },
+            {
+                "name": "Samantha Jiao",
+                "linkedin": "https://www.linkedin.com/in/samantha-jiao-87b795277/"
+            },
+            {
+                "name": "Brenton Dunn",
+                "linkedin": "https://www.linkedin.com/in/brentonmdunn/"
+            },
+            {
+                "name": "Giselle Rivera",
+                "linkedin": "https://www.linkedin.com/in/gisellerivera17/"
+            }
+        ],
+        "links": []
+    },
+    {
         "month": "April 2026",
         "caption": "Jak and I with Google ambassador Will Teyema after SPOOT won third place in the Best Use of Gemini category at BeaverHacks 2026.",
         "imagePath": "/images/events/BeaverHacks_2026.jpeg",
