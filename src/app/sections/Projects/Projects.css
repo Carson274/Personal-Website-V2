@@ -100,24 +100,6 @@
   height: 12px;
 }
 
-.award-placement {
-  color: #e9c665;
-  font-weight: 600;
-}
-
-.award-gemini {
-  color: #c2a5ff;
-  font-weight: 600;
-  background: linear-gradient(100deg, #8ab4ff, #c5a1ff 35%, #f4a0c7 65%, #f6c96e);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@media (forced-colors: active) {
-  .award-gemini { background: none; -webkit-text-fill-color: currentColor; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .crown-tooltip {
     transition: opacity 0.18s ease;

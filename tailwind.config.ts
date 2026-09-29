@@ -11,7 +11,7 @@ const config: Config = {
       'cream': '#CFCFC5',
       'light-cream': '#E5E5E0',
       'white': '#F4F4F2',
-      'black': '#0C0C0B',
+      'black': '#161615',
       'grey': '#171717',
       'coffee': '#403E3A',
       'brown': '#383633',

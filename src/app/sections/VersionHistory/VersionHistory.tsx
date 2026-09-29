@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import EventCard from './components/EventCard';
 import CareerCard from './components/CareerCard';
 import PresentCareerCard from './components/PresentCareerCard';
+import Coursework from './components/Coursework';
 import { getCareerLogoSrc } from './careerLogos';
 import eventsJson from './data/events.json';
 import careersJson from './data/careers.json';
@@ -455,7 +456,7 @@ const VersionHistory = () => {
                                 >
                                     <div
                                         className='event-node'
-                                        style={{ borderColor: c.color, background: '#000', marginTop: `${nodeMarginTop}px` }}
+                                        style={{ borderColor: c.color, marginTop: `${nodeMarginTop}px` }}
                                     />
                                     <div
                                         className='event-connector'
@@ -493,6 +494,7 @@ const VersionHistory = () => {
                     })}
                 </div>
             </div>
+            <Coursework />
         </motion.section>
     );
 };

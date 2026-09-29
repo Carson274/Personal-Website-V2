@@ -86,10 +86,13 @@ const About = () => {
             <div className='relative h-[320px] w-[280px] max-w-full sm:h-[380px] sm:w-[326px] lg:h-[420px] lg:w-[360px]'>
               <Image
                 className='rounded-2xl border-4 border-cream object-cover'
-                src='/images/Carson.jpg'
-                alt='Picture of Me'
+                src='/images/Carson_Portrait.jpg'
+                alt='Carson Secrest smiling in front of a patterned doorway'
                 fill
-                sizes="(min-width: 1024px) 360px, (min-width: 640px) 326px, 280px"
+                // The landscape source covers a tall frame: request enough pixels
+                // for its full width at the displayed height before cropping.
+                sizes="(min-width: 1024px) 630px, (min-width: 640px) 570px, 480px"
+                quality={90}
                 priority
               />
             </div>

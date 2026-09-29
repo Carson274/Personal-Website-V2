@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from "next/image";
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import AwardText from '@/app/components/AwardText';
 
 interface Tag {
     name: string;
@@ -80,7 +81,7 @@ const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor 
                 </div>
                 <div className='flex flex-col gap-2 shrink-0'>
                     {caption && (
-                        <p className='text-cream text-sm leading-snug'>{caption}</p>
+                        <p className='text-cream text-sm leading-snug'><AwardText text={caption} /></p>
                     )}
                     {(links.length > 0 || tags.length > 0) ? (
                     <div ref={popoverChromeRef} className='flex items-end justify-end relative shrink-0'>

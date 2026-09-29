@@ -2,7 +2,10 @@
 
 // Change strict mode to false to see the CustomCursor during development
 const nextConfig = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    qualities: [75, 90],
+  },
 };
 
 export default nextConfig;

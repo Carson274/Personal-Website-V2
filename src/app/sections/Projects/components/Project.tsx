@@ -3,14 +3,7 @@ import { useId } from 'react';
 import type { ProjectDetails } from '../Projects';
 import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
 import { useCursor } from '../../../components/CustomCursor/CursorContext';
-
-function AwardText({ text }: { text: string }) {
-  return text.split(/(Won\s+(?:\d+(?:st|nd|rd|th)\s+place|best use of)|Gemini)/gi).map((part, index) => {
-    if (/^Gemini$/i.test(part)) return <span key={index} className='award-gemini'>{part}</span>;
-    if (/^Won\s/i.test(part)) return <span key={index} className='award-placement'>{part}</span>;
-    return part;
-  });
-}
+import AwardText from '@/app/components/AwardText';
 
 const Project = ({ project }: { project: ProjectDetails }) => {
   const { setLinkType } = useCursor();

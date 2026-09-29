@@ -17,7 +17,7 @@ html {
 }
 
 .site-header {
-  background: color-mix(in srgb, #E5E5E0, #0C0C0B var(--nav-dark));
+  background: color-mix(in srgb, #E5E5E0, #161615 var(--nav-dark));
   color: color-mix(in srgb, #403E3A, #E5E5E0 var(--nav-dark));
   border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
   transition: background-color 220ms ease, color 220ms ease;
