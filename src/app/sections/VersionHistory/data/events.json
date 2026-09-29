@@ -2,7 +2,7 @@
     {
         "month": "August 2026",
         "caption": "A summer trip to Lake Tahoe with the Netflix interns!",
-        "imagePath": "/images/events/Netflix_Tahoe_August_2026.jpeg",
+        "imagePath": "/images/events/netflix-interns-lake-tahoe-2026-08.jpeg",
         "career": "Netflix",
         "tags": [
             {
@@ -39,7 +39,7 @@
     {
         "month": "April 2026",
         "caption": "Jak and I with Google ambassador Will Teyema after SPOOT won third place in the Best Use of Gemini category at BeaverHacks 2026.",
-        "imagePath": "/images/events/BeaverHacks_2026.jpeg",
+        "imagePath": "/images/events/beaverhacks-gemini-award-2026-04.jpeg",
         "tags": [
             {
                 "name": "Will Teyema",
@@ -60,7 +60,7 @@
     {
         "month": "July 2025",
         "caption": "My co-intern Kasey and I at Workiva headquarters in Iowa during our internship summit.",
-        "imagePath": "/images/events/workiva_july_2025.jpeg",
+        "imagePath": "/images/events/workiva-intern-summit-2025-07.jpeg",
         "career": "Workiva",
         "tags": [
             {
@@ -73,7 +73,7 @@
     {
         "month": "February 2025",
         "caption": "Started posting reels for ACM.",
-        "imagePath": "/images/events/ACM_february_2025.jpeg",
+        "imagePath": "/images/events/acm-reels-2025-02.jpeg",
         "career": "ACM",
         "tags": [
             {
@@ -95,7 +95,7 @@
     {
         "month": "May 2025",
         "caption": "Celebrating CASS awards night 2025 with Sandy, Rahul, Lukas, and Sahith.",
-        "imagePath": "/images/events/CASS_awards_silly.jpg",
+        "imagePath": "/images/events/cass-awards-group-2025-05.jpg",
         "career": "CASS",
         "tags": [
             {
@@ -119,8 +119,21 @@
     },
     {
         "month": "October 2024",
+        "caption": "Presenting ACM to potential club sponsors at Oregon State.",
+        "imagePath": "/images/events/acm-sponsor-presentation-2024-10.jpg",
+        "career": "ACM",
+        "tags": [],
+        "links": [
+            {
+                "name": "Instagram @osu.acm",
+                "url": "https://www.instagram.com/osu.acm/"
+            }
+        ]
+    },
+    {
+        "month": "October 2024",
         "caption": "First ACM event as an officer! We had a way larger turnout than expected.",
-        "imagePath": "/images/events/ACM_october_2024.jpeg",
+        "imagePath": "/images/events/acm-first-event-2024-10.jpg",
         "career": "ACM",
         "tags": [
             {

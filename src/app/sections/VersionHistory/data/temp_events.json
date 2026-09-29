@@ -2,7 +2,7 @@
     {
         "month": "November 2025",
         "caption": "Action shot of me and my friend AJ during our pickleball tournament fall term (we got destroyed).",
-        "imagePath": "/images/events/pickleball_november_2025.jpeg",
+        "imagePath": "/images/events/pickleball-tournament-2025-11.jpeg",
         "tags": [
             {
                 "name": "AJ Gokule",
@@ -14,14 +14,14 @@
     {
         "month": "October 2025",
         "caption": "My brothers and I dressing as the Mario Bros and Yoshi for Halloween last year! Fun fact: I'm going to name my first cat Yoshi.",
-        "imagePath": "/images/events/halloween_october_2025.jpeg",
+        "imagePath": "/images/events/halloween-mario-bros-2025-10.jpeg",
         "tags": [],
         "links": []
     },
     {
         "month": "September 2025",
         "caption": "A picture from a trip I took to Japan with my friends!",
-        "imagePath": "/images/events/japan_september_2025.jpeg",
+        "imagePath": "/images/events/japan-trip-2025-09.jpeg",
         "tags": [
             {
                 "name": "Sebastian Torresola",
@@ -33,7 +33,7 @@
     {
         "month": "June 2025",
         "caption": "My Networks professor, Professor Guyer, demoing one of my projects, a \"Purity Test\" for Computer Science students at Oregon State, in front of the entire class.",
-        "imagePath": "/images/events/guyer_june_2025.jpeg",
+        "imagePath": "/images/events/beaver-purity-class-demo-2025-06.jpeg",
         "tags": [],
         "links": [
             {
@@ -45,7 +45,7 @@
     {
         "month": "May 2025",
         "caption": "CASS awards night for the software development group I work for on campus.",
-        "imagePath": "/images/events/CASS_awards_may_2025.jpeg",
+        "imagePath": "/images/events/cass-awards-2025-05.jpeg",
         "tags": [
             {
                 "name": "Nick Rist",
@@ -62,7 +62,7 @@
     {
         "month": "March 2025",
         "caption": "Spring break 2025 trip to San Francisco!",
-        "imagePath": "/images/events/SF_march_2025.jpeg",
+        "imagePath": "/images/events/san-francisco-trip-2025-03.jpeg",
         "tags": [
             {
                 "name": "Harshil Shah",
@@ -74,35 +74,35 @@
     {
         "month": "December 2024",
         "caption": "",
-        "imagePath": "/images/events/korea_december_2024.jpeg",
+        "imagePath": "/images/events/korea-2024-12.jpeg",
         "tags": [],
         "links": []
     },
     {
         "month": "October 2024",
         "caption": "",
-        "imagePath": "/images/events/Dubhacks_october_2024.jpeg",
+        "imagePath": "/images/events/dubhacks-2024-10.jpeg",
         "tags": [],
         "links": []
     },
     {
         "month": "July 2024",
         "caption": "",
-        "imagePath": "/images/events/Tyler_july_2024.jpeg",
+        "imagePath": "/images/events/tyler-2024-07.jpeg",
         "tags": [],
         "links": []
     },
     {
         "month": "June 2024",
         "caption": "",
-        "imagePath": "/images/events/New_York_june_2024.jpeg",
+        "imagePath": "/images/events/new-york-2024-06.jpeg",
         "tags": [],
         "links": []
     },
     {
         "month": "May 2024",
         "caption": "",
-        "imagePath": "/images/events/Kinetic_may_2024.jpeg",
+        "imagePath": "/images/events/kinetic-2024-05.jpeg",
         "tags": [],
         "links": []
     }
