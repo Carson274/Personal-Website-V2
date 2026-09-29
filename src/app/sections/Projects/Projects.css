@@ -1,16 +1,8 @@
-.more-projects > summary {
-  list-style: none;
-}
-
-.more-projects > summary::-webkit-details-marker {
-  display: none;
-}
-
 .more-projects-chevron {
   transition: transform 220ms ease;
 }
 
-.more-projects[open] .more-projects-chevron {
+.more-projects-toggle[aria-expanded='true'] .more-projects-chevron {
   transform: rotate(180deg);
 }
 

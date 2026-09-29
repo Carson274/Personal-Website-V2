@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import './Projects.css';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, useReducedMotion, type Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { cubicBezier } from 'framer-motion';
 import Project from './components/Project';
@@ -29,6 +29,11 @@ const Projects = () => {
   const controls = useAnimation();
   const githubControls = useAnimation();
   const projects: ProjectDetails[] = projectsJson;
+  const moreProjects = projects.filter((project) => !project.featured);
+  const [showMore, setShowMore] = useState(false);
+  const [moreSettled, setMoreSettled] = useState(false);
+  const morePanelId = useId();
+  const reduceMotion = useReducedMotion();
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -95,6 +100,52 @@ const Projects = () => {
     hop: singleHop
   };
 
+  const gentleEase = [0.25, 0.1, 0.25, 1] as const;
+
+  const morePanelVariants: Variants = {
+    collapsed: {
+      height: 0,
+      transition: reduceMotion ? { duration: 0 } : {
+        height: { duration: 0.5, ease: gentleEase },
+      },
+      transitionEnd: { visibility: 'hidden' },
+    },
+    expanded: {
+      height: 'auto',
+      visibility: 'visible',
+      transition: reduceMotion ? { duration: 0 } : {
+        height: { duration: 0.7, ease: gentleEase },
+      },
+    },
+  };
+
+  // The whole grid slides down with the panel like a drawer; cards fade in softly on top of that.
+  const moreGridVariants: Variants = {
+    collapsed: {
+      y: -48,
+      transition: reduceMotion ? { duration: 0 } : { duration: 0.5, ease: gentleEase },
+    },
+    expanded: {
+      y: 0,
+      transition: reduceMotion ? { duration: 0 } : {
+        duration: 0.7,
+        ease: gentleEase,
+        staggerChildren: 0.04,
+      },
+    },
+  };
+
+  const moreProjectVariants: Variants = {
+    collapsed: {
+      opacity: 0,
+      transition: reduceMotion ? { duration: 0 } : { duration: 0.3, ease: gentleEase },
+    },
+    expanded: {
+      opacity: 1,
+      transition: reduceMotion ? { duration: 0 } : { duration: 0.6, ease: gentleEase },
+    },
+  };
+
   return (
     <motion.section
       ref={ref}
@@ -146,24 +197,43 @@ const Projects = () => {
             <Project key={project.name} project={project} />
           ))}
         </div>
-        <details className='more-projects mt-12 text-cream'>
-          <summary className='flex cursor-pointer items-center justify-between gap-4 rounded-xl border border-cream/30 bg-cream/5 px-5 py-5 transition-colors hover:border-cream/60 hover:bg-cream/10 sm:px-6 sm:py-6'>
+        <div className='more-projects mt-12 text-cream'>
+          <button
+            type='button'
+            aria-expanded={showMore}
+            aria-controls={morePanelId}
+            onClick={() => setShowMore((open) => !open)}
+            className='more-projects-toggle flex w-full cursor-pointer items-center justify-between gap-4 rounded-xl border border-cream/30 bg-cream/5 px-5 py-5 text-left transition-colors hover:border-cream/60 hover:bg-cream/10 sm:px-6 sm:py-6'
+          >
             <span className='flex flex-wrap items-center gap-3 text-2xl font-semibold text-white sm:text-3xl'>
               More projects
-              <span className='rounded-full border border-cream/30 px-3 py-1 text-sm font-medium text-cream'>{projects.filter((project) => !project.featured).length}</span>
+              <span className='rounded-full border border-cream/30 px-3 py-1 text-sm font-medium text-cream'>{moreProjects.length}</span>
             </span>
             <span aria-hidden='true' className='flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-cream/30'>
               <svg className='more-projects-chevron h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'>
                 <path d='m6 9 6 6 6-6' />
               </svg>
             </span>
-          </summary>
-          <div className='mt-10 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3'>
-            {projects.filter((project) => !project.featured).map((project) => (
-              <Project key={project.name} project={project} />
-            ))}
-          </div>
-        </details>
+          </button>
+          <motion.div
+            id={morePanelId}
+            initial='collapsed'
+            animate={showMore ? 'expanded' : 'collapsed'}
+            variants={morePanelVariants}
+            onAnimationStart={() => setMoreSettled(false)}
+            onAnimationComplete={(definition) => setMoreSettled(definition === 'expanded')}
+            // Let hackathon crowns and tooltips overflow the panel once it is fully open.
+            className={moreSettled ? 'overflow-visible' : 'overflow-hidden'}
+          >
+            <motion.div variants={moreGridVariants} className='grid grid-cols-1 gap-x-8 gap-y-12 pt-10 sm:grid-cols-2 lg:grid-cols-3'>
+              {moreProjects.map((project) => (
+                <motion.div key={project.name} className='grid' variants={moreProjectVariants}>
+                  <Project project={project} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </motion.section>
   );
