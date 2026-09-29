@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-type LinkType = 'github' | 'devpost' | 'site' | null;
+type LinkType = 'github' | 'devpost' | 'site' | 'linkedin' | null;
 
 interface CursorContextType {
   linkType: LinkType;

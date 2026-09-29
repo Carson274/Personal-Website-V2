@@ -9,6 +9,7 @@ import Project from './components/Project';
 import projectsJson from './data/projects.json';
 import { singleHop } from '@/app/utils/animations';
 import GitHubIcon from './components/GitHubIcon';
+import { profile } from '@/app/data/profile';
 
 export interface ProjectDetails {
   name: string;
@@ -106,16 +107,20 @@ const Projects = () => {
       <section className='z-0 relative about w-full h-auto md:h-1/5 mt-2 sm:mt-5 md:mt-10 text-center'>
         <h2 className='sr-only'>My projects</h2>
         <motion.div
-          aria-hidden='true'
           className='text-white flex flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-8 lg:mb-12'
           variants={containerVariants}
         >
           {"MY PR".split("").map((letter, index) => (
-            <motion.div key={index} custom={index} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
+            <motion.div aria-hidden='true' key={index} custom={index} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
               {letter}
             </motion.div>
           ))}
-          <motion.div className='flex justify-center' ref={githubRef} variants={githubVariants}
+          <motion.a className='flex justify-center' ref={githubRef} variants={githubVariants}
+            href={profile.github}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='Carson Secrest on GitHub'
+            data-cursor-link='github'
             onAnimationComplete={() => {
               githubControls.start("visible");
             }}
@@ -123,9 +128,9 @@ const Projects = () => {
               controls.start("hop");
             }}>
             <span aria-hidden='true' className='pointer-events-none'><GitHubIcon /></span>
-          </motion.div>
+          </motion.a>
           {"JECTS".split("").map((letter, index) => (
-            <motion.div key={index + 5} custom={index + 5} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
+            <motion.div aria-hidden='true' key={index + 5} custom={index + 5} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
               {letter}
             </motion.div>
           ))}

@@ -1,12 +1,9 @@
 import Image from "next/image";
 import { useId } from 'react';
 import type { ProjectDetails } from '../Projects';
-import { getCursorControls, getLinkControls } from '../../../components/CustomCursor/CustomCursor';
-import { useCursor } from '../../../components/CustomCursor/CursorContext';
 import AwardText from '@/app/components/AwardText';
 
 const Project = ({ project }: { project: ProjectDetails }) => {
-  const { setLinkType } = useCursor();
   const awardId = useId();
 
   const link = project.liveSite || project.devpost || project.github;
@@ -16,31 +13,6 @@ const Project = ({ project }: { project: ProjectDetails }) => {
     if (project.devpost) return 'devpost';
     if (project.github) return 'github';
     return null;
-  };
-  
-
-  const handleMouseEnter = () => {
-    setLinkType(getLinkType());
-
-    getCursorControls()?.start({
-      opacity: 1,
-      scale: 3,
-      transition: { duration: 0.1, ease: "easeOut" }
-    });
-    getLinkControls()?.start({
-      opacity: 1,
-      scale: 2,
-      transition: { duration: 0.2, ease: 'easeOut' },
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setLinkType(null);
-    const disappearAnimation = {
-      opacity: 0, scale: 0.01 
-    };
-    getCursorControls()?.start(disappearAnimation);
-    getLinkControls()?.start(disappearAnimation);
   };
 
   const links = [
@@ -57,8 +29,7 @@ const Project = ({ project }: { project: ProjectDetails }) => {
         rel='noopener noreferrer'
         aria-label={`${project.name} — ${project.liveSite ? 'live demo' : project.devpost ? 'hackathon submission' : 'GitHub'}`}
         aria-describedby={project.hackathon ? awardId : undefined}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        data-cursor-link={getLinkType()}
         className='project-preview relative mb-5 block w-full'
       >
         <div className='relative aspect-video overflow-hidden rounded-xl border border-cream/20'>

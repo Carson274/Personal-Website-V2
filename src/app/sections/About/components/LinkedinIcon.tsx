@@ -19,6 +19,8 @@ function LinkedinIcon({ className }: LinkedinIconProps) {
       className={`flex ${className ?? 'justify-end'}`}
       href='https://www.linkedin.com/in/carson-secrest'
       target='_blank'
+      rel='noopener noreferrer'
+      data-cursor-link='linkedin'
       animate={linkedinControls}
       variants={linkedinVariants}
       whileInView={linkedinVariants.hop}
