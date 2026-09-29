@@ -45,9 +45,9 @@ const Project = ({ project }: { project: ProjectDetails }) => {
   };
 
   return (
-    <div className='relative w-full mb-8'>
-      <div className='flex flex-col items-center justify-center mx-6'>
-        <h2 className='text-white text-xl sm:text-2xl md:text-base lg:text-2xl my-8 font-bold text-center'>{project.name}</h2>
+    <div className='relative w-full mb-6 sm:mb-8'>
+      <div className='flex flex-col items-center justify-center'>
+        <h2 className='text-white text-lg sm:text-xl lg:text-2xl my-5 sm:my-6 lg:my-8 font-bold text-center'>{project.name}</h2>
         <a href={link} target="_blank" className='w-full block'>
           <div
             className='project-card relative w-full'
@@ -89,7 +89,7 @@ const Project = ({ project }: { project: ProjectDetails }) => {
                 src={project.imagePath} 
                 alt={project.name} 
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 priority={project.priority}
               />
             </div>

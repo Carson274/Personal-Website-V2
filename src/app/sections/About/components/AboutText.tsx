@@ -6,7 +6,7 @@ export default function AboutText() {
   return (
     <section
       aria-labelledby='about-intro'
-      className='flex w-full max-w-xl flex-col items-start gap-0 text-left lg:max-w-[26rem]'
+      className='flex w-full max-w-xl flex-col items-start gap-0 text-left'
     >
       <div
         id='about-intro'

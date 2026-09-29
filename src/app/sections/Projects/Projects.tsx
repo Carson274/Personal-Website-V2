@@ -126,7 +126,7 @@ const Projects = () => {
           ))}
         </motion.div>
       </section>
-      <section className='grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-3'>
+      <section className='grid grid-cols-1 gap-y-2 px-6 sm:grid-cols-2 sm:gap-x-6 sm:px-10 lg:grid-cols-3 lg:gap-x-8 lg:px-16 xl:px-20'>
         {projects.map((project, index) => (
           <Project key={index} project={project} />
         ))}

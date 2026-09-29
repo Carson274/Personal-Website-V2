@@ -6,7 +6,7 @@ import './About.css';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import AboutText from './components/AboutText';
-import { useMdUp } from '@/app/hooks/useMdUp';
+import { useLgUp } from '@/app/hooks/useMdUp';
 
 const About = () => {
   const controls = useAnimation();
@@ -51,7 +51,7 @@ const About = () => {
     }),
   };
 
-  const mdUp = useMdUp();
+  const lgUp = useLgUp();
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
@@ -77,11 +77,11 @@ const About = () => {
           ))}
         </motion.div>
       </section>
-      <section className='about-section z-10 flex flex-col mt-6 mb-12 gap-10 md:my-0 md:gap-0 md:flex-row w-full justify-center items-center'>
-        <div className='relative z-0 flex w-full md:w-1/2 h-full px-6 pt-2 pb-0 md:p-8 justify-center'>
+      <section className='about-section z-10 mx-auto flex w-full max-w-6xl flex-col mt-6 mb-12 gap-10 px-6 justify-center items-center lg:my-0 lg:flex-row lg:gap-0 lg:px-10'>
+        <div className='relative z-0 flex h-full w-full pt-2 pb-0 justify-center lg:w-[45%] lg:py-8 lg:pr-8'>
           <motion.div 
-            style={mdUp ? { y } : undefined}
-            className='image relative z-0 mt-4 md:mt-24 lg:mt-32 w-full rounded-2xl flex justify-center items-center'
+            style={lgUp ? { y } : undefined}
+            className='image relative z-0 mt-4 lg:mt-32 w-full rounded-2xl flex justify-center items-center'
           >
             <div style={{ position: 'relative', width: '360px', height: '420px' }}>
               <Image
@@ -95,7 +95,7 @@ const About = () => {
             </div>
           </motion.div>
         </div>
-        <div className='text-div relative z-10 flex w-full flex-col items-start justify-start px-6 pb-6 pt-2 md:h-full md:w-1/2 md:justify-center md:pb-14 md:pl-10 md:pr-14 md:pt-0'>
+        <div className='text-div relative z-10 flex w-full flex-col items-center justify-start pb-6 pt-2 lg:h-full lg:w-[55%] lg:items-start lg:justify-center lg:pb-14 lg:pl-10 lg:pt-0'>
           <AboutText/>
         </div>
       </section>

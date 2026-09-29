@@ -86,8 +86,6 @@ function buildTimeline(events: EventDetails[], careers: CareerDetails[]): Timeli
 
 const COLUMN_WIDTH = 260;
 const COLUMN_GAP = 24;
-const MD_COLUMN_WIDTH = 300;
-const PADDING_LEFT = 80;
 const MAIN_LINE_CENTER_Y = 20;
 const BRANCH_BASE_Y = 26;
 const BRANCH_LEVEL_STEP = 6;
@@ -108,19 +106,53 @@ const VersionHistory = () => {
     const timeline = useMemo(() => buildTimeline(events, careers), [events, careers]);
 
     const scrollRef = useRef<HTMLDivElement>(null);
-    const [colWidth, setColWidth] = useState(COLUMN_WIDTH);
+    const columnRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
     const [hasUserScrolled, setHasUserScrolled] = useState(false);
 
+    /**
+     * Branch lines are absolutely positioned inside .version-scroll, so their x
+     * coordinates have to match the columns exactly. Measuring the real columns
+     * keeps that in sync with the CSS (column width and the responsive
+     * `clamp()` side padding) instead of re-deriving it from constants here.
+     */
+    const [columnCenters, setColumnCenters] = useState<number[]>([]);
+    const [columnStep, setColumnStep] = useState(COLUMN_WIDTH + COLUMN_GAP);
+
     useEffect(() => {
-        const updateWidth = () => {
-            setColWidth(window.innerWidth >= 768 ? MD_COLUMN_WIDTH : COLUMN_WIDTH);
+        const measure = () => {
+            const centers = columnRefs.current.map((el) =>
+                el ? el.offsetLeft + el.offsetWidth / 2 : Number.NaN
+            );
+            setColumnCenters((prev) =>
+                prev.length === centers.length && prev.every((c, i) => Object.is(c, centers[i]))
+                    ? prev
+                    : centers
+            );
+            const first = columnRefs.current[0];
+            const second = columnRefs.current[1];
+            if (first) {
+                const step = second
+                    ? second.offsetLeft - first.offsetLeft
+                    : first.offsetWidth + COLUMN_GAP;
+                setColumnStep((prev) => (prev === step ? prev : step));
+            }
         };
-        updateWidth();
-        window.addEventListener('resize', updateWidth);
-        return () => window.removeEventListener('resize', updateWidth);
-    }, []);
+
+        measure();
+
+        const observer = new ResizeObserver(measure);
+        if (scrollRef.current) {
+            observer.observe(scrollRef.current);
+        }
+        columnRefs.current.forEach((el) => el && observer.observe(el));
+        window.addEventListener('resize', measure);
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('resize', measure);
+        };
+    }, [timeline]);
 
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -156,14 +188,14 @@ const VersionHistory = () => {
                 return;
             }
             setHasUserScrolled(true);
-            scrollRef.current.scrollBy({ left: dir * (colWidth + COLUMN_GAP) * 2, behavior: 'smooth' });
+            scrollRef.current.scrollBy({ left: dir * columnStep * 2, behavior: 'smooth' });
         }
     };
 
     useEffect(() => {
         const id = window.requestAnimationFrame(updateEdgeState);
         return () => window.cancelAnimationFrame(id);
-    }, [colWidth, timeline]);
+    }, [columnStep, timeline]);
 
     const containerVariants = {
         hidden: { opacity: 1 },
@@ -346,8 +378,11 @@ const VersionHistory = () => {
                 <div className='timeline-line' />
                 <div className='version-scroll' ref={scrollRef} onScroll={handleScroll}>
                     {branchLines.map((branch, i) => {
-                        const startX = PADDING_LEFT + branch.startCol * (colWidth + COLUMN_GAP) + colWidth / 2;
-                        const endX = PADDING_LEFT + branch.endCol * (colWidth + COLUMN_GAP) + colWidth / 2;
+                        const startX = columnCenters[branch.startCol];
+                        const endX = columnCenters[branch.endCol];
+                        if (!Number.isFinite(startX) || !Number.isFinite(endX)) {
+                            return null;
+                        }
                         const branchY = BRANCH_BASE_Y + branch.level * BRANCH_LEVEL_STEP;
                         const leftX = Math.min(startX, endX);
                         const lineWidth = Math.abs(endX - startX);
@@ -383,7 +418,11 @@ const VersionHistory = () => {
                                 : -NODE_RADIUS;
                             const connectorHeight = connectorHeightToDate(nodeMarginTop);
                             return (
-                                <div key={`event-${index}`} className='event-column'>
+                                <div
+                                    key={`event-${index}`}
+                                    ref={(el) => { columnRefs.current[index] = el; }}
+                                    className='event-column'
+                                >
                                     <div
                                         className='event-node'
                                         style={{
@@ -424,7 +463,11 @@ const VersionHistory = () => {
                             const nodeMarginTop = isMainLineCareerNode ? -NODE_RADIUS : 0;
                             const connectorHeight = connectorHeightToDate(nodeMarginTop);
                             return (
-                                <div key={`career-${index}`} className='event-column'>
+                                <div
+                                    key={`career-${index}`}
+                                    ref={(el) => { columnRefs.current[index] = el; }}
+                                    className='event-column'
+                                >
                                     <div
                                         className='event-node'
                                         style={{ borderColor: c.color, background: '#000', marginTop: `${nodeMarginTop}px` }}
