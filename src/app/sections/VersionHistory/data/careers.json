@@ -1,34 +1,38 @@
 [
-    {
-        "name": "CASS",
-        "role": "Software Developer",
-        "color": "#FFD700",
-        "startMonth": "May 2024",
-        "endMonth": "May 2026",
-        "url": "https://cass.oregonstate.edu/"
-    },
-    {
-        "name": "ACM",
-        "role": "Officer",
-        "color": "#FF6B00",
-        "startMonth": "June 2024",
-        "endMonth": "June 2025",
-        "url": "https://acm.oregonstate.edu/"
-    },
-    {
-        "name": "Workiva",
-        "role": "Software Engineer Intern",
-        "color": "#00B140",
-        "startMonth": "June 2025",
-        "endMonth": "September 2025",
-        "url": "https://www.workiva.com/"
-    },
-    {
-        "name": "Netflix",
-        "role": "Software Engineer Intern",
-        "color": "#E50914",
-        "startMonth": "June 2026",
-        "endMonth": null,
-        "url": "https://www.netflix.com/"
-    }
+  {
+    "name": "CASS",
+    "role": "Software Developer",
+    "color": "#FFD700",
+    "startMonth": "May 2024",
+    "endMonth": "June 2025",
+    "url": "https://cass.oregonstate.edu/",
+    "summary": "Led 8 developers and researchers on a healthcare supply-chain platform built with React and containerized Flask services."
+  },
+  {
+    "name": "ACM",
+    "role": "Officer",
+    "color": "#FF6B00",
+    "startMonth": "June 2024",
+    "endMonth": "June 2025",
+    "url": "https://acm.oregonstate.edu/",
+    "summary": "Helped run campus events and created social content for Oregon State\u2019s computing community."
+  },
+  {
+    "name": "Workiva",
+    "role": "Software Engineer Intern",
+    "color": "#00B140",
+    "startMonth": "June 2025",
+    "endMonth": "September 2025",
+    "url": "https://www.workiva.com/",
+    "summary": "Shipped 20+ production fixes and wrote 100+ tests for the Sustainability platform; built AWS SQS dead-letter queues for resilient migrations."
+  },
+  {
+    "name": "Netflix",
+    "role": "Software Engineer Intern",
+    "color": "#E50914",
+    "startMonth": "June 2026",
+    "endMonth": "September 2026",
+    "url": "https://www.netflix.com/",
+    "summary": "Built CI test pipelines and developer tooling for an internal UI platform serving 300+ apps across 20+ teams."
+  }
 ]

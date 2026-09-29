@@ -1,0 +1,48 @@
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.back-to-top-arrows {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  font-size: 16px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.back-to-top-arrow {
+  position: absolute;
+  inset: 0;
+  text-align: center;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 250ms ease;
+}
+
+.back-to-top-arrow-incoming {
+  transform: translateY(40px);
+  opacity: 0;
+}
+
+.back-to-top:is(:hover, :focus-visible) .back-to-top-arrow {
+  transform: translateY(-40px);
+  opacity: 0;
+}
+
+.back-to-top:is(:hover, :focus-visible) .back-to-top-arrow-incoming {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top .back-to-top-arrow {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .back-to-top .back-to-top-arrow-incoming {
+    display: none;
+  }
+}

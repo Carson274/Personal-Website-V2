@@ -9,11 +9,13 @@ import NavBar from "./components/NavBar";
 export default function Home() {
   return (
     <SmoothScroll>
-      <Hero />
       <NavBar />
-      <About />
-      <VersionHistory />
-      <Projects />
+      <main className='w-full'>
+        <Hero />
+        <About />
+        <VersionHistory />
+        <Projects />
+      </main>
       <Footer />
     </SmoothScroll>
   );

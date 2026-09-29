@@ -38,6 +38,7 @@ interface CareerDetails {
     endMonth: string | null;
     url: string | null;
     state?: 'active' | 'incoming';
+    summary?: string;
 }
 
 type TimelineItem =
@@ -188,13 +189,18 @@ const VersionHistory = () => {
                 return;
             }
             setHasUserScrolled(true);
-            scrollRef.current.scrollBy({ left: dir * columnStep * 2, behavior: 'smooth' });
+            scrollRef.current.scrollBy({ left: dir * columnStep * (scrollRef.current.clientWidth < 640 ? 1 : 2), behavior: 'smooth' });
         }
     };
 
     useEffect(() => {
         const id = window.requestAnimationFrame(updateEdgeState);
-        return () => window.cancelAnimationFrame(id);
+        const observer = new ResizeObserver(updateEdgeState);
+        if (scrollRef.current) observer.observe(scrollRef.current);
+        return () => {
+            window.cancelAnimationFrame(id);
+            observer.disconnect();
+        };
     }, [columnStep, timeline]);
 
     const containerVariants = {
@@ -222,22 +228,6 @@ const VersionHistory = () => {
                 delay: index * 0.04 + 0.32,
             },
         }),
-    };
-
-    /** After last letter delay (same formula as letterVariants) + settle */
-    const subtitleFadeDelay =
-        0.32 + (8 + 'HISTORY'.length - 1) * 0.04 + 0.3;
-
-    const subtitleVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 0.72,
-            transition: {
-                delay: subtitleFadeDelay,
-                duration: 0.55,
-                ease: [0.45, 0.8, 0.5, 0.95],
-            },
-        },
     };
 
     const branchLines: { startCol: number; endCol: number; color: string; level: number }[] = [];
@@ -291,13 +281,15 @@ const VersionHistory = () => {
         <motion.section
             ref={ref}
             id="version-control"
-            className='flex flex-col bg-black w-full z-10 -mt-1 pb-8 md:pb-14 lg:pb-20'
+            className='flex flex-col bg-black w-full z-10 -mt-1 pb-8 md:pb-12'
             initial="hidden"
             animate={controls}
             variants={containerVariants}
         >
-            <section className='w-full mt-10 md:mt-16 lg:mt-20 text-center'>
+            <section className='w-full mt-6 md:mt-10 text-center'>
+                <h2 className='sr-only'>Version history — experience</h2>
                 <motion.div
+                    aria-hidden='true'
                     className='text-white flex flex-col sm:flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-1 sm:mb-4'
                     variants={containerVariants}
                 >
@@ -325,14 +317,7 @@ const VersionHistory = () => {
                         ))}
                     </div>
                 </motion.div>
-                <motion.p
-                    className='text-[#f5f0e6] italic text-base sm:text-lg md:text-xl font-medium tracking-wide mt-1 sm:mt-2 px-4'
-                    initial='hidden'
-                    animate={controls}
-                    variants={subtitleVariants}
-                >
-                    In reverse chronological order
-                </motion.p>
+                <p className='mt-2 px-4 text-xs text-cream/70'>Newest first · Scroll sideways to see more <span aria-hidden='true'>→</span></p>
             </section>
 
             <div className='timeline-row mt-4 relative'>
@@ -341,7 +326,7 @@ const VersionHistory = () => {
                     disabled={!hasUserScrolled || !canScrollLeft}
                     aria-hidden={!hasUserScrolled}
                     tabIndex={!hasUserScrolled ? -1 : 0}
-                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full border shadow-lg transition-opacity duration-300 ${
+                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full border shadow-lg transition-opacity duration-300 ${
                         !hasUserScrolled
                             ? 'opacity-0 pointer-events-none bg-coffee border-brown text-cream'
                             : !canScrollLeft
@@ -361,7 +346,7 @@ const VersionHistory = () => {
                     transition={!hasUserScrolled && canScrollRight
                         ? { duration: 1.2, repeat: Infinity, repeatDelay: 0.5, ease: 'easeInOut' }
                         : { duration: 0.2 }}
-                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full border shadow-lg transition-colors ${
+                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full border shadow-lg transition-colors ${
                         !canScrollRight
                             ? 'bg-coffee/40 border-brown/40 text-cream/40 cursor-not-allowed'
                             : !hasUserScrolled
@@ -376,7 +361,7 @@ const VersionHistory = () => {
                 </motion.button>
 
                 <div className='timeline-line' />
-                <div className='version-scroll' ref={scrollRef} onScroll={handleScroll}>
+                <div className='version-scroll' ref={scrollRef} onScroll={handleScroll} tabIndex={0} role='region' aria-label='Career timeline, newest first'>
                     {branchLines.map((branch, i) => {
                         const startX = columnCenters[branch.startCol];
                         const endX = columnCenters[branch.endCol];
@@ -487,16 +472,19 @@ const VersionHistory = () => {
                                             name={c.name}
                                             role={c.role}
                                             color={c.color}
-                                            url={c.url}
                                             logoSrc={getCareerLogoSrc(c.name)}
+                                            period={`${c.startMonth} – ${c.endMonth || 'Present'}`}
+                                            summary={c.summary}
                                         />
                                     ) : (
                                         <CareerCard
                                             name={c.name}
                                             role={c.role}
                                             color={c.color}
-                                            url={c.url}
                                             logoSrc={getCareerLogoSrc(c.name)}
+                                            status={isStart ? 'Started' : isIncoming ? 'Incoming' : 'Finished'}
+                                            period={isIncoming ? `Starting ${c.startMonth}` : `${c.startMonth} – ${c.endMonth || 'Present'}`}
+                                            summary={!isStart && !isIncoming ? c.summary : undefined}
                                         />
                                     )}
                                 </div>

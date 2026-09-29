@@ -1,22 +1,5 @@
-import React from 'react';
+import Image from 'next/image';
 
 export default function GitHubIcon() {
-  return (
-    <a
-      className='flex items-center justify-center'
-      href='https://github.com/Carson274'
-      target='_blank'
-    >
-      <img
-        className='github-rolling-icon'
-        src='/images/GitHub.svg'
-        alt='GitHub'
-        style={{
-          height: '1em',
-          width: '1em',
-          display: 'block',
-        }}
-      />
-    </a>
-  )
+  return <Image className='github-rolling-icon' src='/images/GitHub.svg' alt='' width={96} height={96} style={{ height: '1em', width: '1em', display: 'block' }} />;
 }

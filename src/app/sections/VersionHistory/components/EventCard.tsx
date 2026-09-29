@@ -60,7 +60,7 @@ const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor 
             transition={{ duration: 0.3, delay: 0, ease: [0.45, 0.8, 0.5, 0.95] }}
         >
             <div
-                className={`bg-grey rounded-xl p-3 flex flex-col h-[25rem] md:h-[26rem] ${
+                className={`timeline-card-body bg-grey rounded-xl p-3 flex flex-col ${
                     careerColor ? '' : 'border-2'
                 }`}
                 style={

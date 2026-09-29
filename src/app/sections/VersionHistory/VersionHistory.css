@@ -76,6 +76,10 @@
     transition: transform 0.3s ease;
 }
 
+.timeline-card-body {
+    height: 25rem;
+}
+
 .event-card:hover {
     transform: translateY(-4px);
 }
@@ -94,6 +98,9 @@
 }
 
 @media (min-width: 768px) {
+    .timeline-card-body {
+        height: 26rem;
+    }
     .version-scroll {
         padding: 20px 5rem 1.5rem;
     }

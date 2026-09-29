@@ -2,6 +2,10 @@
   transform: translateX(-100%);
 }
 
+.about-panel {
+  border-radius: var(--about-radius) var(--about-radius) 0 0;
+}
+
 /* Fixed height clipped tall stacks on narrow viewports so the bio could
    overflow and overlap the Version History section in document paint order. */
 .about-section {
@@ -10,7 +14,7 @@
 
 @media (min-width: 1024px) {
   .about-section {
-    min-height: 80vh;
+    min-height: 0;
   }
 }
 

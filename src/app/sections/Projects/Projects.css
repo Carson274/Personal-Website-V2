@@ -1,3 +1,23 @@
+.more-projects > summary {
+  list-style: none;
+}
+
+.more-projects > summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-projects-chevron {
+  transition: transform 220ms ease;
+}
+
+.more-projects[open] .more-projects-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .more-projects-chevron { transition: none; }
+}
+
 .project-image {
   transform: scale(1);
   transition: transform 0.5s;
@@ -41,11 +61,11 @@
 
 .crown-tooltip {
   position: absolute;
-  top: 9%;
-  right: 5%;
+  top: calc(100% + 10px);
+  right: 0;
   z-index: 30;
   width: max-content;
-  max-width: min(62%, 220px);
+  max-width: min(65vw, 220px);
   padding: 7px 10px;
   border-radius: 9px;
   background: rgba(18, 18, 18, 0.96);
@@ -56,16 +76,46 @@
   font-weight: 500;
   text-align: left;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
-  pointer-events: none;
+  visibility: hidden;
   opacity: 0;
   transform: translateY(-4px) scale(0.97);
   transform-origin: top right;
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
-.crown-tooltip--visible {
+.crown-host:hover .crown-tooltip,
+.project-preview:focus-visible .crown-tooltip {
+  visibility: visible;
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+/* Bridge the gap so the tooltip remains open when the pointer reaches it. */
+.crown-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+.award-placement {
+  color: #e9c665;
+  font-weight: 600;
+}
+
+.award-gemini {
+  color: #c2a5ff;
+  font-weight: 600;
+  background: linear-gradient(100deg, #8ab4ff, #c5a1ff 35%, #f4a0c7 65%, #f6c96e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (forced-colors: active) {
+  .award-gemini { background: none; -webkit-text-fill-color: currentColor; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -73,7 +123,8 @@
     transition: opacity 0.18s ease;
     transform: none;
   }
-  .crown-tooltip--visible {
+  .crown-host:hover .crown-tooltip,
+  .project-preview:focus-visible .crown-tooltip {
     transform: none;
   }
 }
@@ -96,7 +147,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card:hover .crown-shine {
+  .crown-host:hover .crown-shine {
     animation: none;
   }
 }

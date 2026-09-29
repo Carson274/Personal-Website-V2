@@ -3,16 +3,31 @@
     "name": "Poses for Dummies",
     "imagePath": "/images/Poses_for_Dummies.png",
     "liveSite": "https://quackhacks3.seufert.workers.dev",
-    "devpost": "",
-    "github": "",
-    "hackathon": "Won 3rd place in the Pipeworks track at QuackHacks 3 in 2026."
+    "devpost": "https://2026.quackhacks.org/projects/poses-for-dummies",
+    "github": "https://github.com/mileshs/quackhacks3",
+    "hackathon": "Won 3rd place in the Pipeworks track at QuackHacks 3 in 2026.",
+    "description": "A webcam game where players match their bodies to incoming shapes in time with the beat.",
+    "technologies": [
+      "React",
+      "MediaPipe",
+      "Cloudflare Workers"
+    ],
+    "source": "https://2026.quackhacks.org/projects/poses-for-dummies",
+    "featured": true,
+    "contribution": "I mapped pose landmarks to joint rotations and synchronized multiplayer state over WebSockets."
   },
   {
     "name": "Accent Guessr",
     "imagePath": "/images/Accent_Guessr.png",
     "liveSite": "https://accent-guessr.vercel.app/",
     "devpost": "",
-    "github": "https://github.com/Carson274/Accent-Guessr"
+    "github": "https://github.com/Carson274/Accent-Guessr",
+    "description": "Guess where accents and languages come from, solo or with friends on an interactive map.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Express"
+    ]
   },
   {
     "name": "Box Office Battles",
@@ -20,29 +35,55 @@
     "liveSite": "",
     "devpost": "https://devpost.com/software/box-office-battles",
     "github": "https://github.com/Carson274/Box-Office-Battles",
-    "hackathon": "Won 2nd place overall at BeaverHacks 2024."
+    "hackathon": "Won 2nd place overall at BeaverHacks 2024.",
+    "description": "A higher-or-lower movie game with box office matchups and a shared leaderboard.",
+    "contribution": "I built the Express API and MongoDB integration, created movie animations, and worked on the AWS deployment.",
+    "technologies": [
+      "React",
+      "Express",
+      "MongoDB"
+    ],
+    "featured": true,
+    "source": "https://devpost.com/software/box-office-battles"
   },
   {
     "name": "SPOOT",
     "imagePath": "/images/Spoot_Thumbnail.png",
     "liveSite": "",
-    "devpost": "",
+    "devpost": "https://judge.beaverhacks.org/cmlfqho300000kv04wi9199a5/projects/cmoq6kaau00yzjv04otw9fqd8",
     "github": "https://github.com/Jakhangir18/BeaverHacks-2026",
-    "hackathon": "Won 3rd place in the Gemini track at BeaverHacks 2026."
+    "hackathon": "Won 3rd place in the Gemini track at BeaverHacks 2026.",
+    "description": "A wearable sound-direction tracker that turns nearby speech into visual cues.",
+    "contribution": "I built the OLED display, integrated Gemini, and helped map microphone direction data.",
+    "technologies": [
+      "Python",
+      "Gemini",
+      "Raspberry Pi"
+    ],
+    "featured": true
   },
   {
     "name": "Student Milestone Quiz",
     "imagePath": "/images/Beaver_Purity.png",
     "liveSite": "https://beaverpurity.com/",
     "devpost": "",
-    "github": "https://github.com/Carson274/BeaverCsPurity"
+    "github": "https://github.com/Carson274/BeaverCsPurity",
+    "description": "A checklist of the shared experiences that come with studying computer science at Oregon State.",
+    "technologies": []
   },
   {
     "name": "Campus View",
     "imagePath": "/images/Campus_View.png",
     "liveSite": "",
     "devpost": "",
-    "github": "https://github.com/Carson274/CampusView"
+    "github": "https://github.com/Carson274/CampusView",
+    "description": "An OSU companion app for dining menus, club schedules, and rated study spots.",
+    "contribution": "I worked on the React Native frontend as part of the mobile development team.",
+    "technologies": [
+      "React Native",
+      "Expo",
+      "Flask"
+    ]
   },
   {
     "name": "Slumped Stats",
@@ -50,50 +91,87 @@
     "liveSite": "",
     "devpost": "https://devpost.com/software/slumped-stats",
     "github": "https://github.com/Carson274/Sleep-App",
-    "hackathon": "Won 2nd place overall at App Development Club's winter hackathon in 2024."
+    "hackathon": "Won 2nd place overall at App Development Club's winter hackathon in 2024.",
+    "description": "Track your sleep and compare it with friends to make better rest a friendly competition.",
+    "technologies": [
+      "React Native",
+      "Go",
+      "MongoDB"
+    ]
   },
   {
     "name": "Roll Call Brawl",
     "imagePath": "/images/Roll_Call_Brawl.jpg",
     "liveSite": "",
     "devpost": "https://devpost.com/software/roll-call-brawl",
-    "github": "https://github.com/Carson274/Roll-Call-Brawl"
+    "github": "https://github.com/Carson274/Roll-Call-Brawl",
+    "description": "A class-attendance game with location-based check-ins and friendly competition.",
+    "contribution": "I designed the data schema and workflow, configured the serverless API, and connected client requests.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Firebase"
+    ]
   },
   {
     "name": "Playlist Polyglot",
     "imagePath": "/images/Playlist_Polyglot.png",
     "liveSite": "",
     "devpost": "",
-    "github": "https://github.com/Carson274/Playlist-Polyglot"
+    "github": "https://github.com/Carson274/Playlist-Polyglot",
+    "description": "Learn vocabulary from your Spotify playlists by translating words from song lyrics.",
+    "technologies": [
+      "React",
+      "Express",
+      "Spotify API"
+    ]
   },
   {
     "name": "Crowd",
     "imagePath": "/images/Crowd.png",
     "liveSite": "",
     "devpost": "https://devpost.com/software/crowd-fjct15",
-    "github": "https://github.com/sebat2004/crowd"
+    "github": "https://github.com/sebat2004/crowd",
+    "description": "Discover nearby events, register for tickets, and organize events of your own.",
+    "technologies": [
+      "React Native",
+      "Express",
+      "MongoDB"
+    ]
   },
   {
     "name": "PurSend",
     "imagePath": "/images/PurSend.png",
-    "priority": true,
     "liveSite": "",
     "devpost": "https://devpost.com/software/pursend",
     "github": "https://github.com/ipoogleduck/PurSend",
-    "hackathon": "Won 1st place overall at App Development Club's spring hackathon in 2024."
+    "hackathon": "Won 1st place overall at App Development Club's spring hackathon in 2024.",
+    "description": "A payment prototype connecting Discord and Telegram bots with a mobile transaction dashboard.",
+    "technologies": [
+      "SwiftUI",
+      "TypeScript",
+      "Firebase"
+    ]
   },
   {
     "name": "Personal Website v1",
     "imagePath": "/images/Personal_Website_v1.png",
     "liveSite": "https://carson274.github.io/Personal-Website",
     "devpost": "",
-    "github": "https://github.com/Carson274/Personal-Website"
+    "github": "https://github.com/Carson274/Personal-Website",
+    "description": "The first version of my personal portfolio, and a look at where this site began.",
+    "technologies": []
   },
   {
     "name": "LinguaSketch",
     "imagePath": "/images/LinguaSketch.png",
     "liveSite": "",
     "devpost": "",
-    "github": "https://github.com/sebat2004/linguasketch"
+    "github": "https://github.com/sebat2004/linguasketch",
+    "description": "A language-learning app that pairs flashcards with your own drawings.",
+    "technologies": [
+      "React Native",
+      "Expo"
+    ]
   }
 ]

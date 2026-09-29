@@ -1,54 +1,13 @@
-'use client'
-
-import React, { useEffect } from 'react';
-import Image from "next/image";
+import Image from 'next/image';
+import { profile } from '@/app/data/profile';
 import './Hero.css';
-import { useScroll, useTransform, motion } from "framer-motion"
 
 const Hero = () => {
-  useEffect(() => {
-    const logo = document.querySelector<HTMLElement>('.logo')!;
-    const secrest = document.querySelector<HTMLElement>('.secrest')!;
-    const carson = document.querySelector<HTMLElement>('.carson')!;
-
-    logo.style.animation = 'heroLogoSlideLeft 1.2s 0.0s cubic-bezier(0.215, 0.610, 0.355, 1) forwards';
-
-    setTimeout(() => {
-      // make each letter in carson slide up one at a time
-      Array.from(carson.children).forEach((letter, index) => {
-        if (letter.tagName === 'SECTION') {
-          (letter as HTMLElement).style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
-        }
-      });
-      
-      setTimeout(() => {
-        // make each letter in secrest slide up one at a time
-        Array.from(secrest.children).forEach((letter, index) => {
-          if (letter.tagName === 'SECTION') {
-            (letter as HTMLElement).style.animation = `slideUp 0.6s ${index * 0.02}s ease forwards`;
-          }
-        });
-      }, 400);
-    }, 400);
-
-    const scroll = document.querySelector<HTMLElement>('.scroll')!;
-
-    // make the scroll text slideDown infinitely
-    scroll.style.animation = 'slideDown 1.5s 1s cubic-bezier(0.87, 0, 0.13, 1) infinite';
-
-  }, []);
-
-  const { scrollYProgress } = useScroll();
-
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-
   return (
-    <section className='hero relative top-0 flex justify-center items-center min-h-screen bg-light-cream w-full sticky'>
-      <motion.div
-        style={{ opacity }}
-        className='relative flex min-h-[100dvh] w-full justify-center items-center'
-      >
-        <div className='logo-div flex items-center'>
+    <section aria-labelledby='hero-title' className='hero relative flex w-full flex-col items-center justify-center bg-light-cream px-6 pb-32 pt-12 text-coffee'>
+      <h1 id='hero-title' className='sr-only'>Carson Secrest — software developer</h1>
+      <div className='flex w-full flex-col items-center'>
+        <div aria-hidden='true' className='logo-div relative flex h-44 w-44 scale-[0.8] items-center sm:scale-100'>
           <div className='logo z-10 relative w-44 h-44'>
             <Image src="/images/Logo_Dark.svg" alt="Logo" fill className="object-contain" priority />
           </div>
@@ -73,15 +32,26 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className='pointer-events-none absolute bottom-12 right-0 hidden md:flex md:flex-col md:items-center md:justify-center md:space-y-8'>
-          <div className='scroll-text rotate-90 text-body-3'>scroll</div>
-          <div className='relative h-1 w-10 rotate-90 overflow-hidden mr-1'>
-            <div className='scroll absolute h-[0.08em] w-10 translate-x-10 bg-coffee'></div>
+        <div className='mt-12 max-w-md text-center sm:mt-16'>
+          <p className='text-sm text-coffee/80'>Computer Science at Oregon State · Web, mobile & AI</p>
+          <div className='mt-7 flex flex-wrap justify-center gap-3'>
+            <a href='#projects' className='rounded-full bg-coffee px-6 py-3 text-sm font-medium text-light-cream transition-colors hover:bg-brown'>View projects ↓</a>
+            {profile.resumeUrl ? (
+              <a href={profile.resumeUrl} target='_blank' rel='noopener noreferrer' className='rounded-full border border-coffee/30 px-6 py-3 text-sm font-medium hover:bg-coffee/5'>Resume ↗</a>
+            ) : (
+              <a href='#contact' className='rounded-full border border-coffee/30 px-6 py-3 text-sm font-medium hover:bg-coffee/5'>Get in touch ↗</a>
+            )}
           </div>
         </div>
-      </motion.div>
+      </div>
+      <a href='#about' className='absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3 rounded px-4 py-2 text-coffee/75'>
+        <span className='whitespace-nowrap text-[10px] tracking-widest'>SCROLL TO EXPLORE</span>
+        <svg aria-hidden='true' className='hero-scroll-arrow h-7 w-7' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'>
+          <path d='M12 4v16m-6-6 6 6 6-6' />
+        </svg>
+      </a>
     </section>
-  )
+  );
 }
 
 export default Hero;

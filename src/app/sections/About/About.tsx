@@ -14,9 +14,7 @@ const About = () => {
     triggerOnce: true,
     rootMargin: '-140px 0px',
   });
-  const [bottomRef, bottomInView] = useInView({
-    rootMargin: '0px 0px',
-  });
+
 
   useEffect(() => {
     if (inView) {
@@ -59,14 +57,16 @@ const About = () => {
     <motion.section
       ref={ref}
       id="about"
-      className='flex flex-col bg-black w-full z-20 min-h-screen border-t-8 border-black'
+      className='about-panel flex flex-col bg-black w-full z-20 pb-10 sm:pb-14'
       initial="hidden"
       animate={controls}
       variants={containerVariants}
     >
-      <section className='z-0 relative about w-full h-1/5 mt-12 md:mt-20 text-center'>
+      <section className='z-0 relative about w-full h-auto mt-12 md:mt-16 text-center'>
         <div className='absolute top-full left-0 w-full h-full z-20 bg-black'></div>
+        <h2 className='sr-only'>About me</h2>
         <motion.div
+          aria-hidden='true'
           className='text-white flex flex-row items-center justify-center mb-6 text-5xl sm:mb-12 sm:text-6xl md:mb-0 md:text-6xl lg:text-8xl font-bold my-2'
           variants={containerVariants}
         >
@@ -77,19 +77,19 @@ const About = () => {
           ))}
         </motion.div>
       </section>
-      <section className='about-section z-10 mx-auto flex w-full max-w-6xl flex-col mt-6 mb-12 gap-10 px-6 justify-center items-center lg:my-0 lg:flex-row lg:gap-0 lg:px-10'>
+      <section className='about-section z-10 mx-auto flex w-full max-w-6xl flex-col mt-6 mb-0 gap-6 px-6 justify-center items-center lg:my-0 lg:flex-row lg:gap-0 lg:px-10'>
         <div className='relative z-0 flex h-full w-full pt-2 pb-0 justify-center lg:w-[45%] lg:py-8 lg:pr-8'>
           <motion.div 
             style={lgUp ? { y } : undefined}
-            className='image relative z-0 mt-4 lg:mt-32 w-full rounded-2xl flex justify-center items-center'
+            className='image relative z-0 mt-4 lg:mt-12 w-full rounded-2xl flex justify-center items-center'
           >
-            <div style={{ position: 'relative', width: '360px', height: '420px' }}>
+            <div className='relative h-[320px] w-[280px] max-w-full sm:h-[380px] sm:w-[326px] lg:h-[420px] lg:w-[360px]'>
               <Image
                 className='rounded-2xl border-4 border-cream object-cover'
                 src='/images/Carson.jpg'
                 alt='Picture of Me'
                 fill
-                sizes="360px"
+                sizes="(min-width: 1024px) 360px, (min-width: 640px) 326px, 280px"
                 priority
               />
             </div>
@@ -99,10 +99,6 @@ const About = () => {
           <AboutText/>
         </div>
       </section>
-      <section 
-        ref={bottomRef} 
-        className='bottom-section w-full bg-black shrink-0 pb-12 md:pb-0 md:min-h-[20vh]'
-      />
     </motion.section>
   )
 }
