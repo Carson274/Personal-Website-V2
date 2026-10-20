@@ -13,7 +13,6 @@ export default function Footer() {
             {profile.email && <a className='nav-link' href={`mailto:${profile.email}`}>Email ↗</a>}
             <a className='nav-link' href={profile.linkedin} target='_blank' rel='noopener noreferrer'>LinkedIn ↗</a>
             <a className='nav-link' href={profile.github} target='_blank' rel='noopener noreferrer'>GitHub ↗</a>
-            {profile.resumeUrl && <a className='nav-link' href={profile.resumeUrl} target='_blank' rel='noopener noreferrer'>Resume ↗</a>}
           </div>
         </div>
         <div className='mt-10 flex items-center justify-between border-t border-coffee/20 pt-5 text-xs'>

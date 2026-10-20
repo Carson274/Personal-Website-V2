@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { profile } from '@/app/data/profile';
 
 export default function NavBar() {
   const headerRef = useRef<HTMLElement>(null);
@@ -59,7 +58,6 @@ export default function NavBar() {
           <a className='nav-link' href='#about'>About</a>
           <a className='nav-link' href='#version-control'>Experience</a>
           <a className='nav-link' href='#projects'>Projects</a>
-          {profile.resumeUrl && <a className='nav-link' href={profile.resumeUrl} target='_blank' rel='noopener noreferrer'>Resume ↗</a>}
           <a className='nav-link' href='#contact'>Contact</a>
         </div>
       </nav>

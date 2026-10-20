@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { profile } from '@/app/data/profile';
 import './Hero.css';
 
 const Hero = () => {
@@ -36,11 +35,7 @@ const Hero = () => {
           <p className='text-sm text-coffee/80'>Computer Science at Oregon State · Web, mobile & AI</p>
           <div className='mt-7 flex flex-wrap justify-center gap-3'>
             <a href='#projects' className='rounded-full bg-coffee px-6 py-3 text-sm font-medium text-light-cream transition-colors hover:bg-brown'>View projects ↓</a>
-            {profile.resumeUrl ? (
-              <a href={profile.resumeUrl} target='_blank' rel='noopener noreferrer' className='rounded-full border border-coffee/30 px-6 py-3 text-sm font-medium hover:bg-coffee/5'>Resume ↗</a>
-            ) : (
-              <a href='#contact' className='rounded-full border border-coffee/30 px-6 py-3 text-sm font-medium hover:bg-coffee/5'>Get in touch ↗</a>
-            )}
+            <a href='#contact' className='rounded-full border border-coffee/30 px-6 py-3 text-sm font-medium hover:bg-coffee/5'>Get in touch ↗</a>
           </div>
         </div>
       </div>
