@@ -19,7 +19,7 @@ export default function Coursework() {
   return (
     <section className='coursework' aria-labelledby='coursework-heading'>
       <div className='coursework-header'>
-        <h3 id='coursework-heading'>Relevant coursework</h3>
+        <h3 id='coursework-heading'>Coursework</h3>
         <p>Oregon State University</p>
       </div>
       <div className='coursework-window'>

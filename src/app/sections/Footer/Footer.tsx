@@ -10,9 +10,9 @@ export default function Footer() {
             <h2 className='text-3xl font-bold tracking-tight sm:text-4xl'>Leaving? Say hello :)</h2>
           </div>
           <div className='flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold'>
-            {profile.email && <a className='nav-link' href={`mailto:${profile.email}`}>Email ↗</a>}
-            <a className='nav-link' href={profile.linkedin} target='_blank' rel='noopener noreferrer'>LinkedIn ↗</a>
-            <a className='nav-link' href={profile.github} target='_blank' rel='noopener noreferrer'>GitHub ↗</a>
+            {profile.email && <a className='nav-link' href={`mailto:${profile.email}`}>Email</a>}
+            <a className='nav-link' href={profile.linkedin} target='_blank' rel='noopener noreferrer'>LinkedIn</a>
+            <a className='nav-link' href={profile.github} target='_blank' rel='noopener noreferrer'>GitHub</a>
           </div>
         </div>
         <div className='mt-10 flex items-center justify-between border-t border-coffee/20 pt-5 text-xs'>

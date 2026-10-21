@@ -61,7 +61,7 @@ const Project = ({ project }: { project: ProjectDetails }) => {
         {project.hackathon && <p className='mt-3 text-xs leading-relaxed text-cream'><AwardText text={project.hackathon} /></p>}
         <div className='mt-auto flex flex-wrap gap-x-5 gap-y-1 pt-3 text-sm font-medium text-white'>
           {links.map(({ label, href }) => (
-            <a key={label} href={href} target='_blank' rel='noopener noreferrer' aria-label={`${label} — ${project.name}`} className='nav-link inline-flex min-h-11 items-center'>{label} ↗</a>
+            <a key={label} href={href} target='_blank' rel='noopener noreferrer' aria-label={`${label} — ${project.name}`} className='nav-link inline-flex min-h-11 items-center'>{label}</a>
           ))}
         </div>
       </div>
