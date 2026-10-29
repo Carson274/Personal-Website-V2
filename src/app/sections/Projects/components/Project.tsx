@@ -42,7 +42,7 @@ const Project = ({ project }: { project: ProjectDetails }) => {
           />
         </div>
         {project.hackathon && (
-          <span className='crown-host absolute -right-3 -top-3 z-20 w-12'>
+          <span className='crown-host absolute -right-1.5 -top-3 z-20 w-12 sm:-right-3'>
             <span aria-hidden='true' className='relative block rotate-[25deg]'>
               <Image src='/images/Crown.svg' alt='' width={383} height={190} className='h-auto w-full' />
               <span className='crown-shine' />
