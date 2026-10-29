@@ -3,14 +3,18 @@ import './Footer.css';
 
 export default function Footer() {
   return (
-    <footer id='contact' className='w-full bg-light-cream px-6 py-12 text-coffee sm:px-10 sm:py-16'>
-      <div className='mx-auto max-w-5xl'>
+    <footer id='contact' className='w-full bg-light-cream py-12 text-coffee sm:py-16'>
+      <div className='mx-auto max-w-6xl px-6 sm:px-10'>
         <div className='flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between'>
-          <div>
-            <h2 className='text-3xl font-bold tracking-tight sm:text-4xl'>Leaving? Say hello :)</h2>
+          <div className='min-w-0'>
+            <h2 className='text-base font-medium sm:text-lg'>Leaving? Say hello :)</h2>
+            {profile.email && (
+              <a className='nav-link mt-2 inline-block text-[clamp(1.25rem,6.6vw,2.75rem)] font-bold tracking-tight [overflow-wrap:anywhere]' href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
+            )}
           </div>
           <div className='flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold'>
-            {profile.email && <a className='nav-link' href={`mailto:${profile.email}`}>Email</a>}
             <a className='nav-link' href={profile.linkedin} target='_blank' rel='noopener noreferrer'>LinkedIn</a>
             <a className='nav-link' href={profile.github} target='_blank' rel='noopener noreferrer'>GitHub</a>
           </div>
