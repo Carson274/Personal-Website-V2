@@ -24,7 +24,6 @@ export default async function SocialPreview() {
       >
         <div style={{ display: 'flex', position: 'relative', width: 720, height: 352, fontSize: 120, fontWeight: 400, lineHeight: 1, letterSpacing: -2 }}>
           {/* The monogram supplies the first letter of each name, as in the hero. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`data:image/svg+xml;base64,${logo}`} alt='' width={352} height={352} />
           <span style={{ position: 'absolute', left: 358, top: 132 }}>ecrest</span>
           <span style={{ position: 'absolute', left: 210, top: 236 }}>arson</span>
