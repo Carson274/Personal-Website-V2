@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import EventCard from './components/EventCard';
 import CareerCard from './components/CareerCard';
 import PresentCareerCard from './components/PresentCareerCard';
+import CareerStartMarker from './components/CareerStartMarker';
 import Coursework from './components/Coursework';
 import { getCareerLogoSrc } from './careerLogos';
 import eventsJson from './data/events.json';
@@ -454,7 +455,7 @@ const VersionHistory = () => {
                                 <div
                                     key={`career-${index}`}
                                     ref={(el) => { columnRefs.current[index] = el; }}
-                                    className='event-column'
+                                    className={`event-column${isStart ? ' event-column-compact' : ''}`}
                                 >
                                     <div
                                         className='event-node'
@@ -470,7 +471,14 @@ const VersionHistory = () => {
                                     >
                                         {isStart ? c.startMonth : isIncoming ? c.startMonth : (c.endMonth || 'Present')}
                                     </span>
-                                    {isPresentMarker ? (
+                                    {isStart ? (
+                                        <CareerStartMarker
+                                            name={c.name}
+                                            role={c.role}
+                                            color={c.color}
+                                            logoSrc={getCareerLogoSrc(c.name)}
+                                        />
+                                    ) : isPresentMarker ? (
                                         <PresentCareerCard
                                             name={c.name}
                                             role={c.role}
@@ -485,9 +493,9 @@ const VersionHistory = () => {
                                             role={c.role}
                                             color={c.color}
                                             logoSrc={getCareerLogoSrc(c.name)}
-                                            status={isStart ? 'Started' : isIncoming ? 'Incoming' : 'Finished'}
+                                            status={isIncoming ? 'Incoming' : 'Finished'}
                                             period={isIncoming ? `Starting ${c.startMonth}` : `${c.startMonth} – ${c.endMonth || 'Present'}`}
-                                            summary={!isStart && !isIncoming ? c.summary : undefined}
+                                            summary={!isIncoming ? c.summary : undefined}
                                         />
                                     )}
                                 </div>

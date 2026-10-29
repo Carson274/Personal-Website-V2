@@ -37,6 +37,10 @@
     align-items: center;
 }
 
+.event-column.event-column-compact {
+    flex-basis: 180px;
+}
+
 .event-node {
     width: 14px;
     height: 14px;
@@ -107,5 +111,9 @@
 
     .event-column {
         flex: 0 0 300px;
+    }
+
+    .event-column.event-column-compact {
+        flex-basis: 200px;
     }
 }
