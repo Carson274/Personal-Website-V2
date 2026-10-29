@@ -318,7 +318,7 @@ const VersionHistory = () => {
                         ))}
                     </div>
                 </motion.div>
-                <p className='mt-2 px-4 text-xs text-cream/70'>Newest first · Scroll sideways to see more <span aria-hidden='true'>→</span></p>
+                <p className='mt-2 px-4 text-xs text-cream/70'>Newest first. Scroll sideways to see more <span aria-hidden='true'>→</span></p>
             </section>
 
             <div className='timeline-row mt-4 relative'>

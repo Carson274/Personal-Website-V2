@@ -188,8 +188,7 @@ const Projects = () => {
         </motion.div>
       </section>
       <div className='mx-auto w-full max-w-6xl px-6 sm:px-10'>
-        <div className='mb-7 flex flex-wrap items-center justify-between gap-3 border-b border-cream/20 pb-4 text-sm text-cream'>
-          <p>Selected work · Web, mobile & AI</p>
+        <div className='mb-7 flex justify-end border-b border-cream/20 pb-4 text-sm text-cream'>
           <a href='https://github.com/Carson274' target='_blank' rel='noopener noreferrer' className='nav-link'>All repositories</a>
         </div>
         <div className='grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3'>
