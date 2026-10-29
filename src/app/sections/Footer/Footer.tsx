@@ -9,7 +9,7 @@ export default function Footer() {
           <div className='min-w-0'>
             <h2 className='text-base font-medium sm:text-lg'>Leaving? Say hello :)</h2>
             {profile.email && (
-              <a className='nav-link mt-2 inline-block text-[clamp(1.25rem,6.6vw,2.75rem)] font-bold tracking-tight [overflow-wrap:anywhere]' href={`mailto:${profile.email}`}>
+              <a className='nav-link mt-2 inline-block font-display text-[clamp(1.125rem,6vw,2.75rem)] font-bold tracking-tight [overflow-wrap:anywhere]' href={`mailto:${profile.email}`}>
                 {profile.email}
               </a>
             )}

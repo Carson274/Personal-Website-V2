@@ -67,7 +67,7 @@ const About = () => {
         <h2 className='sr-only'>About me</h2>
         <motion.div
           aria-hidden='true'
-          className='text-white flex flex-row items-center justify-center mb-6 text-5xl sm:mb-12 sm:text-6xl md:mb-0 md:text-6xl lg:text-8xl font-bold my-2'
+          className='text-white flex flex-row items-center justify-center mb-6 text-5xl sm:mb-12 sm:text-6xl md:mb-0 md:text-6xl lg:text-8xl font-display font-extrabold my-2'
           variants={containerVariants}
         >
           {"ABOUT ME".split("").map((letter, index) => (

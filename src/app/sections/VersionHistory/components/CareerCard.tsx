@@ -14,7 +14,7 @@ export default function CareerCard({ name, role, color, logoSrc, status = 'Start
   return (
     <article className='event-card'>
       <div className='timeline-card-body flex flex-col items-center justify-center gap-3 rounded-xl border-2 bg-grey px-4 py-4 text-center' style={{ borderColor: color }}>
-        <p className='text-[10px] font-semibold uppercase tracking-[0.16em] text-cream'>{status}</p>
+        <p className='text-xs font-medium text-cream/70'>{status}</p>
         {logoSrc && <Image src={logoSrc} alt='' width={160} height={64} className='h-16 w-40 object-contain' />}
         <div>
           <h3 className='text-xl font-extrabold uppercase tracking-tight text-white'>{name}</h3>

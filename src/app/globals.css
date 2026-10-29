@@ -6,6 +6,11 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .font-display {
+    font-family: var(--font-display), sans-serif;
+    font-stretch: 112%;
+  }
 }
 
 html {

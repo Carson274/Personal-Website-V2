@@ -16,10 +16,8 @@
 }
 
 .coursework-header h3 {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .coursework-header p {
