@@ -343,11 +343,13 @@ const VersionHistory = () => {
                 <motion.button
                     onClick={() => scrollByAmount(1)}
                     disabled={!canScrollRight}
+                    // Framer Motion owns this button's transform, so center it here instead of with -translate-y-1/2.
+                    style={{ y: '-50%' }}
                     animate={!hasUserScrolled && canScrollRight ? { x: [0, 8, 0, 8, 0] } : { x: 0 }}
                     transition={!hasUserScrolled && canScrollRight
                         ? { duration: 1.2, repeat: Infinity, repeatDelay: 0.5, ease: 'easeInOut' }
                         : { duration: 0.2 }}
-                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full border shadow-lg transition-colors ${
+                    className={`absolute right-2 top-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full border shadow-lg transition-colors ${
                         !canScrollRight
                             ? 'bg-coffee/40 border-brown/40 text-cream/40 cursor-not-allowed'
                             : !hasUserScrolled
