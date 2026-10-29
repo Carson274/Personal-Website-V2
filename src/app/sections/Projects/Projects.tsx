@@ -196,23 +196,18 @@ const Projects = () => {
             <Project key={project.name} project={project} />
           ))}
         </div>
-        <div className='more-projects mt-12 text-cream'>
+        <div className='more-projects mt-12 border-t border-cream/20 pt-4 text-cream'>
           <button
             type='button'
             aria-expanded={showMore}
             aria-controls={morePanelId}
             onClick={() => setShowMore((open) => !open)}
-            className='more-projects-toggle flex w-full cursor-pointer items-center justify-between gap-4 rounded-xl border border-cream/30 bg-cream/5 px-5 py-5 text-left transition-colors hover:border-cream/60 hover:bg-cream/10 sm:px-6 sm:py-6'
+            className='more-projects-toggle inline-flex min-h-11 cursor-pointer items-center gap-2 text-left text-base font-medium text-white'
           >
-            <span className='flex flex-wrap items-center gap-3 text-2xl font-semibold text-white sm:text-3xl'>
-              More projects
-              <span className='rounded-full border border-cream/30 px-3 py-1 text-sm font-medium text-cream'>{moreProjects.length}</span>
-            </span>
-            <span aria-hidden='true' className='flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-cream/30'>
-              <svg className='more-projects-chevron h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'>
-                <path d='m6 9 6 6 6-6' />
-              </svg>
-            </span>
+            <span>{showMore ? 'Show fewer projects' : `Show ${moreProjects.length} more projects`}</span>
+            <svg aria-hidden='true' className='more-projects-chevron h-4 w-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+              <path d='m6 9 6 6 6-6' />
+            </svg>
           </button>
           <motion.div
             id={morePanelId}
