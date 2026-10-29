@@ -22,19 +22,11 @@ export default function Coursework() {
         <h3 id='coursework-heading'>Coursework</h3>
         <p>Oregon State University</p>
       </div>
-      <div className='coursework-window'>
-        <div className='coursework-track'>
-          {[false, true].map((duplicate) => (
-            <ul className='coursework-list' role='list' key={String(duplicate)} aria-hidden={duplicate || undefined}>
-              {courses.map((course) => (
-                <li key={course}>
-                  {course}<span className='coursework-dot' aria-hidden='true'>·</span>
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </div>
+      <ul className='coursework-list' role='list'>
+        {courses.map((course) => (
+          <li key={course}>{course}</li>
+        ))}
+      </ul>
     </section>
   );
 }
