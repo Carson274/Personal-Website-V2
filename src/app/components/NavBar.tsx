@@ -50,15 +50,16 @@ export default function NavBar() {
 
   return (
     <header ref={headerRef} className='site-header sticky top-0 z-40 w-full'>
-      <nav aria-label='Main navigation' className='mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-10'>
+      <nav aria-label='Main navigation' className='mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2 sm:px-10 sm:py-3'>
         <a href='#top' aria-label='Carson Secrest — back to top' className='shrink-0 rounded'>
           <span aria-hidden='true' className='nav-logo block h-9 w-9' />
         </a>
-        <div className='flex flex-wrap items-center justify-end gap-x-2 gap-y-1 text-xs font-medium sm:gap-x-7 sm:text-sm'>
-          <a className='nav-link' href='#about'>About</a>
-          <a className='nav-link' href='#version-control'>Experience</a>
-          <a className='nav-link' href='#projects'>Projects</a>
-          <a className='nav-link' href='#contact'>Contact</a>
+        {/* Padding gives phone taps a 44px target; desktop keeps the tighter text-only links. */}
+        <div className='flex flex-wrap items-center justify-end gap-x-1 text-sm font-medium sm:gap-x-7'>
+          <a className='nav-link px-1.5 py-3 sm:p-0' href='#about'>About</a>
+          <a className='nav-link px-1.5 py-3 sm:p-0' href='#version-control'>Experience</a>
+          <a className='nav-link px-1.5 py-3 sm:p-0' href='#projects'>Projects</a>
+          <a className='nav-link px-1.5 py-3 sm:p-0' href='#contact'>Contact</a>
         </div>
       </nav>
     </header>
