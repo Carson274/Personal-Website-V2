@@ -3,7 +3,7 @@ import './Hero.css';
 
 const Hero = () => {
   return (
-    <section aria-labelledby='hero-title' className='hero relative flex w-full flex-col items-center justify-center bg-light-cream px-6 pb-32 pt-12 text-coffee'>
+    <section aria-labelledby='hero-title' className='hero relative flex w-full flex-col items-center justify-center bg-light-cream px-6 py-12 text-coffee'>
       <h1 id='hero-title' className='sr-only'>Carson Secrest — software developer</h1>
       <div className='flex w-full flex-col items-center'>
         <div aria-hidden='true' className='logo-div relative flex h-44 w-44 scale-[0.8] items-center sm:scale-100'>
@@ -32,19 +32,13 @@ const Hero = () => {
         </div>
 
         <div className='mt-12 max-w-md text-center sm:mt-16'>
-          <p className='text-sm text-coffee/80'>Computer Science at Oregon State · Web, mobile & AI</p>
+          <p className='text-balance text-sm text-coffee/80'>CS @ Oregon State | Prev @ Netflix</p>
           <div className='mt-7 flex flex-wrap justify-center gap-3'>
             <a href='#projects' className='rounded-full bg-coffee px-6 py-3 text-sm font-medium text-light-cream transition-colors hover:bg-brown'>View projects ↓</a>
             <a href='#contact' className='rounded-full border border-coffee/30 px-6 py-3 text-sm font-medium hover:bg-coffee/5'>Get in touch</a>
           </div>
         </div>
       </div>
-      <a href='#about' className='absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3 rounded px-4 py-2 text-coffee/75'>
-        <span className='whitespace-nowrap text-[10px] tracking-widest'>SCROLL TO EXPLORE</span>
-        <svg aria-hidden='true' className='hero-scroll-arrow h-7 w-7' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'>
-          <path d='M12 4v16m-6-6 6 6 6-6' />
-        </svg>
-      </a>
     </section>
   );
 }
