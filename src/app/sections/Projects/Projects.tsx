@@ -32,6 +32,7 @@ const Projects = () => {
   const moreProjects = projects.filter((project) => !project.featured);
   const [showMore, setShowMore] = useState(false);
   const [moreSettled, setMoreSettled] = useState(false);
+  const [githubLanded, setGithubLanded] = useState(false);
   const morePanelId = useId();
   const reduceMotion = useReducedMotion();
 
@@ -158,7 +159,7 @@ const Projects = () => {
       <section className='z-0 relative about w-full h-auto md:h-1/5 mt-2 sm:mt-5 md:mt-10 text-center'>
         <h2 className='sr-only'>My projects</h2>
         <motion.div
-          className='text-white flex flex-row items-center justify-center text-[min(3rem,11.5vw)] sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-8 lg:mb-12'
+          className='text-white flex flex-row items-center justify-center text-[min(3rem,11.5vw)] sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-14 sm:mb-16 lg:mb-20'
           variants={containerVariants}
         >
           {"MY PR".split("").map((letter, index) => (
@@ -166,20 +167,33 @@ const Projects = () => {
               {letter}
             </motion.div>
           ))}
-          <motion.a className='flex justify-center' ref={githubRef} variants={githubVariants}
-            href={profile.github}
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label='Carson Secrest on GitHub'
-            data-cursor-link='github'
-            onAnimationComplete={() => {
-              githubControls.start("visible");
-            }}
-            onMouseEnter={() => {
-              controls.start("hop");
-            }}>
-            <span aria-hidden='true' className='pointer-events-none'><GitHubIcon /></span>
-          </motion.a>
+          <span className='relative flex'>
+            <motion.a className='flex justify-center' ref={githubRef} variants={githubVariants}
+              href={profile.github}
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='Carson Secrest on GitHub'
+              data-cursor-link='github'
+              onAnimationComplete={(definition) => {
+                githubControls.start("visible");
+                if (definition === 'visible') setGithubLanded(true);
+              }}
+              onMouseEnter={() => {
+                controls.start("hop");
+              }}>
+              <span aria-hidden='true' className='pointer-events-none'><GitHubIcon /></span>
+            </motion.a>
+            {/* Sits outside the link so it stays put while the icon hops. */}
+            <span
+              aria-hidden='true'
+              className={`pointer-events-none absolute left-1/2 top-full mt-1 flex items-start gap-0.5 whitespace-nowrap text-xs font-medium leading-tight text-cream/50 transition-opacity duration-700 ${githubLanded ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <svg className='h-5 w-5 shrink-0' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'>
+                <path d='M19 20c-8-1-12-6-12-15m-3 3 3-3 3 3' />
+              </svg>
+              <span className='mt-3'>click me for my GitHub</span>
+            </span>
+          </span>
           {"JECTS".split("").map((letter, index) => (
             <motion.div aria-hidden='true' key={index + 5} custom={index + 5} className={letter === " " ? "mx-1 sm:mx-4" : ""} variants={letterVariants}>
               {letter}
@@ -188,9 +202,6 @@ const Projects = () => {
         </motion.div>
       </section>
       <div className='mx-auto w-full max-w-6xl px-6 sm:px-10'>
-        <div className='mb-7 flex justify-end border-b border-cream/20 pb-4 text-sm text-cream'>
-          <a href='https://github.com/Carson274' target='_blank' rel='noopener noreferrer' className='nav-link'>All repositories</a>
-        </div>
         <div className='grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3'>
           {projects.filter((project) => project.featured).map((project) => (
             <Project key={project.name} project={project} />
