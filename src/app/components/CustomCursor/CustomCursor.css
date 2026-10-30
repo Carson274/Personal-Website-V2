@@ -30,9 +30,17 @@
   height: 24px;
 }
 
+/* Just up and left of the hand cursor's fingertip, so the finger overlaps its corner. */
+.cursor-link-small {
+  top: -17px;
+  left: -16px;
+  width: 22px;
+  height: 22px;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  [data-cursor-active='true'],
-  [data-cursor-active='true'] * {
+  [data-cursor-active='true']:not([data-cursor-size='small']),
+  [data-cursor-active='true']:not([data-cursor-size='small']) * {
     cursor: none !important;
   }
 }

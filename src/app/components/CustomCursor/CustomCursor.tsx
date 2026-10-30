@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useMotionValue, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Link, Linkedin } from 'lucide-react';
@@ -9,6 +9,8 @@ import './CustomCursor.css';
 
 const CustomCursor = () => {
   const { linkType, setLinkType } = useCursor();
+  // Small links keep the system cursor and only show the icon badge beside it.
+  const [small, setSmall] = useState(false);
   const reducedMotion = useReducedMotion();
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
@@ -21,6 +23,7 @@ const CustomCursor = () => {
       activeTarget?.removeAttribute('data-cursor-active');
       activeTarget = null;
       setLinkType(null);
+      setSmall(false);
     };
 
     const move = (event: PointerEvent) => {
@@ -42,6 +45,7 @@ const CustomCursor = () => {
         activeTarget = target;
         target.setAttribute('data-cursor-active', 'true');
         setLinkType(type);
+        setSmall(target.dataset.cursorSize === 'small');
       }
     };
 
@@ -67,18 +71,20 @@ const CustomCursor = () => {
     };
   }, [setLinkType, x, y]);
 
+  const showCircle = Boolean(linkType) && !small;
+
   return (
     <motion.div className='cursor-position' style={{ x, y }} aria-hidden='true'>
       <motion.div
         className='custom-cursor'
         initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: linkType ? 1 : 0, scale: linkType ? 1 : 0 }}
+        animate={{ opacity: showCircle ? 1 : 0, scale: showCircle ? 1 : 0 }}
         transition={{ duration: reducedMotion ? 0 : 0.12, ease: 'easeOut' }}
       >
         <ArrowUpRight color='#403E3A' strokeWidth={1.5} size={28} />
       </motion.div>
       <motion.div
-        className='cursor-link'
+        className={`cursor-link${small ? ' cursor-link-small' : ''}`}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: linkType ? 1 : 0, scale: linkType ? 1 : 0 }}
         transition={{ duration: reducedMotion ? 0 : 0.16, ease: 'easeOut' }}
