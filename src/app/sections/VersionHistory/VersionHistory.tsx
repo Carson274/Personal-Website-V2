@@ -341,7 +341,7 @@ const VersionHistory = () => {
                     disabled={!hasUserScrolled || !canScrollLeft}
                     aria-hidden={!hasUserScrolled}
                     tabIndex={!hasUserScrolled ? -1 : 0}
-                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full border shadow-lg transition-opacity duration-300 ${
+                    className={`absolute left-2 xl:-left-16 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full border shadow-lg transition-opacity duration-300 ${
                         !hasUserScrolled
                             ? 'opacity-0 pointer-events-none bg-coffee border-brown text-cream'
                             : !canScrollLeft
@@ -363,7 +363,7 @@ const VersionHistory = () => {
                     transition={!hasUserScrolled && canScrollRight
                         ? { duration: 1.2, repeat: Infinity, repeatDelay: 0.5, ease: 'easeInOut' }
                         : { duration: 0.2 }}
-                    className={`absolute right-2 top-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full border shadow-lg transition-colors ${
+                    className={`absolute right-2 xl:-right-16 top-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full border shadow-lg transition-colors ${
                         !canScrollRight
                             ? 'bg-coffee/40 border-brown/40 text-cream/40 cursor-not-allowed'
                             : !hasUserScrolled
@@ -378,7 +378,15 @@ const VersionHistory = () => {
                 </motion.button>
 
                 <div className='timeline-line' />
-                <div className='version-scroll' ref={scrollRef} onScroll={handleScroll} tabIndex={0} role='region' aria-label='Career timeline, newest first'>
+                <div
+                    className='version-scroll'
+                    ref={scrollRef}
+                    onScroll={handleScroll}
+                    tabIndex={0}
+                    role='region'
+                    aria-label='Career timeline, newest first'
+                    style={{ '--fade-left': canScrollLeft ? '2.5rem' : '0px', '--fade-right': canScrollRight ? '2.5rem' : '0px' } as React.CSSProperties}
+                >
                     {branchLines.map((branch, i) => {
                         const startX = columnCenters[branch.startCol];
                         const endX = columnCenters[branch.endCol];

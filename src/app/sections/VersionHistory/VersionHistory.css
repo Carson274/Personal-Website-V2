@@ -1,5 +1,22 @@
+/* Boxed to the same column as the coursework and projects. */
 .timeline-row {
     position: relative;
+    width: calc(100% - 3rem);
+    max-width: 67rem;
+    margin-inline: auto;
+}
+
+/* Registered so the edge fades can animate in and out. */
+@property --fade-left {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0px;
+}
+
+@property --fade-right {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0px;
 }
 
 .timeline-hint-arrow {
@@ -33,10 +50,12 @@
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    padding: 20px clamp(3rem, 8vw, 5rem) 1.25rem;
+    padding: 20px 0 1.25rem;
     scrollbar-width: none;
-    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    /* Each edge fades only while there are more cards past it. */
+    mask-image: linear-gradient(to right, transparent, black var(--fade-left), black calc(100% - var(--fade-right)), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black var(--fade-left), black calc(100% - var(--fade-right)), transparent);
+    transition: --fade-left 200ms ease, --fade-right 200ms ease;
 }
 
 .version-scroll::-webkit-scrollbar {
@@ -114,9 +133,16 @@
     opacity: 0.88;
 }
 
+/* Matches the max-w-6xl column with sm:px-10 used by the other sections. */
+@media (min-width: 640px) {
+    .timeline-row {
+        width: calc(100% - 5rem);
+    }
+}
+
 @media (min-width: 768px) {
     .version-scroll {
-        padding: 20px 5rem 1.5rem;
+        padding-bottom: 1.5rem;
     }
 
     .event-column {
