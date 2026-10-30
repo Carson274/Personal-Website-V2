@@ -74,7 +74,7 @@ const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor 
                     <Image
                         className='object-cover'
                         src={imagePath}
-                        alt={caption || month}
+                        alt={caption ? caption.replace(/\*\*/g, '') : month}
                         fill
                         sizes="(max-width: 768px) 260px, 300px"
                     />
