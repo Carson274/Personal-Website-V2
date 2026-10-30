@@ -1,6 +1,15 @@
 .hero {
-  /* Leave the top of the About panel showing so it doubles as the scroll cue. */
-  min-height: calc(85svh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
+}
+
+.hero-scroll-arrow {
+  animation: heroArrowBounce 1.6s ease-in-out infinite;
+}
+
+@keyframes heroArrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
 }
 
 .secrest, .carson {
@@ -67,6 +76,7 @@
 .hero .secrest > section { animation-delay: 0.8s; }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-scroll-arrow { animation: none; }
   .hero .logo { animation: none; transform: translateX(-99px); }
   .hero .carson > section, .hero .secrest > section {
     animation: none;

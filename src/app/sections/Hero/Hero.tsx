@@ -3,7 +3,7 @@ import './Hero.css';
 
 const Hero = () => {
   return (
-    <section aria-labelledby='hero-title' className='hero relative flex w-full flex-col items-center justify-center bg-light-cream px-6 py-12 text-coffee'>
+    <section aria-labelledby='hero-title' className='hero relative flex w-full flex-col items-center justify-center bg-light-cream px-6 pb-32 pt-12 text-coffee'>
       <h1 id='hero-title' className='sr-only'>Carson Secrest — software developer</h1>
       <div className='flex w-full flex-col items-center'>
         <div aria-hidden='true' className='logo-div relative flex h-44 w-44 scale-[0.8] items-center sm:scale-100'>
@@ -39,6 +39,11 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <a href='#about' aria-label='Scroll to About' className='absolute bottom-6 left-1/2 -translate-x-1/2 rounded p-2 text-coffee/60 transition-colors hover:text-coffee'>
+        <svg aria-hidden='true' className='hero-scroll-arrow h-6 w-6' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'>
+          <path d='M12 4v16m-6-6 6 6 6-6' />
+        </svg>
+      </a>
     </section>
   );
 }
