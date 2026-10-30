@@ -292,7 +292,7 @@ const VersionHistory = () => {
                 <h2 className='sr-only'>Version history — experience</h2>
                 <motion.div
                     aria-hidden='true'
-                    className='text-white flex flex-col sm:flex-row items-center justify-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-extrabold mb-1 sm:mb-4'
+                    className='text-white flex flex-col sm:flex-row items-center justify-center text-5xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-1 sm:mb-4'
                     variants={containerVariants}
                 >
                     <div className='flex flex-row'>

@@ -1,14 +1,12 @@
 import Head from "next/head";
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "./components/CustomCursor/CustomCursor";
 import { CursorProvider } from './components/CustomCursor/CursorContext';
 import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ["latin"] });
-// Wide display face for the big section headings; body text stays Inter.
-const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-display" });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://carsonsecrest.me'),
@@ -38,7 +36,7 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="./favicon.ico" />
       </Head>
-      <body className={`${inter.className} ${archivo.variable} bg-light-cream`}>
+      <body className={`${inter.className} bg-light-cream`}>
         <CursorProvider>
           {children}
           <CustomCursor />

@@ -158,7 +158,7 @@ const Projects = () => {
       <section className='z-0 relative about w-full h-auto md:h-1/5 mt-2 sm:mt-5 md:mt-10 text-center'>
         <h2 className='sr-only'>My projects</h2>
         <motion.div
-          className='text-white flex flex-row items-center justify-center text-[min(3rem,10vw)] sm:text-6xl md:text-6xl lg:text-8xl font-display font-extrabold mb-4 sm:mb-8 lg:mb-12'
+          className='text-white flex flex-row items-center justify-center text-[min(3rem,11.5vw)] sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-8 lg:mb-12'
           variants={containerVariants}
         >
           {"MY PR".split("").map((letter, index) => (
