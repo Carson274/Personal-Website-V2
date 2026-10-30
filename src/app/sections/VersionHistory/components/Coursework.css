@@ -7,6 +7,13 @@
   color: #cfcfc5;
 }
 
+/* Match the page's sm:px-10 side padding so it lines up with the timeline and projects. */
+@media (min-width: 640px) {
+  .coursework {
+    width: calc(100% - 5rem);
+  }
+}
+
 .coursework-header {
   display: flex;
   align-items: center;
