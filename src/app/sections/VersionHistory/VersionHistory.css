@@ -44,7 +44,7 @@
 }
 
 .event-column {
-    flex: 0 0 260px;
+    flex: 0 0 240px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,8 +93,8 @@
     transition: transform 0.3s ease;
 }
 
-.timeline-card-body {
-    height: 25rem;
+.event-caption {
+    background: linear-gradient(to top, rgb(0 0 0 / 88%), rgb(0 0 0 / 60%) 55%, transparent);
 }
 
 .event-card:hover {
@@ -115,15 +115,12 @@
 }
 
 @media (min-width: 768px) {
-    .timeline-card-body {
-        height: 26rem;
-    }
     .version-scroll {
         padding: 20px 5rem 1.5rem;
     }
 
     .event-column {
-        flex: 0 0 300px;
+        flex: 0 0 250px;
     }
 
     .event-column.event-column-compact {

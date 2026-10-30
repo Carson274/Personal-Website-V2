@@ -1,14 +1,15 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import Image from "next/image";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import AwardText from '@/app/components/AwardText';
 
 interface Tag {
     name: string;
     linkedin: string;
+    nickname?: string;
 }
 
 interface Link {
@@ -28,29 +29,66 @@ interface EventCardProps {
 
 const SPINE_CREAM = '#f5f0e6';
 
-const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor }: EventCardProps) => {
-    const [showTags, setShowTags] = useState(false);
-    const [showLinks, setShowLinks] = useState(false);
-    const popoverChromeRef = useRef<HTMLDivElement>(null);
+// The small icon badge beside the cursor is off for now; set to true to bring it back.
+const SHOW_CURSOR_BADGE = false;
+
+function cursorBadge(type: string) {
+    return SHOW_CURSOR_BADGE ? { 'data-cursor-link': type, 'data-cursor-size': 'small' } : {};
+}
+
+function cursorTypeFor(url: string) {
+    if (url.includes('github.com')) return 'github';
+    if (url.includes('devpost.com')) return 'devpost';
+    if (url.includes('linkedin.com')) return 'linkedin';
+    return 'site';
+}
+
+/**
+ * Links each tagged person where the caption mentions them, by full name,
+ * nickname, or first name. People the caption doesn't mention stay unlinked.
+ */
+function CaptionWithNames({ caption, tags }: { caption: string; tags: Tag[] }) {
+    const mentions = tags
+        .map((tag) => {
+            const options = [tag.name, tag.nickname, tag.name.split(' ')[0]].filter((text): text is string => Boolean(text));
+            for (const text of options) {
+                const match = new RegExp(`\\b${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).exec(caption);
+                if (match) return { start: match.index, end: match.index + text.length, tag };
+            }
+            return null;
+        })
+        .filter((mention): mention is NonNullable<typeof mention> => mention !== null)
+        .sort((a, b) => a.start - b.start);
+
+    const parts: React.ReactNode[] = [];
+    let cursor = 0;
+    mentions.forEach(({ start, end, tag }) => {
+        if (start < cursor) return;
+        parts.push(<AwardText key={`text-${cursor}`} text={caption.slice(cursor, start)} />);
+        parts.push(
+            <a
+                key={tag.linkedin}
+                href={tag.linkedin}
+                target='_blank'
+                rel='noopener noreferrer'
+                {...cursorBadge('linkedin')}
+                className='pointer-events-auto underline decoration-white/50 underline-offset-2 hover:decoration-white'
+            >
+                {caption.slice(start, end)}
+            </a>
+        );
+        cursor = end;
+    });
+    parts.push(<AwardText key={`text-${cursor}`} text={caption.slice(cursor)} />);
+    return <>{parts}</>;
+}
+
+const EventCard = ({ month, caption, imagePath, tags, links, careerColor }: EventCardProps) => {
     const [inViewRef, inView] = useInView({
         triggerOnce: true,
         rootMargin: '0px 200px',
     });
-
-    useEffect(() => {
-        if (!showLinks && !showTags) return;
-        const chrome = popoverChromeRef.current;
-        if (!chrome) return;
-
-        const onPointerDown = (e: PointerEvent) => {
-            if (!chrome.contains(e.target as Node)) {
-                setShowLinks(false);
-                setShowTags(false);
-            }
-        };
-        document.addEventListener('pointerdown', onPointerDown, true);
-        return () => document.removeEventListener('pointerdown', onPointerDown, true);
-    }, [showLinks, showTags]);
+    const mainLink = links[0];
 
     return (
         <motion.div
@@ -61,122 +99,39 @@ const EventCard = ({ month, caption, imagePath, tags, links, index, careerColor 
             transition={{ duration: 0.3, delay: 0, ease: [0.45, 0.8, 0.5, 0.95] }}
         >
             <div
-                className={`timeline-card-body bg-grey rounded-xl p-3 flex flex-col ${
-                    careerColor ? '' : 'border-2'
-                }`}
+                className={`relative overflow-hidden rounded-xl bg-grey ${careerColor ? '' : 'border-2'}`}
                 style={
                     careerColor
                         ? { border: `2px solid ${careerColor}` }
                         : { borderColor: SPINE_CREAM, borderStyle: 'solid' }
                 }
             >
-                <div className='relative w-full flex-1 min-h-0 overflow-hidden rounded-lg border-2 border-brown mb-2'>
+                <div className='relative aspect-[4/5] w-full'>
                     <Image
                         className='object-cover'
                         src={imagePath}
                         alt={caption ? caption.replace(/\*\*/g, '') : month}
                         fill
-                        sizes="(max-width: 768px) 260px, 300px"
+                        sizes="(min-width: 768px) 250px, 240px"
                     />
-                </div>
-                <div className='flex flex-col gap-2 shrink-0'>
                     {caption && (
-                        <p className='text-cream text-sm leading-snug'><AwardText text={caption} /></p>
+                        // Clicks pass through to the card link, except on the linked names.
+                        <p className='event-caption pointer-events-none absolute inset-x-0 bottom-0 z-20 px-3.5 pb-3.5 pt-14 text-[13px] leading-snug text-white'>
+                            <CaptionWithNames caption={caption} tags={tags} />
+                        </p>
                     )}
-                    {(links.length > 0 || tags.length > 0) ? (
-                    <div ref={popoverChromeRef} className='flex items-end justify-end relative shrink-0'>
-                        <div className='flex items-center gap-1.5'>
-                            {links.length > 0 && (
-                                <div className='relative'>
-                                    <button
-                                        onClick={() => { setShowLinks(!showLinks); setShowTags(false); }}
-                                        className='w-6 h-6 flex items-center justify-center rounded-full bg-coffee hover:bg-brown transition-colors'
-                                        aria-label='Show related links'
-                                    >
-                                        <svg className='w-3.5 h-3.5 text-cream' viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                                        </svg>
-                                    </button>
-
-                                    <AnimatePresence>
-                                        {showLinks && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 4, scale: 0.95 }}
-                                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                exit={{ opacity: 0, y: 4, scale: 0.95 }}
-                                                transition={{ duration: 0.15 }}
-                                                className='absolute bottom-8 right-0 bg-coffee border border-brown rounded-lg shadow-lg py-1 px-1 min-w-[140px] z-50'
-                                            >
-                                                {links.map((link, i) => (
-                                                    <a
-                                                        key={i}
-                                                        href={link.url}
-                                                        target='_blank'
-                                                        rel='noopener noreferrer'
-                                                        className='flex items-center gap-1.5 text-[11px] text-cream px-2 py-1.5 rounded-md hover:bg-brown transition-colors whitespace-nowrap'
-                                                    >
-                                                        <svg className='w-3 h-3 flex-shrink-0' viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                                            <polyline points="15 3 21 3 21 9" />
-                                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                                        </svg>
-                                                        {link.name}
-                                                    </a>
-                                                ))}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            )}
-
-                            {tags.length > 0 && (
-                                <div className='relative'>
-                                    <button
-                                        onClick={() => { setShowTags(!showTags); setShowLinks(false); }}
-                                        className='w-6 h-6 flex items-center justify-center rounded-full bg-coffee hover:bg-brown transition-colors'
-                                        aria-label='Show tagged people'
-                                    >
-                                        <svg className='w-3.5 h-3.5 text-cream' viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                            <circle cx="9" cy="7" r="4" />
-                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                        </svg>
-                                    </button>
-
-                                    <AnimatePresence>
-                                        {showTags && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 4, scale: 0.95 }}
-                                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                exit={{ opacity: 0, y: 4, scale: 0.95 }}
-                                                transition={{ duration: 0.15 }}
-                                                className='absolute bottom-8 right-0 bg-coffee border border-brown rounded-lg shadow-lg py-1 px-1 min-w-[140px] z-50'
-                                            >
-                                                {tags.map((tag, i) => (
-                                                    <a
-                                                        key={i}
-                                                        href={tag.linkedin}
-                                                        target='_blank'
-                                                        rel='noopener noreferrer'
-                                                        className='flex items-center gap-1.5 text-[11px] text-cream px-2 py-1.5 rounded-md hover:bg-brown transition-colors whitespace-nowrap'
-                                                    >
-                                                        <svg className='w-3 h-3 flex-shrink-0' viewBox="0 0 24 24" fill="currentColor">
-                                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                                                        </svg>
-                                                        {tag.name}
-                                                    </a>
-                                                ))}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                    ) : null}
                 </div>
+                {/* A separate layer rather than a wrapper, since links can't contain the name links. */}
+                {mainLink && (
+                    <a
+                        href={mainLink.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        aria-label={mainLink.name}
+                        {...cursorBadge(cursorTypeFor(mainLink.url))}
+                        className='absolute inset-0 z-10'
+                    />
+                )}
             </div>
         </motion.div>
     );
