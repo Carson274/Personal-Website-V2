@@ -55,15 +55,16 @@ const Project = ({ project }: { project: ProjectDetails }) => {
       </a>
       <div className='flex min-w-0 flex-1 flex-col'>
         <h3 className='text-xl font-bold text-white'>{project.name}</h3>
-        <p className='mt-2 text-sm leading-relaxed text-cream/90'>{project.description}</p>
-        {project.contribution && <p className='mt-3 text-sm leading-relaxed text-cream/75'>{project.contribution}</p>}
-        {project.technologies.length > 0 && <p className='mt-3 text-xs leading-relaxed text-cream/65'>{project.technologies.join(' · ')}</p>}
-        {project.hackathon && <p className='mt-3 text-xs leading-relaxed text-cream'><AwardText text={project.hackathon} /></p>}
-        <div className='mt-auto flex flex-wrap gap-x-5 gap-y-1 pt-3 text-sm font-medium text-white'>
+        {/* Links sit under the title so they line up across a grid row, whatever the description length. */}
+        <div className='mt-0.5 flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium text-white'>
           {links.map(({ label, href }) => (
             <a key={label} href={href} target='_blank' rel='noopener noreferrer' aria-label={`${label} — ${project.name}`} className='nav-link inline-flex min-h-11 items-center'>{label}</a>
           ))}
         </div>
+        <p className='mt-2 text-sm leading-relaxed text-cream/90'>{project.description}</p>
+        {project.contribution && <p className='mt-3 text-sm leading-relaxed text-cream/75'>{project.contribution}</p>}
+        {project.technologies.length > 0 && <p className='mt-3 text-xs leading-relaxed text-cream/65'>{project.technologies.join(' · ')}</p>}
+        {project.hackathon && <p className='mt-3 text-xs leading-relaxed text-cream'><AwardText text={project.hackathon} /></p>}
       </div>
     </article>
   );
