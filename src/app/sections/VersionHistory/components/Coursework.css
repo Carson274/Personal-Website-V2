@@ -26,6 +26,23 @@
   color: rgb(207 207 197 / 65%);
 }
 
+/* Same rhythm as the LinkedIn wiggle: a quick shake, then a pause. */
+.coursework-beaver {
+  display: inline-block;
+  margin-left: 0.125rem;
+  font-size: 1rem;
+  transform-origin: bottom center;
+  animation: beaverWiggle 2.6s ease-in-out infinite;
+}
+
+@keyframes beaverWiggle {
+  0%, 70%, 100% { transform: rotate(0); }
+  76% { transform: rotate(-12deg); }
+  82% { transform: rotate(10deg); }
+  88% { transform: rotate(-6deg); }
+  94% { transform: rotate(3deg); }
+}
+
 @media (max-width: 480px) {
   .coursework-header {
     flex-direction: column;
@@ -79,6 +96,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .coursework-beaver {
+    animation: none;
+  }
+
   .coursework-list[aria-hidden='true'],
   .coursework-dot {
     display: none;

@@ -20,7 +20,7 @@ export default function Coursework() {
     <section className='coursework' aria-labelledby='coursework-heading'>
       <div className='coursework-header'>
         <h3 id='coursework-heading'>Coursework</h3>
-        <p>Oregon State University</p>
+        <p>Oregon State University <span aria-hidden='true' className='coursework-beaver'>🦫</span></p>
       </div>
       <div className='coursework-window'>
         <div className='coursework-track'>
