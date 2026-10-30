@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import EventCard from './components/EventCard';
 import CareerCard from './components/CareerCard';
 import PresentCareerCard from './components/PresentCareerCard';
-import CareerStartMarker from './components/CareerStartMarker';
+import CareerMarker from './components/CareerMarker';
 import Coursework from './components/Coursework';
 import { getCareerLogoSrc } from './careerLogos';
 import eventsJson from './data/events.json';
@@ -448,6 +448,8 @@ const VersionHistory = () => {
                             const isStart = item.type === 'career-start';
                             const isIncoming = item.type === 'career-incoming';
                             const isPresentMarker = item.type === 'career-end' && !c.endMonth;
+                            const isFinished = item.type === 'career-end' && Boolean(c.endMonth);
+                            const isCompact = isStart || isFinished;
                             const isMainLineCareerNode = isStart || isIncoming || item.type === 'career-end';
                             const nodeMarginTop = isMainLineCareerNode ? -NODE_RADIUS : 0;
                             const connectorHeight = connectorHeightToDate(nodeMarginTop);
@@ -455,7 +457,7 @@ const VersionHistory = () => {
                                 <div
                                     key={`career-${index}`}
                                     ref={(el) => { columnRefs.current[index] = el; }}
-                                    className={`event-column${isStart ? ' event-column-compact' : ''}`}
+                                    className={`event-column${isCompact ? ' event-column-compact' : ''}`}
                                 >
                                     <div
                                         className='event-node'
@@ -471,9 +473,9 @@ const VersionHistory = () => {
                                     >
                                         {isStart ? c.startMonth : isIncoming ? c.startMonth : (c.endMonth || 'Present')}
                                     </span>
-                                    {isStart ? (
-                                        <CareerStartMarker
-                                            name={c.name}
+                                    {isCompact ? (
+                                        <CareerMarker
+                                            label={`${isStart ? 'Started' : 'Finished'} at ${c.name}`}
                                             role={c.role}
                                             color={c.color}
                                             logoSrc={getCareerLogoSrc(c.name)}
@@ -493,9 +495,8 @@ const VersionHistory = () => {
                                             role={c.role}
                                             color={c.color}
                                             logoSrc={getCareerLogoSrc(c.name)}
-                                            status={isIncoming ? 'Incoming' : 'Finished'}
-                                            period={isIncoming ? `Starting ${c.startMonth}` : `${c.startMonth} – ${c.endMonth || 'Present'}`}
-                                            summary={!isIncoming ? c.summary : undefined}
+                                            status='Incoming'
+                                            period={`Starting ${c.startMonth}`}
                                         />
                                     )}
                                 </div>
