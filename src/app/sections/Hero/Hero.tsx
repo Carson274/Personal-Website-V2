@@ -31,7 +31,8 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className='mt-12 max-w-md text-center sm:mt-16'>
+        {/* Sit above the wordmark's reveal covers, which reach a few pixels past the name. */}
+        <div className='relative z-10 mt-12 max-w-md text-center sm:mt-16'>
           <p className='text-balance text-sm text-coffee/80'>CS @ Oregon State | Prev @ Netflix</p>
           <div className='mt-7 flex flex-wrap justify-center gap-3'>
             <a href='#projects' className='rounded-full bg-coffee px-6 py-3 text-sm font-medium text-light-cream transition-colors hover:bg-brown'>View projects ↓</a>
