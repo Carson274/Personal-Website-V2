@@ -207,13 +207,13 @@ const Projects = () => {
             <Project key={project.name} project={project} />
           ))}
         </div>
-        <div className='more-projects mt-12 border-t border-cream/20 pt-4 text-cream'>
+        <div className='more-projects mt-14 text-cream'>
           <button
             type='button'
             aria-expanded={showMore}
             aria-controls={morePanelId}
             onClick={() => setShowMore((open) => !open)}
-            className='more-projects-toggle inline-flex min-h-11 cursor-pointer items-center gap-2 text-left text-base font-medium text-white'
+            className='more-projects-toggle mx-auto flex w-fit cursor-pointer items-center gap-2 rounded-full bg-light-cream px-6 py-3 text-sm font-medium text-coffee transition-colors hover:bg-white'
           >
             <span>{showMore ? 'Show fewer projects' : `Show ${moreProjects.length} more projects`}</span>
             <svg aria-hidden='true' className='more-projects-chevron h-4 w-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
