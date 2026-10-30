@@ -61,6 +61,14 @@ function monthToSortDate(month: string): number {
     return y * 100 + m;
 }
 
+// Within one month, a job that starts is newer (further left) than one that ends.
+const ORDER_WITHIN_MONTH: Record<TimelineItem['type'], number> = {
+    'event': 0,
+    'career-incoming': 1,
+    'career-start': 1,
+    'career-end': 2,
+};
+
 function buildTimeline(events: EventDetails[], careers: CareerDetails[]): TimelineItem[] {
     const items: TimelineItem[] = [];
     const now = new Date();
@@ -83,7 +91,7 @@ function buildTimeline(events: EventDetails[], careers: CareerDetails[]): Timeli
         }
     });
 
-    items.sort((a, b) => b.sortDate - a.sortDate);
+    items.sort((a, b) => b.sortDate - a.sortDate || ORDER_WITHIN_MONTH[a.type] - ORDER_WITHIN_MONTH[b.type]);
     return items;
 }
 
