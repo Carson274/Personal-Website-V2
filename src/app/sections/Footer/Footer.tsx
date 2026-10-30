@@ -7,9 +7,9 @@ export default function Footer() {
       <div className='mx-auto max-w-6xl px-6 sm:px-10'>
         <div className='flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between'>
           <div className='min-w-0'>
-            <h2 className='text-base font-medium sm:text-lg'>Leaving? Say hello :)</h2>
+            <h2 className='text-3xl font-bold tracking-tight sm:text-4xl'>Leaving? Say hello :)</h2>
             {profile.email && (
-              <a className='nav-link mt-2 inline-block font-display text-[clamp(1.125rem,6vw,2.75rem)] font-bold tracking-tight [overflow-wrap:anywhere]' href={`mailto:${profile.email}`}>
+              <a className='nav-link mt-3 inline-block text-base font-medium sm:text-lg' href={`mailto:${profile.email}`}>
                 {profile.email}
               </a>
             )}
