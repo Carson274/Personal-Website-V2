@@ -2,6 +2,19 @@
     position: relative;
 }
 
+.timeline-hint-arrow {
+    animation: timelineHintNudge 1.6s ease-in-out infinite;
+}
+
+@keyframes timelineHintNudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-hint-arrow { animation: none; }
+}
+
 .timeline-line {
     position: absolute;
     top: 20px;

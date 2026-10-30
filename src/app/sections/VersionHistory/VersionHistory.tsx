@@ -319,7 +319,12 @@ const VersionHistory = () => {
                         ))}
                     </div>
                 </motion.div>
-                <p className='mt-2 px-4 text-xs text-cream/70'>Newest first. Scroll sideways to see more <span aria-hidden='true'>→</span></p>
+                <p className='mt-3 flex items-center justify-center gap-1.5 px-4 text-sm text-cream/75'>
+                    Scroll to go back in time
+                    <svg aria-hidden='true' className='timeline-hint-arrow h-4 w-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'>
+                        <path d='M4 12h16m-6-6 6 6-6 6' />
+                    </svg>
+                </p>
             </section>
 
             <div className='timeline-row mt-4 relative'>
